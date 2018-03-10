@@ -1,0 +1,193 @@
+.hot-sales-items{
+  height: 300px;
+}
+.hot-sales-items, .floor-items{
+  float: left;
+  width: 933px;
+}
+.hot-sales-items ul li{
+  float: left;
+  width: 233px;
+  height: 168px;
+}
+.hot-sales-items ul li:not(:nth-child(4)):not(:nth-child(8)){
+  border-right: 1px solid #dcdcdc;
+}
+
+.hot-sales-items ul li:nth-child(n+5){
+  border-top: 1px solid #dcdcdc;
+}
+
+.floor-1 .floor-items ul li{
+  float: left;
+  height: 195px;
+}
+
+.floor-2 .floor-items ul li{
+  float: left;
+  height: 194px;
+}
+
+.floor-items ul li:nth-child(1){
+  width: 466px;
+}
+
+.floor-items ul li:not(:nth-child(1)){
+  width: 233px;
+}
+
+.hot-sales-item .hot-sales-item-info p{
+  max-width: 190px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+}
+.item-amount{
+  color: #cd2f11;
+  font-size: 16px;
+  font-weight: bold;
+}
+.img-brands p{
+  padding-left: 237px;
+}
+.img-brands a{
+  display: block;
+  width: 311px;
+  height: 248px;
+  float: left;
+}
+.floor-items table{
+  height: 387px;
+}
+.hot-sales .hot-sales-title{
+  color: #d43f3a;
+  font-size: 19px;
+  font-weight: 600;
+}
+.hot-sales-item-image img{
+  width: 106px;
+  margin: 0 auto;
+  margin-top: 6px;
+}
+.hot-sales-item-info{
+  padding: 8px;
+  text-align: center;
+}
+.hot-sales-item-info span:nth-child(3){
+  font-size: 16px;
+  color: #d43f3a;
+  font-weight: 600;
+}
+.title-image{
+  float: left;
+}
+.floor-items{
+  margin-top: 2px;
+}
+/*table{*/
+  /*border-collapse: collapse;*/
+  /*border: 1px solid #9d9d9d;*/
+/*}*/
+/*table td{*/
+  /*border: 1px solid #dcdcdc;*/
+/*}*/
+.floor-items-feature .floor-item-image{
+  float: left;
+}
+.floor-items-feature .floor-item-image img{
+  margin: 5px 20px;
+  width: 180px;
+}
+.floor-items-feature .floor-item-info{
+  float: left;
+  margin-top: 20px;
+  padding-top: 35px;
+  padding-right: 10px;
+}
+.floor-items-feature .floor-item-info p.title{
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.floor-1 .floor-items-feature .floor-item-info span.normal-price{
+  font-size: 14px;
+  text-decoration: line-through;
+  margin-right: 8px;
+  color: #9e9e9e;
+}
+.floor-1 .floor-items-feature .floor-item-info span.promotion-price{
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 15px;
+  color: #6666ff;
+}
+
+.floor-item-normal .floor-item-image img{
+  margin: 0 auto;
+  width: 106px;
+}
+
+.floor-item-normal .floor-item-info{
+  padding: 15px;
+}
+
+.floor-item-normal .floor-item-info p.title{
+  font-size: 14px;
+  max-width: 190px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+}
+
+.floor-item-normal .floor-item-info p.price{
+  margin-top: 12px;
+}
+
+.floor-item-normal .floor-item-info span.normal-price{
+  font-size: 14px;
+  text-decoration: line-through;
+  margin-right: 8px;
+  color: #9e9e9e;
+}
+
+.floor-1 .floor-item-normal .floor-item-info span.promotion-price{
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 15px;
+  color: #6666ff;
+}
+
+.floor-items ul li:not(:nth-child(3)):not(:nth-child(7)){
+  border-right: 1px solid #dcdcdc;
+}
+
+.floor-items ul li:nth-child(n+4){
+  border-top: 1px solid #dcdcdc;
+}
+
+
+.floor-2 .floor-items-feature .floor-item-info span.normal-price{
+  font-size: 14px;
+  text-decoration: line-through;
+  margin-right: 8px;
+  color: #9e9e9e;
+}
+.floor-2 .floor-items-feature .floor-item-info span.promotion-price{
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 15px;
+  color: #ff3399;
+}
+
+.floor-2 .floor-item-normal .floor-item-info span.promotion-price{
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 15px;
+  color: #ff3399;
+}
+
+.floor-item-normal .floor-item-image img{
+  margin: 0 auto;
+  width: 106px;
+}

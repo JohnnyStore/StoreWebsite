@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/stylesheets/view/news/newsDetail.css">
+<div class="container newsDetail" id="app">
+  <div class="row">
+    <div class="col-md-12">
+      <input type="hidden" value="{{newsId}}" id="hidden-newsId">
+      <div class="article-box" v-html="newsHtml">
+      </div>
+    </div>
+  </div>
+</div>
+<script src="javascripts/view/news/newsDetail.js"></script>

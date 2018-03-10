@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="/stylesheets/login.css">
+<div class="container" id="app">
+
+  <section class="login" v-show="isShowLoginSection">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">User Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" v-model="userName4Login">
+          <my-alert v-bind:alert-msg="alertMessage" :hidden-user-name-alert="hiddenUserNameAlert"></my-alert>
+          <!--<my-alert :alert-message="alertMessage" :hidden-user-name-alert="hiddenUserNameAlert"></my-alert>-->
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" v-model="password4Login">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" v-model="isRemember"> Remember me
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" class="btn btn-primary" @click="onLogin">Login</button>
+          <button type="button" class="btn btn-info" @click="onShowRegisterSection">To Register</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="register" v-show="!isShowLoginSection">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">User Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" v-model="userName4Register">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Sex</label>
+        <div class="col-sm-10">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="m"> Male
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="f"> Female
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">College</label>
+        <div class="col-sm-10">
+          <select class="form-control" v-model="selectedCollege">
+            <option v-for="college in colleges" :value="college.code">
+              \{{college.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Hobby</label>
+        <div class="col-sm-10">
+          <label class="checkbox-inline" v-for="hobby in hobbies">
+            <input type="checkbox" v-bind:value="hobby.code" v-model="checkedHobbies"> \{{hobby.text}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Valid Code</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" v-model="validCode">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" v-model="password4Register">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">ConfirmPassword</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" v-model="confirmPassword">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" class="btn btn-primary" @click="onRegister">Register</button>
+          <button type="button" class="btn btn-info" @click="onShowLoginSection">To Login</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script src="javascripts/view/account/login.js"></script>

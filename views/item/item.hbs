@@ -1,0 +1,267 @@
+<link rel="stylesheet" href="/stylesheets/view/item/item.css">
+<script src="javascripts/jquery-plugins/imagezoom/jquery.imagezoom.min.js"></script>
+<div class="container bread-crumbs no-padding" style="margin-bottom: 35px">
+  <!--<ol class="breadcrumb no-background-color">-->
+    <!--<li>-->
+      <!--<a href="\">-->
+        <!--<span class="lan-cn">首页</span>-->
+        <!--<span class="lan-en hidden">Home</span>-->
+      <!--</a>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<span class="lan-cn">熊本熊</span>-->
+      <!--<span class="lan-en hidden">Kumamon</span>-->
+    <!--</li>-->
+    <!--<li class="active">-->
+      <!--<span class="lan-cn">脖圈</span>-->
+      <!--<span class="lan-en hidden">Collar</span>-->
+    <!--</li>-->
+  <!--</ol>-->
+</div>
+<div class="container item-buy">
+  <div class="item-buy-image">
+    <div class="item-image-big">
+      <a href="#">
+        <img src="{{itemDetail.itemInfo.imageUrl}}" class="img-responsive">
+      </a>
+    </div>
+    <div class="item-image-thumbnail-list">
+      {{#each itemDetail.thumbnailList}}
+        <div class="item-image-thumbnail">
+          <img src="{{this.imageUrl}}" data-color="{{this.color}}" class="img-responsive">
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="item-buy-info">
+    <h4 class="lan-cn" id="title-cn">{{itemDetail.itemInfo.titleCN}}</h4>
+    <h4 class="lan-en hidden" id="title-en">{{itemDetail.itemInfo.titleEN}}</h4>
+    <div class="item-info-price">
+      <!--<p>-->
+        <!--<span class="info lan-cn">价格</span>-->
+        <!--<span class="info lan-en hidden">Price</span>-->
+        <!--<span class="price">${{itemDetail.itemInfo.originalPrice}}</span>-->
+      <!--</p>-->
+      <p>
+        <span class="info lan-cn">商品材质</span>
+        <span class="info lan-en hidden">Material</span>
+        <span class="lan-cn" id="material-cn">{{itemDetail.itemInfo.materialCN}}</span>
+        <span class="lan-en hidden" id="material-en">{{itemDetail.itemInfo.materialEN}}</span>
+      </p>
+      <p>
+        <span class="info lan-cn">可调尺寸</span>
+        <span class="info lan-en hidden">Adjust</span>
+        <span id="measures">{{itemDetail.itemInfo.measures}}</span>
+      </p>
+    </div>
+    <div class="item-info-other item-info-series-list">
+      <div class="item-info-other-left">
+        <span class="info lan-cn">选择系列</span>
+        <span class="info lan-en hidden">Series</span>
+      </div>
+      <div class="item-info-other-right">
+        {{#each itemDetail.seriesList}}
+          <div class="item-info-size" style="width: 130px">
+            <span class="lan-cn">{{this.seriesCH}}</span>
+            <span class="lan-en hidden">{{this.seriesEN}}</span>
+          </div>
+        {{/each}}
+      </div>
+
+    </div>
+
+    <div class="clear-float space-normal"></div>
+    <div class="item-info-other margin-top-30 item-info-color-list">
+      <div class="item-info-other-left">
+        <span class="info lan-cn">选择颜色</span>
+        <span class="info lan-en hidden">Color</span>
+      </div>
+      <div class="item-info-other-right">
+        {{#each itemDetail.colorList}}
+          <div class="item-info-size" style="width: 130px">
+            <span class="lan-cn">{{this.colorCH}}</span>
+            <span class="lan-en hidden">{{this.colorEN}}</span>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="clear-float space-normal"></div>
+    <div class="item-info-other margin-top-30 item-info-size-list">
+      <div class="item-info-other-left">
+        <span class="info lan-cn">选择尺码</span>
+        <span class="info lan-en hidden">Size</span>
+      </div>
+      <div class="item-info-other-right">
+        {{#each itemDetail.sizeList}}
+          <div class="item-info-size" style="width: 130px">
+            <span class="lan-cn">{{this.sizeCH}}</span>
+            <span class="lan-en hidden">{{this.sizeEN}}</span>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="clear-float space-normal"></div>
+    <!--<div class="item-add-shoppingCar margin-top-30">-->
+      <!--<input type="number" class="item-count text-right" min="1" minlength="100" value="1">-->
+      <!--<button type="button" class="btn-add-shoppingCart">-->
+        <!--<span class="glyphicon glyphicon-shopping-cart"></span>-->
+        <!--<span class="lan-cn">加入购物车</span>-->
+        <!--<span class="lan-en hidden">Add Shopping Car</span>-->
+      <!--</button>-->
+    <!--</div>-->
+  </div>
+</div>
+<div class="container item-detail">
+  <div class="recommend-item-list">
+    <!--<h4 class="lan-cn">同类商品</h4>-->
+    <!--<h4 class="lan-en hidden">Same Goods</h4>-->
+    <!--<div class="pet-rem-item border-bottom">-->
+      <!--<div class="pet-rem-item-img">-->
+        <!--<a href="/item?brand=BHB10001&pet=dog&itemType=BHT10002&itemId=BHR17018">-->
+          <!--<img src="images/items/DSC_1356.png" alt="" class="img-responsive item-image">-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div class="pet-rem-item-info">-->
+        <!--<p class="lan-cn des">熊本熊狗用波点牵引带蓝色熊本熊狗用波点牵引带蓝色</p>-->
+        <!--<p class="lan-en des hidden">熊本熊狗用波点牵引带蓝色</p>-->
+        <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="pet-rem-item border-bottom">-->
+      <!--<div class="pet-rem-item-img">-->
+        <!--<a href="/item?brand=BHB10000&pet=dog&itemType=BHT10001&itemId=BHR17168">-->
+          <!--<img src="images/items/DSC_1368.png" alt="" class="img-responsive item-image">-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div class="pet-rem-item-info">-->
+        <!--<p class="lan-cn des">疯狂设计师狗脖圈</p>-->
+        <!--<p class="lan-en des hidden">Dog Collar of Crazy Designer</p>-->
+        <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="pet-rem-item border-bottom">-->
+      <!--<div class="pet-rem-item-img">-->
+        <!--<a href="/item?brand=BHB10001&pet=dog&itemType=BHT10005&itemId=BHG17130">-->
+          <!--<img src="images/items/DSC_1564.png" alt="" class="img-responsive item-image">-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div class="pet-rem-item-info">-->
+        <!--<p class="lan-cn des">熊本熊狗狗超可爱变身无领衫</p>-->
+        <!--<p class="lan-en des hidden">熊本熊狗狗超可爱变身无领衫</p>-->
+        <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+  <div class="item-detail-info">
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+      <ul id="myTabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+            <span class="lan-cn">商品详情</span>
+            <span class="lan-en hidden">Item Detail</span>
+          </a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="lan-cn">品牌: </span>
+              <span class="lan-en hidden">Brand: </span>
+              <span class="lan-cn" id="item-brand-cn">{{itemDetail.itemInfo.brandNameCN}}</span>
+              <span class="lan-en hidden" id="item-brand-en">{{itemDetail.itemInfo.brandNameEN}}</span>
+            </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="lan-cn">商品编号：</span>
+              <span class="lan-en hidden">ID: </span>
+              <span id="item-id">{{itemDetail.itemInfo.id}}</span>
+            </div>
+            <div class="col-md-6">
+              <span class="lan-cn">商品名称: </span>
+              <span class="lan-en hidden">Name: </span>
+              <span class="lan-cn" id="item-name-cn">{{itemDetail.itemInfo.nameCN}}</span>
+              <span class="lan-en hidden" id="item-name-en">{{itemDetail.itemInfo.nameEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品颜色: </span>
+              <span class="lan-en hidden">Color: </span>
+              <span class="lan-cn" id="item-color-cn">{{itemDetail.itemInfo.colorCN}}</span>
+              <span class="lan-en hidden" id="item-color-en">{{itemDetail.itemInfo.colorEN}}</span>
+            </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+
+
+            <div class="col-md-3">
+              <span class="lan-cn">商品分类: </span>
+              <span class="lan-en hidden">Type: </span>
+              <span class="lan-cn" id="item-type-cn">{{itemDetail.itemInfo.itemTypeCH}}</span>
+              <span class="lan-en hidden" id="item-type-en">{{itemDetail.itemInfo.itemTypeEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品尺寸: </span>
+              <span class="lan-en hidden">Size: </span>
+              <span class="lan-cn" id="item-size-cn">{{itemDetail.itemInfo.sizeCN}}</span>
+              <span class="lan-en hidden" id="item-size-en">{{itemDetail.itemInfo.sizeEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品制造地: </span>
+              <span class="lan-en hidden">Made in: </span>
+              <span class="lan-cn" id="item-madeIn-cn">{{itemDetail.itemInfo.madeInCN}}</span>
+              <span class="lan-en hidden" id="item-madeIn-en">{{itemDetail.itemInfo.madeInEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品材质: </span>
+              <span class="lan-en hidden">Material: </span>
+              <span class="lan-cn" id="item-material-cn">{{itemDetail.itemInfo.materialCN}}</span>
+              <span class="lan-en hidden" id="item-material-en">{{itemDetail.itemInfo.materialEN}}</span>
+            </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="lan-cn">适用对象: </span>
+              <span class="lan-en hidden">Suitable: </span>
+              <span class="lan-cn" id="item-suitable-object-cn">{{itemDetail.itemInfo.usedAnimalCN}}</span>
+              <span class="lan-en hidden" id="item-suitable-object-en">{{itemDetail.itemInfo.usedAnimalEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">适用范围: </span>
+              <span class="lan-en hidden">Scope: </span>
+              <span class="lan-cn" id="item-suitable-scope-cn">{{itemDetail.itemInfo.usedAnimalTypeCN}}</span>
+              <span class="lan-en hidden" id="item-suitable-scope-en">{{itemDetail.itemInfo.usedAnimalTypeEN}}</span>
+            </div>
+            <div class="col-md-6">
+              <span class="lan-cn">商品规格: </span>
+              <span class="lan-en hidden">Specification: </span>
+              <span class="lan-cn" id="item-specification-cn">{{itemDetail.itemInfo.measures}}</span>
+              <span class="lan-en hidden" id="item-specification-en">{{itemDetail.itemInfo.measures}}</span>
+            </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="lan-cn" id="item-description-cn" style="line-height: 30px; white-space: pre-wrap">{{itemDetail.itemInfo.descriptionCN}}</p>
+              <p class="lan-en hidden" id="item-description-en" style="line-height: 30px; white-space: pre-wrap">{{itemDetail.itemInfo.descriptionEN}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space-normal"></div>
+<input type="hidden" value="{{itemDetail.itemInfo.seriesCH}}" id="hid-seriesCN">
+<input type="hidden" value="{{itemDetail.itemInfo.seriesEN}}" id="hid-seriesEN">
+<input type="hidden" value="{{itemDetail.itemInfo.brandId}}" id="hid-brandId">
+<input type="hidden" value="{{itemDetail.itemInfo.pet}}" id="hid-pet">
+<input type="hidden" value="{{itemDetail.itemInfo.itemTypeId}}" id="hid-itemTypeId">
+<input type="hidden" value="{{itemDetail.itemInfo.colorCN}}" id="hid-colorCN">
+<input type="hidden" value="{{itemDetail.itemInfo.colorEN}}" id="hid-colorEN">
+<input type="hidden" value="{{itemDetail.itemInfo.sizeCN}}" id="hid-sizeCN">
+<input type="hidden" value="{{itemDetail.itemInfo.sizeEN}}" id="hid-sizeEN">
+<script src="javascripts/view/item/item.js"></script>

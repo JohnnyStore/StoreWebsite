@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="/stylesheets/view/shops/shoping.css">
+<link rel="stylesheet" href="javascripts/layui/css/layui.css">
+<div class="container">
+    <!--购物车搜索栏-->
+    <div class="searchwrap clearfix">
+        <div class="shop_logo">
+            <img src="/images/logo-new.png" alt="" />
+            <span>订单结算</span>
+        </div>
+        <div class="shop_order_process">
+            <p><img src="/images/order/order1.gif" alt="" /></p>
+            <span>购物车</span><span>提交订单</span><span style="padding-right:0;">支付</span>
+        </div>
+
+    </div>
+    <!--提交订单-->
+    <div class="sub_order_cont">
+        <div class="sub_order_user">
+            <h2>收货人信息</h2>
+            <p>魏瑞娥 北京 北京东城区东大街　150****6510 <span>默认地址</span></p>
+            <a href="#" id="add_order"><i class="iconfont icon-weibiaoti37"></i>添加联系人</a>
+        </div>
+        <div class="sub_order_user">
+            <h2>付款方式 </h2>
+            <p>在线支付</p>
+        </div>
+        <div class="sub_order_user">
+            <h2>配送方式 </h2>
+            <p>普通快递送货上门。送货时间不限</p>
+        </div>
+        <div class="sub_order_goods">
+            <h2>商品清单 </h2>
+            <div class="sub_order_list clearfix">
+                <div class="shop_title clearfix">
+                    <dl>
+                        <dt></dt>
+                        <dd class="shop_inner">商品信息</dd>
+                        <dd class="shop_price_buy">金额</dd>
+                        <dd class="shop_price_buy">数量</dd>
+                        <dd class="shop_price_buy shop_cz">总计</dd>
+                    </dl>
+                </div>
+                <div class="shop_item clearfix">
+                    <!--<div class="shop_th"><input type="checkbox" /></div>-->
+                    <div class="shop_goods shop_order">
+                        <div class="shop_goods_img">
+                            <a href="#"><img src="images/items/DSC_1532.png" alt="" /></a>
+                        </div>
+                        <div class="shop_goods_inner">
+                            <a href="#">熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带</a>
+                        </div>
+                        <div class="shop_goods_color">
+                            <p>颜色：黄底黑色波点</p>
+                            <p>尺码：L码(带宽25mm)</p>
+                        </div>
+                    </div>
+                    <div class="shop_price_buy"><p class="price">￥38</p></div>
+                    <div class="shop_price_buy">
+                        <div class="item-amount item-pad-none">
+                             <span>X2</span>
+                        </div>
+                    </div>
+                    <div class="shop_price_buy shop_cz">
+                        <p class="sum_price">￥76</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub_order_ft clearfix">
+            <div class="order_buy_massage">
+                给卖家留言
+                <textarea rows="" cols="" placeholder="填写内容已和买家沟通"></textarea>
+            </div>
+            <div class="sub_order_btn">
+                <p>商品总额：<span>￥34</span></p>
+                <a href="apply">提交订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="add_adress">
+    <div class="add_adr_box">
+        <div class="add_adr_cont clearfix">
+            <form method="get" id="add_user_form" action="">
+                <ul>
+                    <li>
+                        <label><span>*</span>收货人姓名：</label>
+                        <div class="order_name">
+                            <input class="val" type="text" name="username" id="username" required />
+                        </div>
+                    </li>
+                    <li>
+                        <label><span>*</span>所在地区：</label>
+                        <div class="order_region">
+                            <select class="val" name="address" id="address" required>
+                                <option value="">-请选择-</option>
+                                <option value="陕西">陕西</option>
+                            </select>
+                        </div>
+
+                    </li>
+                    <li>
+                        <label><span>*</span>详细地址：</label>
+                        <div class="order_adr">
+                            <input class="val" type="text" id="address_map"  name="address_map" required />
+                        </div>
+                        <!--<div class="error_tips">-->
+                            <!--<p><i class="iconfont icon-bang"></i> </p>-->
+                        <!--</div>-->
+                    </li>
+                    <li>
+                        <label><span>*</span>手机号码：</label>
+                        <div class="order_tel">
+                            <input class="val" type="text" id="telphone" name="telphone" required />
+                        </div>
+                    </li>
+                    
+                </ul>
+                <input type="submit"  value="保存收货地址">
+            </form>
+        </div>
+    </div>
+</div>
+<div style="height: 40px"></div>
+<script type="text/javascript" src="javascripts/jquery-2.2.0/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="javascripts/layer/layer.js"></script>
+<script type="text/javascript" src="javascripts/validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="javascripts/validate/messages_zh.js"></script>
+<script type="text/javascript" src="javascripts/view/order/order.js"></script>
+<script>
+    $().ready(function(){
+        // 在键盘按下并释放及提交后验证提交表单
+        $("#add_user_form").validate({
+            rules: {
+                username:{
+                    required: true,
+                    minlength: 2
+                },
+                address:"required",
+                address_map:"required",
+                telphone:"required"
+            },
+            messages: {
+                username:"请输入正确的名字",
+                address:"请选择地址",
+                address_map:"请填写详细的信息",
+                telphone:"请输入合法的手机号",
+
+            }
+
+        })
+    })
+</script>

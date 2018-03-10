@@ -1,0 +1,148 @@
+.trial {
+  padding: 50px 0 50px;
+}
+.section-heading {
+  position: relative;
+  /*color: #39404c;*/
+  /*color: #515b6d;*/
+  color: #00386a;
+  margin: 0;
+  font-weight: bold;
+}
+.section-heading:after {
+  position: absolute;
+  border: 2px solid #39404c;
+  content: '';
+  width: 600px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 56px;
+}
+.hot-brands{
+  background-color: #FDD948;
+  margin-bottom: 80px;
+}
+.hot-brands i{
+  color: #00386a;
+  font-size: 26px;
+  padding: 8px;
+  margin: 30px 0;
+}
+.brand-wall{
+  color: #000000;
+  background-color: #ffffff;
+  text-align: center;
+  margin-bottom: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.hot-sell{
+  background-color: #FDD948;
+  margin-bottom: 80px;
+}
+.hot-sell .glyphicon-shopping-cart{
+  color: #00386a;
+  font-size: 26px;
+  padding: 8px;
+  margin: 30px 0;
+}
+.hot-sell a{
+  background-color: #5fbd74;
+  margin-right: 5px;
+  padding: 12px;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  font-weight: 400;
+  margin-left: 100px;
+  font-size: 16px;
+  margin: 40px 0;
+  text-decoration: none!important;
+}
+.hot-sell a:hover{
+  border: 1px solid #5fbd74;
+  color: #5fbd74;
+  background-color: transparent !important;
+}
+.hot-item-group img{
+  width: 227px;
+  height: 151px;
+}
+.title{
+  color: #00386a;
+  font-size: 24px;
+  margin: 40px 5px;
+  padding: 8px;
+  display: inline-block;
+}
+.slogan{
+  color: #00386a;
+  font-size: 18px;
+  margin: 40px 25px 5px;
+  padding: 8px;
+  display: inline-block;
+}
+.hot-item{
+  /*margin-bottom: 60px;*/
+}
+.hot-item-group{
+  margin-bottom: 60px;
+}
+.hot-item-group .group-title{
+  text-align: center;
+  font-size: 32px;
+  margin: 23px;
+}
+.green{
+  color: #3c763d;
+}
+.blue{
+  color: #2e6da4;
+}
+.orange{
+  color: orange;
+}
+.group-title span.glyphicon{
+  margin-right: 9px;
+  font-size: 32px;
+}
+.hot-item-group .image{
+  margin-bottom: 9px;
+}
+.hot-item-group .description{
+  text-align: center;
+}
+.hot-item-group .group-item-name{
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.hot-item-group .group-item-hot-price{
+  color: #d43f3a;
+  font-size: 23px;
+  font-weight: 800;
+  margin-right: 6px;
+}
+.hot-item-group .group-item-price{
+  font-size: 19px;
+  color: #5e5e5e;
+  text-decoration: line-through;
+}
+/*.promotion-price{*/
+  /*font-size: 22px;*/
+  /*margin-top: 12px;*/
+  /*margin-bottom: 20px;*/
+  /*color: #ca120e;*/
+/*}*/
+/*.original-price{*/
+  /*font-size: 18px;*/
+  /*margin-top: 12px;*/
+  /*margin-bottom: 20px;*/
+  /*color: #9d9d9d;*/
+  /*text-decoration: line-through;*/
+/*}*/
+/*.text-right{*/
+  /*padding-right: 25px;*/
+/*}*/

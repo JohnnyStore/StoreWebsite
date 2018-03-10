@@ -1,0 +1,124 @@
+body{
+  font-family: Helvetica;
+}
+.navbar-brand-padding{
+  padding: 6px 15px;
+}
+.navbar-default{
+  background-color: #ffffff;
+}
+.navbar {
+  margin-bottom: 0;
+}
+.space-25{
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+.no-padding{
+  padding: 0;
+}
+.navbar-header{
+  margin-top: 10px;
+}
+.navbar-nav{
+  margin-left: 35px;
+}
+.navbar-nav>li>a {
+  color: #3c763d !important;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  /*font-weight: 700;*/
+}
+.navbar-separate{
+  color: #9d9d9d;
+  margin-top: 25px;
+  height: 35px
+}
+.navbar-inverse{
+  background-color: #ffffff;
+  /*background-color: orangered;*/
+  border: none;
+  color: #ffd400 !important;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+  background-color: #ebecec;
+}
+.col-md-2-4{
+  width: 20%;
+  float: left;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.search-control{
+  padding: 4px;
+  width: 70%;
+  height: 33px;
+  border: 1px solid #FCA832;
+  line-height: 25px;
+  font-size: 14px;
+  outline: none;
+  margin-top: 15px;
+}
+.btn-search{
+  width: 90px;
+  border: none;
+  background-color: #FCA832;
+  color: #872525;
+}
+.switch-language{
+  width: 95px;
+  /*margin-left: 15px;*/
+}
+.center{
+  margin: 0 auto;
+}
+.no-border{
+  border: none;
+}
+.no-border-radius{
+  border-radius: 0;
+}
+.html-content{
+  white-space: pre-line
+}
+.footer{
+  border-top: 1px solid #dcdcdc;
+  background-color: #EAEAEA ;
+  color: grey;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  /*padding: 25px;*/
+  height: 175px;
+}
+.footer ul{
+  list-style: none;
+}
+.footer .content{
+  margin: 0 auto;
+}
+.footer .content ul li:first-child{
+  margin-bottom: 15px;
+}
+.footer .content ul li:not(:first-child){
+  margin-bottom: 8px;
+}
+.footer .content ul li a{
+  text-decoration: none;
+  color: grey;
+}
+.footer .content ul li:nth-child(0){
+  font-weight: 800;
+}
+.line-bottom{
+  padding-top: 10px;
+  padding-bottom: 15px;
+  border-bottom: 0.5px solid #c1baba;
+  margin-bottom: 15px;
+}
+.footer p.footer-text{
+  word-break: keep-all;
+}
+.footer .copyright{
+  text-align: center;
+  color: grey;
+}

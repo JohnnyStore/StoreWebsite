@@ -1,0 +1,26 @@
+.menus div{
+  padding: 15px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+.border-bottom{
+  border-bottom: 1px solid #cccccc;
+}
+.company-content .info{
+  padding: 15px;
+}
+.company-content-header{
+  font-size: 18px;
+  font-weight: 600;
+}
+.bg{
+  background-color: #EFF2F5;
+}
+.current{
+  background-color: #ff6600;
+  color: #FFFFFF;
+  cursor: default;
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>爱宠族(Luvpet) - {{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap-3.3.7/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/jquery-nav/bootsnav.css">
+  <link rel="stylesheet" href="/stylesheets/font-awesome-4.7.0/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/iconfont.css">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <script src="/javascripts/jquery-2.2.0/jquery-2.2.0.min.js"></script>
+  <script src="/javascripts/bootstrap-3.3.7/bootstrap.min.js"></script>
+  <script src="/javascripts/jquery-plugins/jqueryNav/bootsnav.js"></script>
+  <!--<script src="/javascripts/vuejs/vue.js"></script>-->
+  <!--<script src="/javascripts/view/common.js"></script>-->
+  <!--<script src="/javascripts/vuejs/component.js"></script>-->
+  <!--<script src="/javascripts/vuejs/commonVue.js"></script>-->
+  <style type="text/css">
+    .my-nav-bar nav.navbar.bootsnav{
+      border: none;
+    }
+    .navbar-nav{
+      float: left;
+    }
+    nav.navbar.bootsnav ul.nav > li > a{
+      color: #ffffff;
+      text-transform: uppercase;
+      padding: 30px;
+      font-size: 16px;
+    }
+    nav.navbar.bootsnav ul.nav > li:hover{
+      /*background: #FA6509;*/
+      color: #ffffff;
+    }
+    .my-nav-bar  .nav > li:after{
+      content: "";
+      width: 0;
+      height: 5px;
+      background: #fa0909;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: all 0.5s ease 0s;
+    }
+    .nav > li:hover:after{
+      width: 100%;
+    }
+    nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
+      content: "+";
+      font-family: 'FontAwesome';
+      font-size: 16px;
+      font-weight: 500;
+      position: absolute;
+      top: 35%;
+      right: 10%;
+      transition: all 0.4s ease 0s;
+    }
+    .navbar-default {
+      background-color: #FA6509 !important;
+    }
+    nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{
+      content: "\f105";
+      transform: rotate(90deg);
+    }
+    .dropdown-menu.multi-dropdown{
+      position: absolute;
+      left: -100% !important;
+    }
+    nav.navbar.bootsnav li.dropdown ul.dropdown-menu{
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border: none;
+    }
+    .dropdown-menu li:hover{
+      background-color: #f9f9f9;
+    }
+    @media only screen and (max-width:990px){
+      nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after,
+      nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{ content: " "; }
+      .dropdown-menu.multi-dropdown{ left: 0 !important; }
+      nav.navbar.bootsnav ul.nav > li:hover{ background: transparent; }
+      nav.navbar.bootsnav ul.nav > li > a{ margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<!--页面未登录前显示头部 start-->
+<div class="nouserheader">
+  <div class="container-fluid header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <span class="lan-cn">欢迎访问 爱宠族</span>
+          <span class="lan-en hidden">Welcome Luvpet</span>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="division">
+              <a href="#">
+                <span class="lan-cn">登陆</span>
+                <span class="lan-en hidden">Sign in</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="lan-cn">注册</span>
+                <span class="lan-en hidden">Register</span>
+              </a>
+            </li>
+            <li class="dropdown switch-language">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="language">中文</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li value="cn"><a href="#">中文</a></li>
+                <li value="en"><a href="#">English</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container quick-bar">
+    <div class="row">
+      <div class="col-md-2">
+        <a class="" href="/">
+          <img src="/images/logo-new.png" alt="Petio" id="websiteLogo">
+        </a>
+      </div>
+      <div class="col-md-8 text-center">
+        <div class="search-form">
+          <input type="search" class="search-control" placeholder="">
+          <button type="button" class="btn btn-search">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+          <ul class="search-list">
+            <li class="search-item">111111</li>
+            <li class="search-item">222222</li>
+            <li class="search-item">333333</li>
+            <li class="search-item">444444</li>
+            <li class="search-item">555555</li>
+            <li class="search-item">666666</li>
+            <li role="separator" class="divider"></li>
+            <li class="search-item text-right">
+              <a href="#">Close</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button class="btn shopping-cart hidden" type="button">
+          <span class="glyphicon glyphicon-shopping-cart shopping-cart-icon"></span>
+          <span class="shopping-cart-text lan-cn">购物车</span>
+          <span class="shopping-cart-text lan-en hidden">Shopping Car</span>
+          <span class="badge shopping-cart-num">4</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid my-nav-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-default navbar-mobile bootsnav">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+              <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp" style="text-align: justify">
+                <li><a href="/">
+                  <span class="shopping-cart-text lan-cn">首页</span>
+                  <span class="shopping-cart-text lan-en hidden">Home</span>
+                </a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="shopping-cart-text lan-cn">品牌商品</span>
+                    <span class="shopping-cart-text lan-en hidden">Brands</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    {{#each navigate.brandList}}
+                      <li>
+                        <a href="/itemList?brandID={{this.brandID}}">
+                          <span class="shopping-cart-text lan-cn">{{this.brandCN}}</span>
+                          <span class="shopping-cart-text lan-en hidden">{{this.brandEN}}</span>
+                        </a>
+                      </li>
+                    {{/each}}
+                    <li>
+                      <a href="/itemList?brandID=all">
+                        <span class="shopping-cart-text lan-cn">所有品牌</span>
+                        <span class="shopping-cart-text lan-en hidden">All Brand Goods</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="shopping-cart-text lan-cn">宠物商品</span>
+                    <span class="shopping-cart-text lan-en hidden">Pets</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    {{#each navigate.navigateCategoryList}}
+                    <li class="dropdown">
+                      <a href="/itemList?categoryID={{this.categoryVO.categoryID}}" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="shopping-cart-text lan-cn">{{this.categoryVO.categoryCN}}</span>
+                        <span class="shopping-cart-text lan-en hidden">{{this.categoryVO.categoryEN}}</span>
+                      </a>
+                      <ul class="dropdown-menu sub-dropdown-menu">
+                        {{#each this.subCategoryVOList}}
+                        <li>
+                          <a href="/itemList?categoryID={{../this.categoryVO.categoryID}}&subCategoryID={{this.subCategoryID}}">
+                            <span class="lan-cn">{{this.subCategoryCN}}</span>
+                            <span class="lan-en hidden">{{this.subCategoryEN}}</span>
+                          </a>
+                        </li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                    {{/each}}
+                    <li>
+                      <a href="/itemList?categoryID=all&subCategoryID=all">
+                        <span class="shopping-cart-text lan-cn">所有商品</span>
+                        <span class="shopping-cart-text lan-en hidden">All Pet Goods</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/news">
+                    <span class="shopping-cart-text lan-cn">新闻动态</span>
+                    <span class="shopping-cart-text lan-en hidden">News</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/introduction">
+                    <span class="shopping-cart-text lan-cn">企业介绍</span>
+                    <span class="shopping-cart-text lan-en hidden">Company</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="shopping-cart-text lan-cn">其他</span>
+                    <span class="shopping-cart-text lan-en hidden">Other</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--页面未登录前显示头部 end-->
+<!--页面登录后显示头部 start-->
+<!--header-->
+<div class="userheader" style="display: none;">
+  <div class="headcont clearfix">
+    <div class="headleft">
+      <a href="index">
+        <i class="iconfont icon-shouye"></i>爱宠族首页
+      </a>
+      <span><i class="iconfont icon-zan"></i>爱宠族就是正品</span>
+    </div>
+    <div class="headright">
+      <ul>
+        <li><span>sallyruie</span><a href="#">[退出]</a></li>
+        <li><a href=""><i class="iconfont icon-xiaoxi"></i>新消息</a><em>1</em></li>
+        <li><a href="shops"><i class="iconfont icon-gouwuche2"></i>购物车</a><em>2</em></li>
+        <li><a href="allorder"><i class="iconfont icon-dingdanyichenggong"></i>我的订单</a></li>
+        <li><a href="mycollect"><i class="iconfont icon-shoucang"></i>我的收藏</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--header end-->
+<!--页面登录后显示头部 end-->
+
+{{{body}}}
+<!--<div class="container-fluid footer">-->
+<!--<span>Copyright(c) LUVPET Corp.All Rights Reserved.</span>-->
+<!--<span>备案号：沪ICP备17048081号</span>-->
+<!--</div>-->
+<div class="footwrap">
+  <div class="container clearfix">
+    <div class="footleft">
+      <a href="index"><img src="images/footer/ftimg.jpg" alt="" /></a>
+      <p>LUVP+K(爱宠族)将坚持“信赖、执着、专注、真诚”的
+        品牌价值观。我们品牌旗下的每一件产品，都充满了我们对
+        宠物和人类之间彼此关爱的理解。</p>
+    </div>
+    <div class="footcent">
+      <dl>
+        <dt>支付方式</dt>
+        <dd><a href="">在线支付</a></dd>
+      </dl>
+      <dl>
+        <dt>配送方式</dt>
+        <dd><a href="">物流运输</a></dd>
+      </dl>
+      <dl>
+        <dt>关于我们</dt>
+        <dd><a href="">关于我们</a></dd>
+        <dd><a href="">联系我们</a></dd>
+      </dl>
+
+    </div>
+    <div class="footright">
+      <img src="images/footer/qrcode.jpg" alt="" />
+      <span>扫描关注爱宠族<br>商城微信</span>
+    </div>
+
+  </div>
+  <div class="copyright clearfix">
+    <ul class="clearfix">
+      <li><a href="#"><i class="love_zp"></i><span>绝对的正品</span></a></li>
+      <li><a href="#"><i class="love_hh"></i><span>全球好的货</span></a></li>
+      <li><a href="#"><i class="love_bs"></i><span>养宠的帮手</span></a></li>
+    </ul>
+    <p>Copyright(c) LUVPET Corp.All Rights Reserved. 备案号：沪ICP备17048081号</p>
+  </div>
+</div>
+
+</body>
+</html>
