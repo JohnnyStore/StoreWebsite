@@ -58,6 +58,7 @@ router.get('/hotItem', function(req, res, next) {
     if(result.err){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
@@ -109,6 +110,7 @@ router.get('/itemPromotion', function(req, res, next) {
     if(result.err){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{

@@ -16,7 +16,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          //alertMessage(res.msg);
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             $('.hot-sales-items ul').append(
@@ -39,7 +39,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        //showMessage('远程服务无响应，状态码：' + XMLHttpRequest.status);
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -50,7 +50,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          //alertMessage(res.msg);
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -100,7 +100,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        //showMessage('远程服务无响应，状态码：' + XMLHttpRequest.status);
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + '远程服务无响应';
       }
     });
   }
@@ -111,7 +111,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          //alertMessage(res.msg);
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -161,7 +161,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        //showMessage('远程服务无响应，状态码：' + XMLHttpRequest.status);
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + '远程服务无响应';
       }
     });
   }

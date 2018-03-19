@@ -27,8 +27,8 @@ exports.get = function(host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': '-1',
-        'msg': '服务器系统异常。',
+        'code': res.statusCode,
+        'msg': '服务器系统异常，无法执行GET操作。',
         'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], param:[%s]', res.statusCode, host, port, path)
       });
     }
@@ -38,7 +38,7 @@ exports.get = function(host, port, path, callback){
     return callback({
       'err': true,
       'code': '-2',
-      'msg': '服务器连接失败。',
+      'msg': '服务器连接失败，无法执行GET操作。',
       'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], param:[%s], reason:[%s]', host, port, path, e.message)
     });
   });
@@ -75,8 +75,8 @@ exports.post = function(data, host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': '-1',
-        'msg': '服务器系统异常。Status Code: ' + res.statusCode,
+        'code': res.statusCode,
+        'msg': '服务器系统异常，无法执行POST操作。',
         'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], data:[%s]', res.statusCode, host, port, path, JSON.stringify(data))
       });
     }
@@ -86,7 +86,7 @@ exports.post = function(data, host, port, path, callback){
     return callback({
       'err': true,
       'code': '-2',
-      'msg': '服务器连接失败。',
+      'msg': '服务器连接失败，无法执行POST操作。',
       'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], data:[%s], reason:[%s]', host, port, path, JSON.stringify(data), e.message)
     });
   });
@@ -124,8 +124,8 @@ exports.put = function(data, host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': '-1',
-        'msg': '服务器系统异常。Status Code: ' + res.statusCode,
+        'code': res.statusCode,
+        'msg': '服务器系统异常，无法执行PUT操作。',
         'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], data:[%s]', res.statusCode, host, port, path, JSON.stringify(data))
       });
     }
@@ -135,7 +135,7 @@ exports.put = function(data, host, port, path, callback){
     return callback({
       'err': true,
       'code': '-2',
-      'msg': '服务器连接失败。',
+      'msg': '服务器连接失败，无法执行PUT操作。',
       'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], data:[%s], reason:[%s]', host, port, path, JSON.stringify(data), e.message)
     });
   });
@@ -168,8 +168,8 @@ exports.delete = function(host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': '-1',
-        'msg': '服务器系统异常。',
+        'code': res.statusCode,
+        'msg': '服务器系统异常，无法执行DELETE操作。',
         'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], param:[%s]', res.statusCode, host, port, path, param)
       });
     }
@@ -179,7 +179,7 @@ exports.delete = function(host, port, path, callback){
     return callback({
       'err': true,
       'code': '-2',
-      'msg': '服务器连接失败。',
+      'msg': '服务器连接失败，无法执行DELETE操作。',
       'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], param:[%s], reason:[%s]', host, port, path, param, e.message)
     });
   });

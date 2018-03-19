@@ -3,9 +3,11 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   var errorCode = req.query.errorCode;
+  var errorMsg = req.query.msg;
   res.render('error', {
     title: '网站出错啦',
-    errorCode: errorCode
+    errorCode: errorCode,
+    errorMsg: errorMsg
   });
 
 });

@@ -1,7 +1,7 @@
 var serviceInvoke = require('../common/serviceInvokeUtils');
 var sysConfig = require('../config/sysConfig');
 var apiConfig = require('../config/apiConfig');
-var pagingUtils = require('../common/pagingUtils');
+var pagingUtils = require('../common/commonUtils');
 
 exports.commonInvoke = function(apiName) {
   this.pageSize = sysConfig.pageSize;

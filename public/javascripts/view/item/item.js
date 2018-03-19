@@ -1,205 +1,218 @@
 $(document).ready(function () {
   function initPage() {
-    //默认系列选择
-    setCurrentSeries();
-
-    //默认颜色选择
-    setCurrentColor();
-
-    //默认尺寸选择
-    setCurrentSize();
+    setPriceStyle();
+    loadItemImages();
+    loadItemSeriseList();
+    loadItemColorList();
+    loadItemSizeList();
+    loadItemReviewList();
   }
-
-  function setCurrentSeries() {
-    var series_index = 0;
-    var seriesLength = $('.item-info-series-list div.item-info-size').length;
-    var series_cn = $('#hid-seriesCN').val();
-    var series_en = $('#hid-seriesEN').val();
-
-    if(seriesLength === 0){
-      $('.item-info-series-list').hide();
-    }else{
-      for(var i = 0; i <= seriesLength - 1; i++){
-        var series_text_cn = $.trim($('.item-info-series-list div.item-info-size span.lan-cn').eq(i).text());
-        var series_text_en = $.trim($('.item-info-series-list div.item-info-size span.lan-en').eq(i).text());
-        if(series_text_cn === series_cn && series_text_en === series_en){
-          series_index = i;
-          break;
-        }
-      }
-      $('.item-info-series-list div.item-info-size').eq(series_index).addClass('border-choose');
-      //根据商品的系列，选择该系列对应的颜色
-      setItemInfo4Series();
-    }
+  
+  function setPriceStyle() {
+    
   }
-
-  function setCurrentColor() {
-    var color_index = 0;
-    var color_cn = $('#hid-colorCN').val();
-    var color_en = $('#hid-colorEN').val();
-    var colorLength = $('.item-info-color-list div.item-info-size').length;
-
-    for(var i = 0; i <= colorLength - 1; i++){
-      var color_text_cn = $.trim($('.item-info-color-list div.item-info-size span.lan-cn').eq(i).text());
-      var color_text_en = $.trim($('.item-info-color-list div.item-info-size span.lan-en').eq(i).text());
-      if(color_text_cn === color_cn && color_text_en === color_en){
-        color_index = i;
-        break;
-      }
-    }
-    $('.item-info-color-list div.item-info-size').eq(color_index).addClass('border-choose');
-    removeThumbnailList();
-  }
-
-  function removeThumbnailList() {
-    var color_en = $('#hid-colorEN').val();
-    $('.item-image-thumbnail').each(function (index, element) {
-      if($(element).find('img').attr('data-color') !== color_en){
-        $(element).remove();
-      }
-    })
-  }
-
-  function setCurrentSize() {
-    var size_index = 0;
-    var size_cn = $('#hid-sizeCN').val();
-    var size_en = $('#hid-sizeEN').val();
-    var sizeLength = $('.item-info-size-list div.item-info-size').length;
-
-    for(var i = 0; i <= sizeLength - 1; i++){
-      var size_text_cn = $.trim($('.item-info-size-list div.item-info-size span.lan-cn').eq(i).text());
-      var size_text_en = $.trim($('.item-info-size-list div.item-info-size span.lan-en').eq(i).text());
-      if(size_text_cn === size_cn || size_text_en === size_en){
-        size_index = i;
-        break;
-      }
-    }
-    $('.item-info-size-list div.item-info-size').eq(size_index).addClass('border-choose');
-  }
-
-  function setItemInfo4Series() {
-    var brand = $('#hid-brandId').val();
-    var pet = $('#hid-pet').val();
-    var itemType = $('#hid-itemTypeId').val();
-    var series = $.trim($('.item-info-series-list .border-choose span.lan-en').text());
-
+  
+  function loadItemImages() {
     $.ajax({
-      type: "GET",
-      url: "/item/colors?brand=" + brand + "&pet=" + pet + "&itemType=" + itemType + "&series=" + series,
+      url: '/item/imageList?itemID='+ $('#hidden-itemID').val(),
+      type: 'GET',
       success: function(res){
-        $('.item-info-color-list .item-info-other-right').empty();
-        res.colorList.forEach(function (colorObj) {
-          $('.item-info-color-list .item-info-other-right').append('<div class="item-info-size" style="width: 130px">\n' +
-              '            <span class="lan-cn">' + colorObj.colorCH + '</span>\n' +
-              '            <span class="lan-en hidden">' + colorObj.colorEN + '</span>\n' +
-              '          </div>');
-        });
+        if(res.err){
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+        }else{
+          var imageGourpArray = [];
+          //过滤该商品图片的图片组
+          var currentGourpId = -1;
+          $.each(res.data, function(index, image){
+            if(image.groupID > 0){
+              if(imageGourpArray.length === 0){
+                imageGourpArray.push(image.groupID);
+              }else{
+                if(imageGourpArray.indexOf(image.groupID) === -1){
+                  imageGourpArray.push(image.groupID);
+                }
+              }
+            }
+          });
 
-        //$('.item-info-color-list div.item-info-size').eq(0).addClass('border-choose');
-        setCurrentColor();
+          //遍历图片组，取得每组图片缩略图、展示图、放大图的地址
+          var thumbnailSrc = '';
+          var normalSrc = '';
+          var bigSrc = '';
+          $.each(imageGourpArray, function (index, groupId) {
+            thumbnailSrc = '';
+            normalSrc = '';
+            bigSrc = '';
+            $.each(res.data, function (index, image) {
+              if(image.groupID > 0){
+                if(groupId === image.groupID){
+                  switch (image.imageType){
+                    case 'T': //缩略图
+                      thumbnailSrc = image.imageSrc;
+                      break;
+                    case 'N': //展示图
+                      normalSrc = image.imageSrc;
+                      break;
+                    case 'B': //放大图
+                      bigSrc = image.imageSrc;
+                      break;
+                  }
+                }else{
+                  if(thumbnailSrc.length > 0 && normalSrc.length > 0 && bigSrc.length > 0){
+                    $('.item-image-thumbnail-list').append(
+                        '<div class="item-image-thumbnail">\n' +
+                        ' <img src="' + thumbnailSrc + '" class="img-responsive" data-normal-url="' + normalSrc + '" data-big-url="' + bigSrc + '">\n' +
+                        '</div>');
+                    return false;
+                  }
+                }
+              }
+            });
+          });
 
-        $('.item-info-color-list .item-info-size').click(function () {
-          $('.item-info-color-list .item-info-size').removeClass('border-choose');
-          $(this).addClass('border-choose');
-          setItemInfo();
-        });
+          //添加最后一组缩略图
+          if(thumbnailSrc.length > 0 && normalSrc.length > 0 && bigSrc.length > 0){
+            $('.item-image-thumbnail-list').append(
+                '<div class="item-image-thumbnail">\n' +
+                ' <img src="' + thumbnailSrc + '" class="img-responsive" data-normal-url="' + normalSrc + '" data-big-url="' + bigSrc + '">\n' +
+                '</div>');
+          }
 
-        setItemInfo();
+          //将第一个缩略图对应的展示图显示到商品图片展示区域
+          var image_normal_src = $('.item-image-thumbnail-list .item-image-thumbnail:first-child img').attr('data-normal-url');
+          var image_big_src = $('.item-image-thumbnail-list .item-image-thumbnail:first-child img').attr('data-big-url');
+          $('#item-image-normal').attr('src', image_normal_src);
+          $('#item-image-normal').attr('data-big-url', image_big_src);
+          $('.item-image-thumbnail-list .item-image-thumbnail:first-child').addClass('selected');
+
+
+          //给当前商品的缩略图添加鼠标悬停事件，当鼠标悬停时，刷新展示图
+          $(".item-image-thumbnail-list").on("mouseover", ".item-image-thumbnail", function() {
+            $('.item-image-thumbnail-list .item-image-thumbnail').removeClass('selected');
+            $(this).addClass('selected');
+            var image_normal_src = $(this).find('img').attr('data-normal-url');
+            var image_big_src = $(this).find('img').attr('data-big-url');
+            $('#item-image-normal').attr('src', image_normal_src);
+            $('#item-image-normal').attr('data-big-url', image_big_src);
+          });
+
+
+        }
       },
-      error: function (err) {
-
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
       }
     });
   }
-
-  function setItemInfo() {
-    var brand = $('#hid-brandId').val();
-    var pet = $('#hid-pet').val();
-    var itemType = $('#hid-itemTypeId').val();
-    var series = $.trim($('.item-info-series-list .border-choose span.lan-en').text());
-    var color = $.trim($('.item-info-color-list .border-choose span.lan-en').text());
-    var size = $.trim($('.item-info-size-list .border-choose span.lan-en').text());
-
+  
+  function loadItemSeriseList() {
     $.ajax({
-      type: "GET",
-      url: "/item/itemInfo?brand=" + brand + "&pet=" + pet + "&itemType=" + itemType + "&series=" + series + "&color=" + color + "&size=" + size,
-      success: function(item){
-        $('.item-image-big img').attr('src', item.itemInfo.itemInfo.imageUrl);
-
-        $('.item-image-thumbnail-list').empty();
-        item.itemInfo.thumbnailList.forEach(function (obj) {
-          $('.item-image-thumbnail-list').append('<div class="item-image-thumbnail">\n' +
-              '          <img src="' + obj.imageUrl + '" data-color="' + obj.color + '" class="img-responsive">\n' +
-              '        </div>');
-        });
-        $('.item-image-thumbnail-list .item-image-thumbnail').click(function () {
-          $('.item-image-big img').attr('src', $(this).find('img').attr('src'));
-        });
-
-        $('#title-cn').text(item.itemInfo.itemInfo.titleCN);
-        $('#title-en').text(item.itemInfo.itemInfo.titleEN);
-        $('#material-cn').text(item.itemInfo.itemInfo.materialCN);
-        $('#material-en').text(item.itemInfo.itemInfo.materialEN);
-        $('#measures').text(item.itemInfo.itemInfo.measures);
-        ///item-id
-        $('#item-id').text(item.itemInfo.itemInfo.id);
-        $('#item-brand-cn').text(item.itemInfo.itemInfo.brandNameCN);
-        $('#item-brand-en').text(item.itemInfo.itemInfo.brandNameEN);
-        $('#item-name-cn').text(item.itemInfo.itemInfo.nameCN);
-        $('#item-name-en').text(item.itemInfo.itemInfo.nameEN);
-        $('#item-type-cn').text(item.itemInfo.itemInfo.itemTypeCH);
-        $('#item-type-en').text(item.itemInfo.itemInfo.itemTypeEN);
-        $('#item-size-cn').text(item.itemInfo.itemInfo.sizeCN);
-        $('#item-size-en').text(item.itemInfo.itemInfo.sizeEN);
-        $('#item-color-cn').text(item.itemInfo.itemInfo.colorCN);
-        $('#item-color-en').text(item.itemInfo.itemInfo.colorEN);
-        $('#item-specification-cn').text(item.itemInfo.itemInfo.measures);
-        $('#item-specification-en').text(item.itemInfo.itemInfo.measures);
-        $('#item-madeIn-cn').text(item.itemInfo.itemInfo.madeInCN);
-        $('#item-madeIn-en').text(item.itemInfo.itemInfo.madeInEN);
-        $('#item-material-cn').text(item.itemInfo.itemInfo.materialCN);
-        $('#item-material-en').text(item.itemInfo.itemInfo.materialEN);
-        $('#item-suitable-object-cn').text(item.itemInfo.itemInfo.usedAnimalCN);
-        $('#item-suitable-object-en').text(item.itemInfo.itemInfo.usedAnimalEN);
-        $('#item-suitable-scope-cn').text(item.itemInfo.itemInfo.usedAnimalTypeCN);
-        $('#item-suitable-scope-en').text(item.itemInfo.itemInfo.usedAnimalTypeEN);
-        $('#item-description-cn').text(item.itemInfo.itemInfo.descriptionCN);
-        $('#item-description-en').text(item.itemInfo.itemInfo.descriptionEN);
-
+      url: '/item/seriseList?itemID='+ $('#hidden-itemID').val(),
+      type: 'GET',
+      success: function(res){
+        if(res.err){
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+        }else{
+          //加载当前商品所有的系列
+          $.each(res.data, function(index, current){
+            $('.item-info-series-list .item-info-other-right').append(
+                '<div class="item-info-select" data-id="' + current.seriesID + '">\n' +
+                ' <span class="lan-cn">' + current.itemSeriesCN + '</span>\n' +
+                ' <span class="lan-en hidden">' + current.itemSeriesEN + '</span>\n' +
+                '</div>');
+          });
+          //给当前商品的系列追加事件，使其具有选中效果
+          $(".item-info-series-list .item-info-other-right").on("click", ".item-info-select", function() {
+            $('.item-info-series-list .item-info-other-right .item-info-select').removeClass('selected');
+            $(this).addClass('selected');
+          });
+          //在所有的系列中，选中当前商品的系列
+          $('.item-info-series-list .item-info-other-right .item-info-select').each(function (index, obj) {
+            if($(obj).attr('data-id') === $('#hidden-seriesID').val()){
+              $(obj).addClass('selected');
+            }
+          })
+        }
       },
-      error: function (err) {
-
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
       }
     });
   }
-
-  function onGetItemInfoByColor(self) {
-    $('.item-info-color-list .item-info-size').removeClass('border-choose');
-    $(self).addClass('border-choose');
-    setItemInfo();
+  
+  function loadItemColorList() {
+    $.ajax({
+      url: '/item/colorList?itemID='+ $('#hidden-itemID').val(),
+      type: 'GET',
+      success: function(res){
+        if(res.err){
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+        }else{
+          //加载当前商品所有的颜色
+          $.each(res.data, function(index, current){
+            $('.item-info-color-list .item-info-other-right').append(
+                '<div class="item-info-select" data-id="' + current.colorID + '">\n' +
+                ' <span class="lan-cn">' + current.colorCN + '</span>\n' +
+                ' <span class="lan-en hidden">' + current.colorEN + '</span>\n' +
+                '</div>');
+          });
+          //给当前商品的颜色追加事件，使其具有选中效果
+          $(".item-info-color-list .item-info-other-right").on("click", ".item-info-select", function() {
+            $('.item-info-color-list .item-info-other-right .item-info-select').removeClass('selected');
+            $(this).addClass('selected');
+          });
+          //在所有的颜色中，选中当前商品的颜色
+          $('.item-info-color-list .item-info-other-right .item-info-select').each(function (index, obj) {
+            if($(obj).attr('data-id') === $('#hidden-colorID').val()){
+              $(obj).addClass('selected');
+            }
+          })
+        }
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+      }
+    });
   }
-
-  $('.item-image-thumbnail-list .item-image-thumbnail').click(function () {
-    $('.item-image-big img').attr('src', $(this).find('img').attr('src'));
-  });
-
-  $('.item-info-series-list .item-info-size').click(function () {
-    $('.item-info-series-list .item-info-size').removeClass('border-choose');
-    $(this).addClass('border-choose');
-    setItemInfo4Series();
-  });
-
-  $('.item-info-color-list .item-info-size').click(function () {
-    $('.item-info-color-list .item-info-size').removeClass('border-choose');
-    $(this).addClass('border-choose');
-    setItemInfo();
-  });
-
-  $('.item-info-size-list .item-info-size').click(function () {
-    $('.item-info-size-list .item-info-size').removeClass('border-choose');
-    $(this).addClass('border-choose');
-    setItemInfo();
-  });
+  
+  function loadItemSizeList() {
+    $.ajax({
+      url: '/item/sizeList?itemID='+ $('#hidden-itemID').val(),
+      type: 'GET',
+      success: function(res){
+        if(res.err){
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+        }else{
+          //加载当前商品所有的尺码
+          $.each(res.data, function(index, current){
+            $('.item-info-size-list .item-info-other-right').append(
+                '<div class="item-info-select" data-id="' + current.sizeID + '">\n' +
+                ' <span class="lan-cn">' + current.sizeCN + '</span>\n' +
+                ' <span class="lan-en hidden">' + current.sizeEN + '</span>\n' +
+                '</div>');
+          });
+          //给当前商品的尺码追加事件，使其具有选中效果
+          $(".item-info-size-list .item-info-other-right").on("click", ".item-info-select", function() {
+            $('.item-info-size-list .item-info-other-right .item-info-select').removeClass('selected');
+            $(this).addClass('selected');
+          });
+          //在所有的尺码中，选中当前商品的尺码
+          $('.item-info-size-list .item-info-other-right .item-info-select').each(function (index, obj) {
+            if($(obj).attr('data-id') === $('#hidden-sizeID').val()){
+              $(obj).addClass('selected');
+            }
+          })
+        }
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+      }
+    });
+  }
+  
+  function loadItemReviewList() {
+    
+  }
 
   initPage();
 });

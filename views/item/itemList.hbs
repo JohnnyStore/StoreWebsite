@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="/stylesheets/jquery-nav/leftnav.css">
 <link rel="stylesheet" href="/stylesheets/view/item/itemList.css">
-<div class="container bread-crumbs no-padding">
+<div class="container bread-crumbs">
   <ol class="breadcrumb no-background-color">
     <li>
       <a href="\">
@@ -8,333 +7,51 @@
         <span class="lan-en hidden">Home</span>
       </a>
     </li>
-    {{#if breadcrumb.level3.lanCN}}
+    {{#each breadcrumb}}
       <li>
-        <a href="/itemList?key=pet&value={{contentValue}}">
-          <span class="lan-cn">{{breadcrumb.level2.lanCN}}</span>
-          <span class="lan-en hidden">{{breadcrumb.level2.lanEN}}</span>
+        <a href="{{this.url}}">
+          <span class="lan-cn">{{this.nameCN}}</span>
+          <span class="lan-en hidden">{{this.nameEN}}</span>
         </a>
       </li>
-      <li class="active">
-        <span class="lan-cn">{{breadcrumb.level3.lanCN}}</span>
-        <span class="lan-en hidden">{{breadcrumb.level3.lanEN}}</span>
-      </li>
-    {{else}}
-      <li class="active">
-        <span class="lan-cn">{{breadcrumb.level2.lanCN}}</span>
-        <span class="lan-en hidden">{{breadcrumb.level2.lanEN}}</span>
-      </li>
-    {{/if}}
-
+    {{/each}}
   </ol>
 </div>
-<div class="container no-padding margin-bottom">
-  <div class="row">
-    <div class="col-md-2 left-nav">
-      <div class="account-l fl">
-        <ul id="accordion" class="accordion">
-          <li>
-            <div class="link">
-              <img src="/images/icon/dog-icon.png" class="img-responsive icon-img">
-              <span class="lan-cn">狗类商品热销</span>
-              <span class="lan-en hidden">DOG HOTS</span>
-              <i class="fa fa-chevron-down"></i>
-            </div>
-            <ul class="submenu">
-              <!--<li>-->
-                <!--<a href="/itemList/petItemList?pet=dog&itemType=all&key={{this.contentKey}}&value={{this.contentValue}}">-->
-                  <!--<span class="lan-cn">全部商品</span>-->
-                  <!--<span class="lan-en hidden">All Goods</span>-->
-                <!--</a>-->
-              <!--</li>-->
-              <li data-itemTypeId = "BHT10001">
-                <a href="/itemList/petItemList?pet=dog&itemType=BHT10001&key={{this.contentKey}}&value={{this.contentValue}}">
-                  <span class="lan-cn">脖圈</span>
-                  <span class="lan-en hidden">Collar</span>
-                </a>
-              </li>
-              <li data-pet="dog" data-itemTypeId="BHT10000">
-                <a href="/itemList/petItemList?pet=dog&itemType=BHT10000&key={{this.contentKey}}&value={{this.contentValue}}">
-                  <span class="lan-cn">背带</span>
-                  <span class="lan-en hidden">Harnesses</span>
-                </a>
-              </li>
-              <li data-pet="dog" data-itemTypeId="BHT10002">
-                <a href="/itemList/petItemList?pet=dog&itemType=BHT10002&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">牵引绳</span>
-                  <span class="lan-en hidden">Leash</span>
-                </a>
-              </li>
-              <li data-pet="dog" data-itemTypeId="BHT10004">
-                <a href="/itemList/petItemList?pet=dog&itemType=BHT10004&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">窝床</span>
-                  <span class="lan-en hidden">Bed</span>
-                </a>
-              </li>
-              <li data-pet="dog" data-itemTypeId="BHT10005">
-                <a href="/itemList/petItemList?pet=dog&itemType=BHT10005&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">服装</span>
-                  <span class="lan-en hidden">Clothing</span>
-                </a>
-              </li>
-              <li data-pet="dog" data-itemTypeId="BHT10003">
-                <a href="/itemList/petItemList?pet=dog&itemType=BHT10003&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">玩具</span>
-                  <span class="lan-en hidden">Toys</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <div class="link">
-              <img src="/images/icon/cat-icon.png" alt="sss" class="img-responsive icon-img">
-              <span class="lan-cn">猫类商品热销</span>
-              <span class="lan-en hidden">CAT HOTS</span>
-              <i class="fa fa-chevron-down"></i>
-            </div>
-            <ul class="submenu">
-              <!--<li data-pet="cat" data-itemTypeId="all">-->
-                <!--<a href="/itemList/petItemList?pet=cat&itemType=all&key={{this.contentKey}}&value{{this.contentValue}}">-->
-                  <!--<span class="lan-cn">全部商品</span>-->
-                  <!--<span class="lan-en hidden">All Goods</span>-->
-                <!--</a>-->
-              <!--</li>-->
-              <li data-pet="cat" data-itemTypeId="BHT10007">
-                <a href="/itemList/petItemList?pet=cat&itemType=BHT10007&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">脖圈</span>
-                  <span class="lan-en hidden">Collar</span>
-                </a>
-              </li>
-              <li data-pet="cat" data-itemTypeId="BHT10006">
-                <a href="/itemList/petItemList?pet=cat&itemType=BHT10006&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">窝床</span>
-                  <span class="lan-en hidden">Bed</span>
-                </a>
-              </li>
-              <li data-pet="cat" data-itemTypeId="BHT10009">
-                <a href="/itemList/petItemList?pet=cat&itemType=BHT10009&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">服装</span>
-                  <span class="lan-en hidden">Clothing</span>
-                </a>
-              </li>
-              <li data-pet="cat" data-itemTypeId="BHT10008">
-                <a href="/itemList/petItemList?pet=cat&itemType=BHT10008&key={{this.contentKey}}&value{{this.contentValue}}">
-                  <span class="lan-cn">玩具</span>
-                  <span class="lan-en hidden">Toys</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <!--<div class="recommend-item-list border">-->
-        <!--<h4 class="border-bottom lan-cn">热门推荐</h4>-->
-        <!--<h4 class="border-bottom lan-en hidden">Top Recommended</h4>-->
-
-        <!--<div class="pet-rem-item border-bottom">-->
-          <!--<div class="pet-rem-item-img">-->
-            <!--<a href="/item?brand=BHB10001&pet=dog&itemType=BHT10002&itemId=BHR17018">-->
-              <!--<img src="/images/items/DSC_1356.png" alt="" class="img-responsive item-image">-->
-            <!--</a>-->
-          <!--</div>-->
-          <!--<div class="pet-rem-item-info">-->
-            <!--<p class="lan-cn des">熊本熊狗用波点牵引带蓝色</p>-->
-            <!--<p class="lan-en des hidden">熊本熊狗用波点牵引带蓝色</p>-->
-            <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="pet-rem-item border-bottom">-->
-          <!--<div class="pet-rem-item-img">-->
-            <!--<a href="/item?brand=BHB10001&pet=dog&itemType=BHT10005&itemId=BHG17130">-->
-              <!--<img src="/images/items/DSC_1578.png" alt="" class="img-responsive item-image">-->
-            <!--</a>-->
-          <!--</div>-->
-          <!--<div class="pet-rem-item-info">-->
-            <!--<p class="lan-cn des">熊本熊狗狗超可爱变身无领衫</p>-->
-            <!--<p class="lan-en des hidden">熊本熊狗狗超可爱变身无领衫</p>-->
-            <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="pet-rem-item border-bottom">-->
-          <!--<div class="pet-rem-item-img">-->
-            <!--<a href="/item?brand=BHB10000&pet=dog&itemType=BHT10001&itemId=BHR17168">-->
-              <!--<img src="/images/items/DSC_1368.png" alt="" class="img-responsive item-image">-->
-            <!--</a>-->
-          <!--</div>-->
-          <!--<div class="pet-rem-item-info">-->
-            <!--<p class="lan-cn des">疯狂设计师狗脖圈</p>-->
-            <!--<p class="lan-en des hidden">Dog Collar of Crazy Designer</p>-->
-            <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    </div>
-    <div class="col-md-10 right-content">
-      {{#if itemList}}
-      <div class="item-list pet-group">
-        <div class="dog-item-list">
-          <img src="/images/icon/dog-icon.png" class="img-responsive icon-img">
-          <h4>
-            <strong class="lan-cn">狗类商品</strong>
-            <strong class="lan-en hidden">DOG GOODS</strong>
-          </h4>
-          <ul class="clear-float">
-            {{#each itemList.dogItems}}
-            <li>
-              <div>
-                <div class="pet-mod-item-img">
-                  <a href="/item?brand={{this.brandId}}&pet=dog&itemType={{this.itemTypeId}}">
-                    <img src="{{this.itemTypeImageUrl}}" alt="" class="img-responsive item-image">
-                  </a>
-                </div>
-                <div class="pet-mod-item-info">
-                  <p class="lan-cn des">{{this.itemTypeDecCH}}</p>
-                  <p class="lan-en des hidden">{{this.itemTypeDecEN}}</p>
-                  <!--<p class="price">$29.99</p>-->
-                </div>
-              </div>
-            </li>
-            {{/each}}
-          </ul>
-        </div>
-        <div class="space clear-float"></div>
-
-        <div class="cat-item-list">
-          <img src="/images/icon/cat-icon.png" class="img-responsive icon-img">
-          <h4>
-            <strong class="lan-cn">猫类商品</strong>
-            <strong class="lan-en hidden">CAT GOODS</strong>
-          </h4>
-          <ul>
-            {{#each itemList.catItems}}
-              <li>
-                <div>
-                  <div class="pet-mod-item-img">
-                    <a href="/item?brand={{this.brandId}}&pet=cat&itemType={{this.itemTypeId}}">
-                      <img src="{{this.itemTypeImageUrl}}" alt="" class="img-responsive item-image">
-                    </a>
-                  </div>
-                  <div class="pet-mod-item-info">
-                    <p class="lan-cn des">{{this.itemTypeDecCH}}</p>
-                    <p class="lan-en des hidden">{{this.itemTypeDecEN}}</p>
-                    <!--<p class="price">$29.99</p>-->
-                  </div>
-                </div>
-              </li>
-            {{/each}}
-          </ul>
-        </div>
-      </div>
-      {{else}}
-      <div class="item-list brand-group">
-        {{#if kumamonItemList}}
-        <div class="kumamon-group">
-          <h4>
-            <strong class="lan-cn">熊本熊</strong>
-            <strong class="lan-en hidden">Kumamon</strong>
-          </h4>
-          <ul>
-            {{#each kumamonItemList}}
-            <li>
-              <div>
-                <div class="pet-mod-item-img">
-                  <a href="{{this.linkUrl}}">
-                    <img src="/{{this.imageUrl}}" class="img-responsive item-image">
-                  </a>
-                </div>
-                <div class="pet-mod-item-info">
-                  <p class="lan-cn des">{{this.nameCN}}</p>
-                  <p class="lan-en des hidden">{{this.nameEN}}</p>
-                  <!--<p class="price"></p>-->
-                </div>
-              </div>
-            </li>
-            {{/each}}
-          </ul>
-        </div>
-        {{/if}}
-
-        {{#if luvpetItemList}}
-          <div class="luvpet-group clear-float">
-            <h4>
-              <strong class="lan-cn">爱宠族</strong>
-              <strong class="lan-en hidden">Luvpet</strong>
-            </h4>
-            <ul>
-              {{#each luvpetItemList}}
-                <li>
-                  <div>
-                    <div class="pet-mod-item-img">
-                      <a href="{{this.linkUrl}}">
-                        <img src="/{{this.imageUrl}}" class="img-responsive item-image">
-                      </a>
-                    </div>
-                    <div class="pet-mod-item-info">
-                      <p class="lan-cn des">{{this.nameCN}}</p>
-                      <p class="lan-en des hidden">{{this.nameEN}}</p>
-                      <!--<p class="price"></p>-->
-                    </div>
-                  </div>
-                </li>
-              {{/each}}
-            </ul>
+<div class="container margin-bottom item-list">
+  <ul>
+    {{#each itemList}}
+      <li>
+        <div>
+          <div>
+            <a href="/item?itemID={{this.itemID}}">
+              <img src="{{this.itemImageUrl}}" alt="" class="img-responsive item-image">
+            </a>
           </div>
-        {{/if}}
-
-        {{#if christmasItemList}}
-        <div class="crazy-group clear-float">
-          <h4>
-            <strong class="lan-cn">疯狂设计师</strong>
-            <strong class="lan-en hidden">Crazy Designer</strong>
-          </h4>
-          <ul>
-            {{#each christmasItemList}}
-              <li>
-                <div>
-                  <div class="pet-mod-item-img">
-                    <a href="{{this.linkUrl}}">
-                      <img src="/{{this.imageUrl}}" class="img-responsive item-image">
-                    </a>
-                  </div>
-                  <div class="pet-mod-item-info">
-                    <p class="lan-cn des">{{this.nameCN}}</p>
-                    <p class="lan-en des hidden">{{this.nameEN}}</p>
-                    <!--<p class="price"></p>-->
-                  </div>
-                </div>
-              </li>
-            {{/each}}
-          </ul>
+          <div class="text-center">
+            <p class="lan-cn des">{{this.brandCN}}{{this.itemShortDescriptionCN}}{{this.colorCN}}{{this.sizeCN}}</p>
+            <p class="lan-en des hidden">{{this.brandEN}} {{this.itemShortDescriptionEN}} {{this.colorEN}} {{this.sizeEN}} Size</p>
+            <p class="price">¥{{this.unitPrice4RMB}}</p>
+            <p class="price hidden">${{this.unitPrice4USD}}</p>
+          </div>
+          <div class="item-buy">
+            <button type="button" class="btn btn-success btn-block">
+              <span class="lan-cn">立即购买</span>
+              <span class="lan-en">BUY NOW</span>
+            </button>
+          </div>
         </div>
-        {{/if}}
-      </div>
-      {{/if}}
-
-      <div class="page-nav clear-float hidden">
-        <nav>
-          <ul class="pagination pagination-lg">
-            <li class="disabled">
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="current"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+      </li>
+    {{/each}}
+  </ul>
+</div>
+<div class="container text-center">
+  <div class="pagination">
+    <ul>
+      {{#each pagination}}
+        {{{this}}}
+      {{/each}}
+    </ul>
   </div>
 </div>
-<input type="hidden" value="{{this.pet}}" id="hid-pet">
-<input type="hidden" value="{{this.itemTypeId}}" id="hid-itemTypeId">
-<script src="/javascripts/jquery-plugins/jqueryLeftNav/leftnav.js"></script>
+<input type="hidden" value="{{pageNumber}}" id="current-pageNumber">
 <script src="/javascripts/view/item/itemList.js"></script>

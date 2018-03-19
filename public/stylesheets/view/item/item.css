@@ -1,5 +1,5 @@
 .item-buy{
-
+  margin-top: 35px;
 }
 .item-buy ul {
   list-style: none;
@@ -7,19 +7,15 @@
 .item-buy .item-image-thumbnail{
   position: relative;
   float: left;
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 2px;
   border: 1px solid #e0e0e0;
-  /*padding: 0;*/
 }
 .border-choose{
   border: 1px solid #FA6507 !important;
-}
-.item-buy .item-image-thumbnail:hover{
-  border: 1px solid #FA6507;
 }
 .item-buy .item-image-thumbnail img{
   margin-left: auto;
@@ -37,28 +33,21 @@
   position: relative;
   float: left;
   width: 260px;
-  /*border: 1px solid #e0e0e0;*/
 }
 .item-detail-info{
   position: relative;
   float: left;
   width: 800px;
-  padding-left: 15px;
+  padding-left: 48px;
 }
 .item-image-big{
   border: 1px solid #e0e0e0;
-  width: 260px;
-  height: 260px;
-}
-.item-image-big img{
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 39px;
-  max-width: 230px;
-  max-height: 200px;
+  width: 288px;
+  height: 288px;
 }
 .item-buy-info{
   position: relative;
+  font-size: 14px;
   float: left;
   width: 800px;
   padding-left: 15px;
@@ -69,27 +58,25 @@
 .margin-top-30{
   margin-top: 30px;
 }
-.item-info-size{
+.item-info-select{
   float: left;
-  width: 100px;
-  height: 25px;
-  margin-bottom: 5px;
-  /*background-color: #F7F7F7;*/
-  padding-top: 2px;
-  color: #000;
   border: 1px solid #e0e0e0;
   text-align: center;
   cursor: pointer;
+  padding: 5px;
   margin-right: 5px;
+}
+.item-info-select:hover{
+  border: 1px solid #FA6507;
+}
+.selected{
+  border: 1px solid #FA6507 !important;
 }
 .info{
   display:block;
   float: left;
   width: 80px;
   color: #999999;
-}
-.item-info-other .info{
-  padding-top: 2px;
 }
 .item-buy-info .item-info-price{
   background-color: #F9ECE4;
@@ -102,7 +89,7 @@
 }
 .item-add-shoppingCar{
   margin-top: 35px;
-  padding: 25px 15px;
+  padding: 25px 0px;
   border-top: 1px dashed #e0e0e0;
 }
 .item-add-shoppingCar .item-count{
@@ -176,6 +163,7 @@
 
 .item-info-other-left{
   position: relative;
+  padding: 5px;
   float: left;
 }
 .item-info-other-right{
@@ -183,25 +171,3 @@
   float: left;
   width: 680px;
 }
-/*img{vertical-align:top;border:0;}*/
-
-/*div.zoomDiv{*/
-  /*z-index:999;*/
-  /*position:absolute;*/
-  /*top:30px;*/
-  /*left:30px;*/
-  /*width:200px;*/
-  /*height:200px;*/
-  /*background:#ffffff;*/
-  /*border:1px solid #CCCCCC;*/
-  /*display:block;*/
-  /*text-align:center;*/
-  /*overflow:hidden;*/
-/*}*/
-
-/*div.zoomMask{*/
-  /*position:absolute;*/
-  /*background: url("../../../images/mask.png") repeat scroll 0 0 transparent;*/
-  /*cursor:move;*/
-  /*z-index:1;*/
-/*}*/
