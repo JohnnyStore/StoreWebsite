@@ -4,13 +4,17 @@
   <div class="item-buy-image">
     <div class="item-image-big">
       <a href="#">
-        <img src="" class="img-responsive" data-big-url="" id="item-image-normal">
+        <img src="" class="img-responsive jqzoom" rel="" id="item-image-normal">
       </a>
     </div>
     <div class="item-image-thumbnail-list"></div>
   </div>
   <div class="item-buy-info">
     <div>
+      <input type="hidden" value="{{itemDetail.brandID}}" id="hidden-brandID">
+      <input type="hidden" value="{{itemDetail.categoryID}}" id="hidden-categoryID">
+      <input type="hidden" value="{{itemDetail.subCategoryID}}" id="hidden-subCategoryID">
+      <input type="hidden" value="{{itemDetail.itemGroupID}}" id="hidden-itemGroupID">
       <input type="hidden" value="{{itemDetail.itemID}}" id="hidden-itemID">
       <input type="hidden" value="{{itemDetail.seriesID}}" id="hidden-seriesID">
       <input type="hidden" value="{{itemDetail.colorID}}" id="hidden-colorID">
@@ -33,15 +37,17 @@
       <p>
         <span class="info lan-cn">商品材质</span>
         <span class="info lan-en hidden">Material</span>
-        <span class="lan-cn" id="material-cn">{{itemDetail.itemMaterialName}}</span>
-        <span class="lan-en hidden">{{itemDetail.itemMaterialName}}</span>
+        <span class="lan-cn" id="material-cn">{{itemDetail.itemMaterialNameCN}}</span>
+        <span class="lan-en hidden">{{itemDetail.itemMaterialNameEN}}</span>
       </p>
       <div class="space-normal"></div>
+      {{# if itemDetail.adjustLength}}
       <p>
         <span class="info lan-cn">可调尺寸</span>
         <span class="info lan-en hidden">Adjust</span>
         <span id="measures">{{itemDetail.adjustLength}}</span>
       </p>
+      {{/if}}
     </div>
     <div class="item-info-other item-info-series-list">
       <div class="item-info-other-left">
@@ -68,7 +74,7 @@
     </div>
     <div class="clear-float space-normal"></div>
     <div class="item-add-shoppingCar margin-top-30">
-      <input type="number" class="item-count text-right" min="1" minlength="100" value="1">
+      <input type="number" class="item-count text-right" min="1" minlength="100" value="1" id="buy-count">
       <button type="button" class="btn-add-shoppingCart">
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <span class="lan-cn">加入购物车</span>
@@ -80,44 +86,6 @@
 <div class="space-normal"></div>
 <div class="container item-detail">
   <div class="recommend-item-list">
-    <!--<h4 class="lan-cn">同类商品</h4>-->
-    <!--<h4 class="lan-en hidden">Same Goods</h4>-->
-    <!--<div class="pet-rem-item border-bottom">-->
-      <!--<div class="pet-rem-item-img">-->
-        <!--<a href="/item?brand=BHB10001&pet=dog&itemType=BHT10002&itemId=BHR17018">-->
-          <!--<img src="images/items/DSC_1356.png" alt="" class="img-responsive item-image">-->
-        <!--</a>-->
-      <!--</div>-->
-      <!--<div class="pet-rem-item-info">-->
-        <!--<p class="lan-cn des">熊本熊狗用波点牵引带蓝色熊本熊狗用波点牵引带蓝色</p>-->
-        <!--<p class="lan-en des hidden">熊本熊狗用波点牵引带蓝色</p>-->
-        <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="pet-rem-item border-bottom">-->
-      <!--<div class="pet-rem-item-img">-->
-        <!--<a href="/item?brand=BHB10000&pet=dog&itemType=BHT10001&itemId=BHR17168">-->
-          <!--<img src="images/items/DSC_1368.png" alt="" class="img-responsive item-image">-->
-        <!--</a>-->
-      <!--</div>-->
-      <!--<div class="pet-rem-item-info">-->
-        <!--<p class="lan-cn des">疯狂设计师狗脖圈</p>-->
-        <!--<p class="lan-en des hidden">Dog Collar of Crazy Designer</p>-->
-        <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="pet-rem-item border-bottom">-->
-      <!--<div class="pet-rem-item-img">-->
-        <!--<a href="/item?brand=BHB10001&pet=dog&itemType=BHT10005&itemId=BHG17130">-->
-          <!--<img src="images/items/DSC_1564.png" alt="" class="img-responsive item-image">-->
-        <!--</a>-->
-      <!--</div>-->
-      <!--<div class="pet-rem-item-info">-->
-        <!--<p class="lan-cn des">熊本熊狗狗超可爱变身无领衫</p>-->
-        <!--<p class="lan-en des hidden">熊本熊狗狗超可爱变身无领衫</p>-->
-        <!--&lt;!&ndash;<p class="price">$29.99</p>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
   </div>
   <div class="item-detail-info">
     <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
@@ -128,6 +96,16 @@
             <span class="lan-en hidden">Item Detail</span>
           </a>
         </li>
+        <li role="presentation">
+          <a href="#review" id="review-tab" role="tab" data-toggle="tab" aria-controls="review" aria-expanded="true">
+            <span class="lan-cn">
+              用户评论<span class="review-count"></span>
+            </span>
+            <span class="lan-en hidden">
+              Reviews<span class="review-count"></span>
+            </span>
+          </a>
+        </li>
       </ul>
       <div id="myTabContent" class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
@@ -135,8 +113,8 @@
             <div class="col-md-12">
               <span class="lan-cn">品牌: </span>
               <span class="lan-en hidden">Brand: </span>
-              <span class="lan-cn" id="item-brand-cn">{{itemDetail.itemInfo.brandNameCN}}</span>
-              <span class="lan-en hidden" id="item-brand-en">{{itemDetail.itemInfo.brandNameEN}}</span>
+              <span class="lan-cn" id="item-brand-cn">{{itemDetail.brandCN}}</span>
+              <span class="lan-en hidden" id="item-brand-en">{{itemDetail.brandEN}}</span>
             </div>
           </div>
           <div class="space-normal"></div>
@@ -144,77 +122,143 @@
             <div class="col-md-3">
               <span class="lan-cn">商品编号：</span>
               <span class="lan-en hidden">ID: </span>
-              <span id="item-id">{{itemDetail.itemInfo.id}}</span>
+              <span id="item-id">{{itemDetail.itemID}}</span>
             </div>
             <div class="col-md-6">
               <span class="lan-cn">商品名称: </span>
               <span class="lan-en hidden">Name: </span>
-              <span class="lan-cn" id="item-name-cn">{{itemDetail.itemInfo.nameCN}}</span>
-              <span class="lan-en hidden" id="item-name-en">{{itemDetail.itemInfo.nameEN}}</span>
-            </div>
-            <div class="col-md-3">
-              <span class="lan-cn">商品颜色: </span>
-              <span class="lan-en hidden">Color: </span>
-              <span class="lan-cn" id="item-color-cn">{{itemDetail.itemInfo.colorCN}}</span>
-              <span class="lan-en hidden" id="item-color-en">{{itemDetail.itemInfo.colorEN}}</span>
-            </div>
-          </div>
-          <div class="space-normal"></div>
-          <div class="row">
-
-
-            <div class="col-md-3">
-              <span class="lan-cn">商品分类: </span>
-              <span class="lan-en hidden">Type: </span>
-              <span class="lan-cn" id="item-type-cn">{{itemDetail.itemInfo.itemTypeCH}}</span>
-              <span class="lan-en hidden" id="item-type-en">{{itemDetail.itemInfo.itemTypeEN}}</span>
-            </div>
-            <div class="col-md-3">
-              <span class="lan-cn">商品尺寸: </span>
-              <span class="lan-en hidden">Size: </span>
-              <span class="lan-cn" id="item-size-cn">{{itemDetail.itemInfo.sizeCN}}</span>
-              <span class="lan-en hidden" id="item-size-en">{{itemDetail.itemInfo.sizeEN}}</span>
-            </div>
-            <div class="col-md-3">
-              <span class="lan-cn">商品制造地: </span>
-              <span class="lan-en hidden">Made in: </span>
-              <span class="lan-cn" id="item-madeIn-cn">{{itemDetail.itemInfo.madeInCN}}</span>
-              <span class="lan-en hidden" id="item-madeIn-en">{{itemDetail.itemInfo.madeInEN}}</span>
-            </div>
-            <div class="col-md-3">
-              <span class="lan-cn">商品材质: </span>
-              <span class="lan-en hidden">Material: </span>
-              <span class="lan-cn" id="item-material-cn">{{itemDetail.itemInfo.materialCN}}</span>
-              <span class="lan-en hidden" id="item-material-en">{{itemDetail.itemInfo.materialEN}}</span>
-            </div>
-          </div>
-          <div class="space-normal"></div>
-          <div class="row">
-            <div class="col-md-3">
-              <span class="lan-cn">适用对象: </span>
-              <span class="lan-en hidden">Suitable: </span>
-              <span class="lan-cn" id="item-suitable-object-cn">{{itemDetail.itemInfo.usedAnimalCN}}</span>
-              <span class="lan-en hidden" id="item-suitable-object-en">{{itemDetail.itemInfo.usedAnimalEN}}</span>
+              <span class="lan-cn" id="item-name-cn">{{itemDetail.brandCN}}{{itemDetail.itemShortDescriptionCN}}</span>
+              <span class="lan-en hidden" id="item-name-en">{{itemDetail.brandEN}}{{itemDetail.itemShortDescriptionEN}}</span>
             </div>
             <div class="col-md-3">
               <span class="lan-cn">适用范围: </span>
               <span class="lan-en hidden">Scope: </span>
-              <span class="lan-cn" id="item-suitable-scope-cn">{{itemDetail.itemInfo.usedAnimalTypeCN}}</span>
-              <span class="lan-en hidden" id="item-suitable-scope-en">{{itemDetail.itemInfo.usedAnimalTypeEN}}</span>
+              <span class="lan-cn" id="item-suitable-scope-cn">{{itemDetail.suitablePetCN}}</span>
+              <span class="lan-en hidden" id="item-suitable-scope-en">{{itemDetail.suitablePetEN}}</span>
+            </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="lan-cn">商品分类: </span>
+              <span class="lan-en hidden">Type: </span>
+              <span class="lan-cn" id="item-type-cn">{{itemDetail.categoryCN}}</span>
+              <span class="lan-en hidden" id="item-type-en">{{itemDetail.categoryEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品颜色: </span>
+              <span class="lan-en hidden">Color: </span>
+              <span class="lan-cn" id="item-color-cn">{{itemDetail.colorCN}}</span>
+              <span class="lan-en hidden" id="item-color-en">{{itemDetail.colorEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品尺寸: </span>
+              <span class="lan-en hidden">Size: </span>
+              <span class="lan-cn" id="item-size-cn">{{itemDetail.sizeCN}}</span>
+              <span class="lan-en hidden" id="item-size-en">{{itemDetail.sizeEN}}</span>
+            </div>
+            <div class="col-md-3">
+              <span class="lan-cn">商品制造地: </span>
+              <span class="lan-en hidden">Made in: </span>
+              <span class="lan-cn" id="item-madeIn-cn">{{itemDetail.madeInCN}}</span>
+              <span class="lan-en hidden" id="item-madeIn-en">{{itemDetail.madeInEN}}</span>
+            </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <span class="lan-cn">商品材质: </span>
+              <span class="lan-en hidden">Material: </span>
+              <span class="lan-cn" id="item-material-cn">{{itemDetail.itemMaterialNameCN}}</span>
+              <span class="lan-en hidden" id="item-material-en">{{itemDetail.itemMaterialNameEN}}</span>
             </div>
             <div class="col-md-6">
               <span class="lan-cn">商品规格: </span>
               <span class="lan-en hidden">Specification: </span>
-              <span class="lan-cn" id="item-specification-cn">{{itemDetail.itemInfo.measures}}</span>
-              <span class="lan-en hidden" id="item-specification-en">{{itemDetail.itemInfo.measures}}</span>
+              <span class="lan-cn" id="item-specification-cn">{{itemDetail.itemLength}}</span>
+              <span class="lan-en hidden" id="item-specification-en">{{itemDetail.itemLength}}</span>
             </div>
           </div>
           <div class="space-normal"></div>
           <div class="row">
             <div class="col-md-12">
-              <p class="lan-cn" id="item-description-cn" style="line-height: 30px; white-space: pre-wrap">{{itemDetail.itemInfo.descriptionCN}}</p>
-              <p class="lan-en hidden" id="item-description-en" style="line-height: 30px; white-space: pre-wrap">{{itemDetail.itemInfo.descriptionEN}}</p>
+              <p class="lan-cn" id="item-description-cn" style="line-height: 30px; white-space: pre-wrap">{{itemDetail.itemDescriptionCN}}</p>
+              <p class="lan-en hidden" id="item-description-en" style="line-height: 30px; white-space: pre-wrap">{{itemDetail.itemDescriptionEN}}</p>
             </div>
+          </div>
+          <div class="space-normal"></div>
+          <div class="row">
+            <div class="col-md-12 item-detail-img">
+
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in " id="review" aria-labelledby="review-tab">
+          <div class="row">
+            <div class="col-md-3 review-good-percent">
+              <div class="percent-value">
+                <span></span>
+                <span>%</span>
+              </div>
+              <div class="percent-title lan-cn">好评度</div>
+              <div class="percent-title lan-en hidden">Favorable Rating</div>
+            </div>
+            <div class="col-md-9 percent-dec">
+              <div style="width: 60px; float: left">好评</div>
+              <div class="progress" style="width: 300px">
+                <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 60%;">
+                  60%
+                </div>
+              </div>
+              <div>
+                <div style="width: 60px; float: left">中评</div>
+                <div class="progress" style="width: 300px">
+                  <div class="progress-bar progress-bar-info" role="progressbar" style="width: 30%;">
+                    30%
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style="width: 60px; float: left">差评</div>
+                <div class="progress" style="width: 300px">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 20%;">
+                    10%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul id="reviewTabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#review-all" id="review-all-tab" role="tab" data-toggle="tab" aria-controls="review-all" aria-expanded="true">
+                <span class="lan-cn">全部评价<span class="review-count"></span></span>
+                <span class="lan-en hidden">All Reviews<span class="review-count"></span></span>
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#review-good" id="review-good-tab" role="tab" data-toggle="tab" aria-controls="review-good" aria-expanded="true">
+                <span class="lan-cn">好评<span class="good-review-count"></span></span>
+                <span class="lan-en hidden">Good Review<span class="good-review-count"></span></span>
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#review-middle" id="review-middle-tab" role="tab" data-toggle="tab" aria-controls="review-middle" aria-expanded="true">
+                <span class="lan-cn">中评<span class="middle-review-count"></span></span>
+                <span class="lan-en hidden">Middle Review<span class="middle-review-count"></span></span>
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#review-negative" id="review-negative-tab" role="tab" data-toggle="tab" aria-controls="review-negative" aria-expanded="true">
+                <span class="lan-cn">差评<span class="negative-review-count"></span></span>
+                <span class="lan-en hidden">Negative Review<span class="negative-review-count"></span></span>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="review-all" aria-labelledby="review-all-tab"></div>
+            <div role="tabpanel" class="tab-pane fade in" id="review-good" aria-labelledby="review-good-tab"></div>
+            <div role="tabpanel" class="tab-pane fade in" id="review-middle" aria-labelledby="review-middle-tab"></div>
+            <div role="tabpanel" class="tab-pane fade in" id="review-negative" aria-labelledby="review-negative-tab"></div>
           </div>
         </div>
       </div>

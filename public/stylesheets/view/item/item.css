@@ -37,8 +37,8 @@
 .item-detail-info{
   position: relative;
   float: left;
-  width: 800px;
-  padding-left: 48px;
+  width: 828px;
+  /*padding-left: 48px;*/
 }
 .item-image-big{
   border: 1px solid #e0e0e0;
@@ -82,7 +82,10 @@
   background-color: #F9ECE4;
   padding: 15px;
 }
-.price{
+.expired-price{
+  text-decoration: line-through;
+}
+.current-price{
   color: #d43f3a;
   font-size: 18px;
   font-weight: 600;
@@ -154,7 +157,8 @@
 }
 
 .item-detail-info .tab-content{
-  padding: 15px;
+  padding-top: 8px;
+  padding-left: 15px;
 }
 
 .item-info-size:hover{
@@ -170,4 +174,65 @@
   position: relative;
   float: left;
   width: 680px;
+}
+
+.bs-example-tabs>.tab-content{
+  border-left: 1px solid #FA6507;
+  border-right: 1px solid #FA6507;
+  border-bottom: 1px solid #FA6507;
+}
+
+div.zoomDiv{
+  z-index:999;
+  position:absolute !important;
+  top:232px !important;;
+  left:450px !important;;
+  width:400px !important;;
+  height:400px !important;;
+  background:#ffffff;
+  border:1px solid #e0e0e0;
+  display:none;
+  text-align:center;
+  overflow:hidden;
+}
+div.zoomMask{
+  position:absolute;
+  background:url("../../../images/mask.png") repeat scroll 0 0 transparent;
+  cursor:move;
+  z-index:1;
+}
+.review-good-percent{
+  padding-top: 15px;
+  padding-left: 25px;
+  padding-bottom: 20px;
+}
+.percent-title{
+  font-size: 13px;
+  color: #666;
+  font-weight: 400;
+}
+/*.percent-value{*/
+  /*border-bottom: 1px solid #dddddd;*/
+/*}*/
+.percent-value span:first-child{
+  font-size: 45px;
+  color: #E4393C;
+}
+.percent-value span:nth-child(2){
+  font-size: 18px;
+  color: #E4393C;
+}
+.review-text{
+  margin-top: 15px;
+  padding: 15px;
+  border-bottom: 1px solid #dddddd;
+}
+#myTabs li:hover{
+  color: #1E9FFF;
+}
+.percent-dec{
+  padding-top: 10px;
+}
+.review-star{
+  color: #E4393C;
 }

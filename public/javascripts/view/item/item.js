@@ -1,15 +1,40 @@
 $(document).ready(function () {
+  var currentBrandId = '';
+  var currentCategoryId = '';
+  var currentSubCategoryId = '';
+  var currentItemGroupId = '';
+  var selectedSeriesId = '';
+  var selectedColorId = '';
+  var selectedSizeId = '';
+
   function initPage() {
+    setCurrentItemParameter();
     setPriceStyle();
     loadItemImages();
     loadItemSeriseList();
     loadItemColorList();
     loadItemSizeList();
     loadItemReviewList();
+    $(".jqzoom").imagezoom();
+  }
+
+  function setCurrentItemParameter() {
+    currentBrandId = $('#hidden-brandID').val();
+    currentCategoryId = $('#hidden-categoryID').val();
+    currentSubCategoryId = $('#hidden-subCategoryID').val();
+    currentItemGroupId = $('#hidden-itemGroupID').val();
+    selectedSeriesId = $('#hidden-seriesID').val();
+    selectedColorId = $('#hidden-colorID').val();
+    selectedSizeId = $('#hidden-sizeID').val();
   }
   
   function setPriceStyle() {
-    
+   if($('.item-info-price span.price-promotion').text().length === 0){
+     $('.item-info-price span.price').addClass('current-price');
+   }else{
+     $('.item-info-price span.price-promotion').addClass('current-price');
+     $('.item-info-price span.price').addClass('expired-price');
+   }
   }
   
   function loadItemImages() {
@@ -21,6 +46,7 @@ $(document).ready(function () {
           location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           var imageGourpArray = [];
+          var imageDetailArray = [];
           //过滤该商品图片的图片组
           var currentGourpId = -1;
           $.each(res.data, function(index, image){
@@ -32,6 +58,8 @@ $(document).ready(function () {
                   imageGourpArray.push(image.groupID);
                 }
               }
+            }else{
+              imageDetailArray.push(image.imageSrc);
             }
           });
 
@@ -82,9 +110,8 @@ $(document).ready(function () {
           var image_normal_src = $('.item-image-thumbnail-list .item-image-thumbnail:first-child img').attr('data-normal-url');
           var image_big_src = $('.item-image-thumbnail-list .item-image-thumbnail:first-child img').attr('data-big-url');
           $('#item-image-normal').attr('src', image_normal_src);
-          $('#item-image-normal').attr('data-big-url', image_big_src);
+          $('#item-image-normal').attr('rel', image_big_src);
           $('.item-image-thumbnail-list .item-image-thumbnail:first-child').addClass('selected');
-
 
           //给当前商品的缩略图添加鼠标悬停事件，当鼠标悬停时，刷新展示图
           $(".item-image-thumbnail-list").on("mouseover", ".item-image-thumbnail", function() {
@@ -93,10 +120,13 @@ $(document).ready(function () {
             var image_normal_src = $(this).find('img').attr('data-normal-url');
             var image_big_src = $(this).find('img').attr('data-big-url');
             $('#item-image-normal').attr('src', image_normal_src);
-            $('#item-image-normal').attr('data-big-url', image_big_src);
+            $('#item-image-normal').attr('rel', image_big_src);
           });
 
-
+          //展示商品详细信息的展示图
+          $.each(imageDetailArray, function (index, imageDetail) {
+            $('.item-detail-img').append('<img src="' + imageDetail + '" alt="" class="img-responsive">');
+          });
         }
       },
       error: function(XMLHttpRequest, textStatus){
@@ -114,6 +144,10 @@ $(document).ready(function () {
           location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           //加载当前商品所有的系列
+          if(res.data.length === 0){
+            $('.item-info-series-list').addClass('hidden');
+            return false;
+          }
           $.each(res.data, function(index, current){
             $('.item-info-series-list .item-info-other-right').append(
                 '<div class="item-info-select" data-id="' + current.seriesID + '">\n' +
@@ -125,6 +159,8 @@ $(document).ready(function () {
           $(".item-info-series-list .item-info-other-right").on("click", ".item-info-select", function() {
             $('.item-info-series-list .item-info-other-right .item-info-select').removeClass('selected');
             $(this).addClass('selected');
+            selectedSeriesId = $(this).attr('data-id');
+            reloadItemInfo();
           });
           //在所有的系列中，选中当前商品的系列
           $('.item-info-series-list .item-info-other-right .item-info-select').each(function (index, obj) {
@@ -160,6 +196,8 @@ $(document).ready(function () {
           $(".item-info-color-list .item-info-other-right").on("click", ".item-info-select", function() {
             $('.item-info-color-list .item-info-other-right .item-info-select').removeClass('selected');
             $(this).addClass('selected');
+            selectedColorId = $(this).attr('data-id');
+            reloadItemInfo();
           });
           //在所有的颜色中，选中当前商品的颜色
           $('.item-info-color-list .item-info-other-right .item-info-select').each(function (index, obj) {
@@ -195,6 +233,8 @@ $(document).ready(function () {
           $(".item-info-size-list .item-info-other-right").on("click", ".item-info-select", function() {
             $('.item-info-size-list .item-info-other-right .item-info-select').removeClass('selected');
             $(this).addClass('selected');
+            selectedSizeId = $(this).attr('data-id');
+            reloadItemInfo();
           });
           //在所有的尺码中，选中当前商品的尺码
           $('.item-info-size-list .item-info-other-right .item-info-select').each(function (index, obj) {
@@ -211,8 +251,165 @@ $(document).ready(function () {
   }
   
   function loadItemReviewList() {
-    
+    $.ajax({
+      url: '/item/reviewList?itemID=' + $('#hidden-itemID').val()+'&reviewLevel=A',
+      type: 'GET',
+      success: function(resAll){
+        if(resAll.err){
+          location.href = '/error?errorCode=' + resAll.code + '&msg=' + resAll.msg;
+        }else{
+          var reviewCount = resAll.data.length;
+          var goodReviewCount = 0;
+          var middleReviewCount = 0;
+          var negativeReviewCount = 0;
+          var goodPercent = 0;
+          var middlePercent = 0;
+          var negativePercent = 0;
+          var starHtml = '';
+          $.each(resAll.data, function (index, review) {
+            starHtml = '';
+            for(var i = 1; i <= review.starNum; i++){
+              starHtml += '<i class="fa fa-star review-star"></i>\n';
+            }
+
+            $('#review-all').append(
+                '<div class="review-text">\n' +
+                '   <div class="row">\n' +
+                '     <div class="col-md-2">\n' +
+                '      <span>' + review.customerName  + '</span>\n' +
+                '      <div>\n' +
+                        starHtml +
+                '      </div>\n' +
+                '     </div>\n' +
+                '     <div class="col-md-10">\n' +
+                '       <p>' + review.reviewText + '</p>\n' +
+                '       <p>' + review.inDate + '</p>\n' +
+                '     </div>\n' +
+                '   </div>\n' +
+                '</div>');
+
+            //好评
+            if(review.reviewLevel === 'G'){
+              $('#review-good').append(
+                  '<div class="review-text">\n' +
+                  '   <div class="row">\n' +
+                  '     <div class="col-md-2">\n' +
+                  '      <span>' + review.customerName  + '</span>\n' +
+                  '      <div>\n' +
+                  starHtml +
+                  '      </div>\n' +
+                  '     </div>\n' +
+                  '     <div class="col-md-10">\n' +
+                  '       <p>' + review.reviewText + '</p>\n' +
+                  '       <p>' + review.inDate + '</p>\n' +
+                  '     </div>\n' +
+                  '   </div>\n' +
+                  '</div>');
+              goodReviewCount++;
+            }
+            //中评
+            if(review.reviewLevel === 'N'){
+              $('#review-middle').append(
+                  '<div class="review-text">\n' +
+                  '   <div class="row">\n' +
+                  '     <div class="col-md-2">\n' +
+                  '      <span>' + review.customerName  + '</span>\n' +
+                  '      <div>\n' +
+                  starHtml +
+                  '      </div>\n' +
+                  '     </div>\n' +
+                  '     <div class="col-md-10">\n' +
+                  '       <p>' + review.reviewText + '</p>\n' +
+                  '       <p>' + review.inDate + '</p>\n' +
+                  '     </div>\n' +
+                  '   </div>\n' +
+                  '</div>');
+              middleReviewCount++;
+            }
+            //差评
+            if(review.reviewLevel === 'B'){
+              $('#review-negative').append(
+                  '<div class="review-text">\n' +
+                  '   <div class="row">\n' +
+                  '     <div class="col-md-2">\n' +
+                  '      <span>' + review.customerName  + '</span>\n' +
+                  '      <div>\n' +
+                  starHtml +
+                  '      </div>\n' +
+                  '     </div>\n' +
+                  '     <div class="col-md-10">\n' +
+                  '       <p>' + review.reviewText + '</p>\n' +
+                  '       <p>' + review.inDate + '</p>\n' +
+                  '     </div>\n' +
+                  '   </div>\n' +
+                  '</div>');
+              negativeReviewCount++;
+            }
+          });
+
+          if(reviewCount > 0){
+            goodPercent = Math.ceil((goodReviewCount / reviewCount) * 100);
+            middlePercent = Math.ceil((middleReviewCount / reviewCount) * 100);
+            negativePercent = Math.ceil((negativeReviewCount / reviewCount) * 100);
+          }
+          $('.percent-value span:first-child').text(goodPercent);
+
+          $('.progress-bar-danger').attr('style', 'width: ' + goodPercent + '%;');
+          $('.progress-bar-danger').text(goodPercent + '%');
+
+          $('.progress-bar-info').attr('style', 'width: ' + middlePercent + '%;');
+          $('.progress-bar-info').text(middlePercent + '%');
+
+          $('.progress-bar-warning').attr('style', 'width: ' + negativePercent + '%;');
+          $('.progress-bar-warning').text(negativePercent + '%');
+
+          $('.review-count').text('(' + reviewCount + ')');
+          $('.good-review-count').text('(' + goodReviewCount + ')');
+          $('.middle-review-count').text('(' + middleReviewCount + ')');
+          $('.negative-review-count').text('(' + negativeReviewCount + ')');
+        }
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+      }
+    });
+  }
+  
+  function reloadItemInfo() {
+    location.href = '/item?brandID=' + currentBrandId +
+        '&categoryID=' + currentCategoryId +
+        '&subCategoryID=' + currentSubCategoryId +
+        '&itemGroupID=' + currentItemGroupId +
+        '&seriesID=' + selectedSeriesId +
+        '&colorID=' + selectedColorId +
+        '&sizeID=' + selectedSizeId;
   }
 
+  $('.btn-add-shoppingCart').click(function(){
+    var lan = localStorage.getItem('siteLanguage');
+    var layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';
+    var customer = getLoginCustomer();
+    var itemID = $('#hidden-itemID').val();
+    var itemCount = $('#buy-count').val();
+
+    if(customer === 'unknown'){
+      var htmlContent =
+          '<div style="padding: 25px; margin-top: 18px">' +
+          '<a href="/login" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
+          '<a href="/register" class="btn btn-success btn-block">还没有账号，去注册>></a>' +
+          '</div>';
+      layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['420px', '240px'], //宽高
+        content: htmlContent
+      });
+
+      $('.layui-layer-title').html(layer_dialog_title);
+      return false;
+    }
+
+
+  });
   initPage();
 });

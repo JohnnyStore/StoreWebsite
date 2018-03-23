@@ -36,7 +36,7 @@
       "checkItemName":"/api/item/exist",
       "imageList4Item":"/api/image",
       "imageList":"/api/image/list",
-      "itemReview":"/api/itemReview",
+      "itemReview":"/api/itemReview/item",
       "itemReviewCondition":"/api/itemReview/condition",
       "shoppingCart":"/api/shoppingCart",
       "shoppingCartCondition":"/api/shoppingCart/condition",
