@@ -25,7 +25,7 @@ var itemList = require('./routes/item/itemList');
 var item = require('./routes/item/item');
 // var other = require('./routes/firm/other');
 // var contact = require('./routes/firm/contact');
-// var login = require('./routes/account/login');
+var login = require('./routes/account/login');
 
 var app = express();
 
@@ -62,7 +62,7 @@ app.use('/itemList', itemList);
 app.use('/item', item);
 // app.use('/other', other);
 // app.use('/contact', contact);
-// app.use('/login', login);
+app.use('/login', login);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

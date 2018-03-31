@@ -3,7 +3,6 @@
     "host": "localhost",
     "port": 8080,
     "path": {
-
       "login": "/api/administrator/login",
       "register": "/api/administrator",
       "checkUserName": "/api/administrator/exist/account",
@@ -39,7 +38,9 @@
       "itemReview":"/api/itemReview/item",
       "itemReviewCondition":"/api/itemReview/condition",
       "shoppingCart":"/api/shoppingCart",
+      "shoppingCart4Customer":"/api/shoppingCart/customer",
       "shoppingCartCondition":"/api/shoppingCart/condition",
+      "collection":"/api/collection",
       "brandHot":"/api/brandHot",
       "customer": "/api/customer",
       "changeCustomerStatus": "/api/customer/changeStatus",

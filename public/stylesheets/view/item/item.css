@@ -236,3 +236,14 @@ div.zoomMask{
 .review-star{
   color: #E4393C;
 }
+.add-shoppingCart-success{
+  padding: 15px;color: #71b247
+}
+.btn-checking {
+  color: #fff;
+  background-color: #FA6509;
+  border-color: #FA6507;
+}
+.btn-checking:hover {
+  color: #fff;
+}

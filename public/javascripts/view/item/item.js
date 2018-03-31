@@ -387,12 +387,19 @@ $(document).ready(function () {
 
   $('.btn-add-shoppingCart').click(function(){
     var lan = localStorage.getItem('siteLanguage');
-    var layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';
-    var customer = getLoginCustomer();
+    var layer_dialog_title = '';
+    //TODO 开发登陆、注册页面，客户信息保存到cookie中，这里从cookie中取得当前登陆用户的信息
+    // var customer = getLoginCustomer();
+    var customer = {
+      customerID: 1,
+      customerName: '石瑞琪',
+      account: 'shiruiqi'
+    }; //test code
     var itemID = $('#hidden-itemID').val();
-    var itemCount = $('#buy-count').val();
+    var shoppingCount = $('#buy-count').val();
 
     if(customer === 'unknown'){
+      layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';
       var htmlContent =
           '<div style="padding: 25px; margin-top: 18px">' +
           '<a href="/login" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
@@ -409,7 +416,58 @@ $(document).ready(function () {
       return false;
     }
 
+    $.ajax({
+      url: '/item/shoppingCart',
+      type: 'post',
+      dataType: 'json',
+      data:{
+        itemID: itemID,
+        customerID: customer.customerID,
+        shoppingCount: shoppingCount,
+        loginUser: customer.account
+      },
+      success: function(res){
+        if(res.err){
+          location.href = '/error?errorCode=' + resAll.code + '&msg=' + resAll.msg;
+        }else{
+          layer_dialog_title = lan === 'cn'? '添加到购物车' : 'Add To Shipping cart';
+          var htmlContent =
+              '<div class="add-shoppingCart-success">' +
+              '  <i class="fa fa-check-circle-o" style="position: absolute; font-size: 35px"></i>' +
+              '  <h3 class="lan-cn" style="position: absolute; left: 60px; top: 20px">商品已成功加入购物车！</h3>' +
+              '  <div style="position: absolute; top: 80px; left: 50px">' +
+              '    <button type="button" class="btn btn-default" style="width: 150px">' +
+              '      <span class="lan-cn">继续购物</span>' +
+              '      <span class="lan-en hidden">To Shopping</span>' +
+              '    </button>' +
+              '    <button type="button" class="btn btn-checking" style="width: 150px">' +
+              '      <span class="lan-cn">去购物车结算</span>' +
+              '      <span class="lan-en hidden">To Checkout</span>' +
+              '    </button>' +
+              '  </div>' +
+              '</div>';
+          var index = layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['420px', '220px'], //宽高
+            content: htmlContent
+          });
 
+          $('.layui-layer-title').html(layer_dialog_title);
+          //添加按钮事件
+          $(".add-shoppingCart-success").on("click", ".btn-default", function() {
+            layer.close(index);
+          });
+          $(".add-shoppingCart-success").on("click", ".btn-checking", function() {
+            location.href = '/shops';
+          });
+        }
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+      }
+    });
   });
+
   initPage();
 });

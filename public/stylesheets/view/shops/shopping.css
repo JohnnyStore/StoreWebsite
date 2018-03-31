@@ -44,7 +44,7 @@ a:focus, a:hover{ color: #000}
 .shop_slideBox .hd li:last-child{border-right: 0;}
 .shop_slideBox .hd li i{font-size: 16px;}
 .shop_slideBox .hd li a:hover{ text-decoration: none; color: #FA6509}
-.shop_slideBox .hd li span{ color: #FA6509;}
+/*.shop_slideBox .hd li span{ color: #FA6509;}*/
 .shop_slideBox .hd ul li.active{ border-bottom: 1px #fa6509 solid;}
 .shop_slideBox .hd ul li.active a{ color: #FA6509;}
 .shop_slideBox .hd ul li.active:after{width:0; content: "";position: absolute;
@@ -57,7 +57,7 @@ a:focus, a:hover{ color: #000}
 .shop_settlement input[type="checkbox"]{ margin-top: 0px !important; margin-right: 5px}
 .shop_th{ padding:0 10px;}
 .shop_inner{ width: 479px; text-align: center;}
-.shop_price{ width: 165px;}
+.shop_price{ width: 158px;}
 .shop_price_buy{ width: 247px;}
 .shop_cz{ width:100px;}
 .order_lists{ border: 1px #ccc solid;}
@@ -65,14 +65,21 @@ a:focus, a:hover{ color: #000}
 .shop_item{position:relative;border-bottom: 1px #ccc solid;background: #fcfcfc; min-height: 100px; padding: 10px;}
 .shop_item:last-child{border-bottom: none;}
 .shop_item .shop_inner{ text-align: left; width: 485px;}
-.price,.sum_price{ font-weight: bold; color: #000;font-size: 14px;padding-top: 10px;}
+.original_price, .promotion_price, .sum_price{ font-weight: 500; color: #000;font-size: 16px;padding-top: 10px;}
+.delete-price{
+    text-decoration: line-through;
+    font-weight: normal;
+    font-size: 14px;
+    margin-left: 6px;
+    color: #CCCCCC;
+}
 .shop_cz .delBtn{padding-top: 10px; display: inline-block;}
 .shop_cz a.delBtn:hover,
 .shop_cz .delBtn i{ color: #5fc60b;}
 .sum_price{ color: #FA6509;}
 .shop_item div{float: left;}
 .shop_goods{ width:486px;}
-.shop_goods_img{width: 80px; height: 80px; border: 1px #ccc solid; background: #fff; overflow: hidden;}
+.shop_goods_img{width: 80px; height: 80px; border: 1px #eee solid; background: #fff; overflow: hidden;}
 .shop_goods_img a{display: inline-table;width: 80px; height: 80px; text-align: center;}
 .shop_goods_img img{ height: 80px;width: 80px;vertical-align: middle;}
 .shop_goods_inner{ width: 215px; padding-left: 10px;padding-top: 10px;}
@@ -167,10 +174,10 @@ a:focus, a:hover{ color: #000}
 .shop_set_selcet{ padding-left: 10px;}
 .shop_set_right{ float: right;/*width: 353px;*/} 
 .shop_set_right p{display: inline-block; padding-left: 15px;}
-.shop_set_right p span{ color: #fa6509; font-size: 18px;}
+.shop_set_right p span.piece_num{ color: #fa6509; font-size: 18px;}
 .shop_set_right p strong{ font-size: 24px; color: #fa6509;}
-.shop_set_right a{ display:inline-block; margin-left: 30px;*display: inline; width: 98px; border-radius: 3px; text-align: center;background: #B0B0B0; color: #fff; font-size: 24px;}
-.shop_set_right a.btn_sty { background: #8bd54f;}
+.shop_set_right button{ margin-left: 30px;*display: inline; width: 130px; height: 50px; border-radius: 3px; text-align: center;background: #B0B0B0; color: #fff; font-size: 24px;}
+.shop_set_right button.btn_sty { background: #8bd54f;}
 /*----------我的收藏----------*/
 .shop_collct_list{ width:236px; float: left; border: 1px #eee solid;margin: 20px 20px 0 0;}
 .shop_c_img{height: 160px; width: 100%; margin-bottom: 18px;}
@@ -299,3 +306,14 @@ border: 1px #ccc solid;display: none;}
 .gray{ background:#f1f1f1; color: #666;}
 
 
+.add-shoppingCart-success{
+    padding: 15px;color: #71b247
+}
+.btn-checking {
+    color: #fff;
+    background-color: #FA6509;
+    border-color: #FA6507;
+}
+.btn-checking:hover {
+    color: #fff;
+}

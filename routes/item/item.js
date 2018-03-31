@@ -158,4 +158,28 @@ router.get('/reviewList', function(req, res, next) {
   });
 });
 
+router.post('/shoppingCart', function (req, res, next) {
+  var service = new commonService.commonInvoke('shoppingCart');
+  var data = {
+    itemID: req.body.itemID,
+    customerID: req.body.customerID,
+    shoppingCount: req.body.shoppingCount,
+    loginUser: req.body.loginUser
+  };
+
+  service.add(data, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: !result.content.result,
+        data: result.content
+      });
+    }
+  });
+});
+
 module.exports = router;

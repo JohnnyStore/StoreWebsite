@@ -1,63 +1,81 @@
-<link rel="stylesheet" href="/stylesheets/view/shops/shoping.css">
+<link rel="stylesheet" href="/stylesheets/view/shops/shopping.css">
 <div class="container">
-    <!--购物车搜索栏-->
-    <div class="searchwrap clearfix">
-        <div class="shop_logo">
-            <img src="/images/logo-new.png" alt="" />
-            <span>购物车</span>
-        </div>
-        <div class="shop_search">
-            <input type="text" />
-            <button><i class="iconfont icon-gaojisousuo"></i></button>
-        </div>
+  <div class="shop_slideBox">
+    <div class="hd">
+      <ul class="clearfix">
+        <li>
+          <a href="shops">
+            <i class="iconfont icon-gouwuche"></i>
+            <span class="lan-cn">爱宠族购物车</span>
+            <span class="lan-en hidden">Luvpet Shopping cart</span>
+            <span id="shoppingCart-count"></span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="mycollect">
+            <span class="lan-cn">我的收藏</span>
+            <span class="lan-en hidden">My Collection</span>
+            <span id="myCollection-count"></span>
+          </a>
+        </li>
+        <!--<li>-->
+          <!--<a href="mybought">-->
+            <!--<span class="lan-cn">我购买过</span>-->
+            <!--<span class="lan-en hidden">Purchased</span>-->
+            <!--<span id="purchased-count"></span>-->
+          <!--</a>-->
+        <!--</li>-->
+      </ul>
+    </div>
+    <div class="bd">
+      <ul>
+        {{#each collectList}}
+        <li>
+          <div class="shop_collct_list">
+            <div class="shop_c_img">
+              <a href="/item?itemID={{this.itemID}}">
+                <img src="{{this.itemVO.itemImageUrl}}" alt="" alt="" title="熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码" />
+              </a>
+            </div>
+            <div class="shop_c_name">
+              <a href="/item?itemID={{this.itemID}}">
+                <span class="lan-cn" title="{{this.itemVO.brandCN}} {{this.itemVO.itemShortDescriptionCN}} {{this.itemVO.colorCN}} {{this.itemVO.sizeCN}}">{{this.itemVO.brandCN}} {{this.itemVO.itemShortDescriptionCN}} {{this.itemVO.colorCN}} {{this.itemVO.sizeCN}}</span>
+                <span class="lan-en hidden" title="{{this.itemVO.brandEN}} {{this.itemVO.itemShortDescriptionEN}} {{this.itemVO.colorEN}} {{this.itemVO.sizeEN}}">{{this.itemVO.brandEN}} {{this.itemVO.itemShortDescriptionEN}} {{this.itemVO.colorEN}} {{this.itemVO.sizeEN}}</span>
+              </a>
+            </div>
+            <div class="shop_c_price">
+              {{#if this.itemVO.promotion4RMB}}
+                <span class="lan-cn price promotion_price">¥{{this.itemVO.promotionPrice4RMB}}</span>
+                <span class="lan-cn original_price delete-price">¥{{this.itemVO.unitPrice4RMB}}</span>
+              {{else}}
+                <span class="lan-cn price">¥{{this.itemVO.unitPrice4RMB}}</span>
+              {{/if}}
 
+              {{#if this.itemVO.promotion4USD}}
+                <span class="lan-en price promotion_price hidden">${{this.itemVO.promotionPrice4USD}}</span>
+                <span class="lan-en original_price delete-price hidden">${{this.itemVO.unitPrice4USD}}</span>
+              {{else}}
+                <span class="lan-en price">${{this.itemVO.unitPrice4USD}}</span>
+              {{/if}}
+            </div>
+            <div class="shop_c_operate">
+              <a href="#" style="border-right: 1px #eee solid;" class="btn-addToCart" data-collect-id="{{this.collectionID}}" data-item-id="{{this.itemID}}">
+                <i class="iconfont icon-gouwuche21"></i>
+                <span class="lan-cn">加入购物车</span>
+                <span class="lan-en hidden">Add To Cart</span>
+              </a>
+              <a href="#" class="btn-delete" data-collect-id="{{this.collectionID}}">
+                <i class="iconfont icon-xiazai14"></i>
+                <span class="lan-cn">删除</span>
+                <span class="lan-en hidden">Delete</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
     </div>
-    <!--购物车内容-->
-    <div class="shop_slideBox">
-        <div class="hd">
-            <ul class="clearfix">
-                <li><a  href="shops"><i class="iconfont icon-gouwuche"></i>爱宠族购物车 （<span>2</span>）</a></li>
-                <li class="active"><a href="mycollect">我的收藏（<span>0</span>）</a></li>
-                <li><a href="mybought">我购买过（<span>2</span>）</a></li>
-            </ul>
-        </div>
-        <div class="bd">
-            <ul>
-                <li>
-                    <div class="shop_collct_list">
-                        <div class="shop_c_img"><a href="#"><img src="images/items/DSC_1532.png" alt="" alt="" title="熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码" /></a></div>
-                        <div class="shop_c_name"><a href="#">熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码</a></div>
-                        <div class="shop_c_price">¥<strong>219.00</strong></div>
-                        <div class="shop_c_operate">
-                            <a href="#" style="border-right: 1px #eee solid;"><i class="iconfont icon-gouwuche21"></i>加入购物车</a>
-                            <a href="#"><i class="iconfont icon-xiazai14"></i>删除</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="shop_collct_list">
-                        <div class="shop_c_img"><a href="#"><img src="images/items/DSC_1478.png" alt="" alt="" title="熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码" /></a></div>
-                        <div class="shop_c_name"><a href="#">熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码</a></div>
-                        <div class="shop_c_price">¥<strong>219.00</strong></div>
-                        <div class="shop_c_operate">
-                            <a href="#" style="border-right: 1px #eee solid;"><i class="iconfont icon-gouwuche21"></i>加入购物车</a>
-                            <a href="#"><i class="iconfont icon-xiazai14"></i>删除</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="shop_collct_list">
-                        <div class="shop_c_img"><a href="#"><img src="images/items/DSC_1469.png" alt="" alt="" title="熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码" /></a></div>
-                        <div class="shop_c_name"><a href="#">熊本熊 日本熊本熊狗用点点系列之黄色波点牵引带 黄底黑色波点 L码</a></div>
-                        <div class="shop_c_price">¥<strong>219.00</strong></div>
-                        <div class="shop_c_operate">
-                            <a href="#" style="border-right: 1px #eee solid;"><i class="iconfont icon-gouwuche21"></i>加入购物车</a>
-                            <a href="#"><i class="iconfont icon-xiazai14"></i>删除</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
+  </div>
 </div>
 <div style="height: 40px"></div>
+<script type="text/javascript" src="javascripts/view/shops/myCollect.js" ></script>
