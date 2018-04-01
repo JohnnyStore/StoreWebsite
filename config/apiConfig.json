@@ -3,12 +3,10 @@
     "host": "localhost",
     "port": 8080,
     "path": {
-      "login": "/api/administrator/login",
       "register": "/api/administrator",
       "checkUserName": "/api/administrator/exist/account",
       "checkCellphone": "/api/administrator/exist/cellphone",
       "checkEmail": "/api/administrator/exist/email",
-
       "colorList4Item":"/api/color/item",
       "sizeList4Item":"/api/size/item",
       "material":"/api/material",
@@ -43,6 +41,7 @@
       "collection":"/api/collection",
       "brandHot":"/api/brandHot",
       "customer": "/api/customer",
+      "login": "/api/customer/login",
       "changeCustomerStatus": "/api/customer/changeStatus",
       "itemHot":"/api/itemHot",
       "itemPromotion":"/api/itemPromotion",

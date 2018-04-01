@@ -4,7 +4,7 @@ var commonData = require('../../service/commonData');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  var customerID = 1; //todo 需要从cookie中取得当前登陆的客户信息
+  var customerID = req.cookies['loginCustomerID'];
   var service = new commonService.commonInvoke('shoppingCart4Customer');
   commonData.getCommonData(req, res, function(commonResult){
     if(commonResult.err){
@@ -15,6 +15,10 @@ router.get('/', function(req, res, next) {
         navigate: commonResult.navigate
       });
     }else{
+      if(customerID === undefined){
+        res.redirect('/login');
+        return false;
+      }
       service.get(customerID, function (result) {
         if(result.err){
           res.render('error', {

@@ -86,7 +86,7 @@
 <div class="nouserheader">
   <div class="container-fluid header">
     <div class="container">
-      <div class="row">
+      <div class="row no-login">
         <div class="col-md-6">
           <span class="lan-cn">欢迎访问 爱宠族</span>
           <span class="lan-en hidden">Welcome Luvpet</span>
@@ -94,13 +94,13 @@
         <div class="col-md-6">
           <ul class="nav navbar-nav navbar-right">
             <li class="division">
-              <a href="#">
+              <a href="#" id="btn-login">
                 <span class="lan-cn">登陆</span>
                 <span class="lan-en hidden">Sign in</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/register">
                 <span class="lan-cn">注册</span>
                 <span class="lan-en hidden">Register</span>
               </a>
@@ -118,8 +118,75 @@
           </ul>
         </div>
       </div>
+      <div class="row has-login" style="display: none">
+        <div class="col-md-3">
+          <a href="/">
+            <span class="lan-cn">
+              <i class="fa fa-home"></i>
+              爱宠族首页
+            </span>
+            <span class="lan-en hidden">
+              <i class="fa fa-home"></i>
+              Luvpet Home
+            </span>
+          </a>
+        </div>
+        <div class="col-md-9 text-right">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/">
+                <span class="login-account"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="exit-account">
+                <span class="lan-cn">[退出]</span>
+                <span class="lan-en hidden">[Exit]</span>
+              </a>
+            </li>
+            <li class="spacer"></li>
+            <li>
+              <a href="/shops">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="lan-cn">购物车</span>
+                <span class="lan-en hidden">Cart</span>
+                <span class="shopping-cart-count"></span>
+              </a>
+            </li>
+            <li class="spacer"></li>
+            <li>
+              <a href="/orders">
+                <i class="fa fa-shopping-bag"></i>
+                <span class="lan-cn">我的订单</span>
+                <span class="lan-en hidden">Orders</span>
+              </a>
+            </li>
+            <li class="spacer"></li>
+            <li>
+              <a href="/mycollect">
+                <i class="fa fa-heart"></i>
+                <span class="lan-cn">我的收藏</span>
+                <span class="lan-en hidden">Collection</span>
+                <span class="shopping-collection-count"></span>
+              </a>
+            </li>
+            <li class="spacer"></li>
+            <li class="dropdown switch-language">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="language">中文</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li value="cn"><a href="#">中文</a></li>
+                <li value="en"><a href="#">English</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="container quick-bar">
     <div class="row">
       <div class="col-md-2">
@@ -253,36 +320,7 @@
     </div>
   </div>
 </div>
-<!--页面未登录前显示头部 end-->
-<!--页面登录后显示头部 start-->
-<!--header-->
-<div class="userheader" style="display: none;">
-  <div class="headcont clearfix">
-    <div class="headleft">
-      <a href="index">
-        <i class="iconfont icon-shouye"></i>爱宠族首页
-      </a>
-      <span><i class="iconfont icon-zan"></i>爱宠族就是正品</span>
-    </div>
-    <div class="headright">
-      <ul>
-        <li><span>sallyruie</span><a href="#">[退出]</a></li>
-        <li><a href=""><i class="iconfont icon-xiaoxi"></i>新消息</a><em>1</em></li>
-        <li><a href="shops"><i class="iconfont icon-gouwuche2"></i>购物车</a><em>2</em></li>
-        <li><a href="allorder"><i class="iconfont icon-dingdanyichenggong"></i>我的订单</a></li>
-        <li><a href="mycollect"><i class="iconfont icon-shoucang"></i>我的收藏</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!--header end-->
-<!--页面登录后显示头部 end-->
-
 {{{body}}}
-<!--<div class="container-fluid footer">-->
-<!--<span>Copyright(c) LUVPET Corp.All Rights Reserved.</span>-->
-<!--<span>备案号：沪ICP备17048081号</span>-->
-<!--</div>-->
 <div class="footwrap">
   <div class="container clearfix">
     <div class="footleft">

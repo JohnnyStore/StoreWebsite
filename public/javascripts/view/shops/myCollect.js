@@ -1,14 +1,12 @@
 $(document).ready(function () {
-  var customerID = 1; //todo 需要从cookie中获取当前登陆用户的信息
+  var customerID = getLoginCustomer().customerID;
   function initProcess() {
     setShoppingCartTotalCount();
     setCollectionTotalCount();
     setPurchasedTotalCount();
-
   }
 
   function setShoppingCartTotalCount() {
-    var totalCount = 0;
     $.ajax({
       url: '/shops/shoppingCart/count?customerID=' + customerID,
       type: 'get',
@@ -52,19 +50,13 @@ $(document).ready(function () {
     var shoppingCount = 1;
     var lan = localStorage.getItem('siteLanguage');
     var layer_dialog_title = '';
-    //TODO 开发登陆、注册页面，客户信息保存到cookie中，这里从cookie中取得当前登陆用户的信息
-    // var customer = getLoginCustomer();
-    var customer = {
-      customerID: 1,
-      customerName: '石瑞琪',
-      account: 'shiruiqi'
-    };
+    var customer = getLoginCustomer();
 
-    if(customer === 'unknown'){
+    if(customer === undefined){
       layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';
       var htmlContent =
           '<div style="padding: 25px; margin-top: 18px">' +
-          '<a href="/login" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
+          '<a href="/login?targetUrl=/mycollect" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
           '<a href="/register" class="btn btn-success btn-block">还没有账号，去注册>></a>' +
           '</div>';
       layer.open({
@@ -156,19 +148,13 @@ $(document).ready(function () {
     var itemObj = $(this).parent().parent().parent();
     var lan = localStorage.getItem('siteLanguage');
     var layer_dialog_title = '';
-    //TODO 开发登陆、注册页面，客户信息保存到cookie中，这里从cookie中取得当前登陆用户的信息
-    // var customer = getLoginCustomer();
-    var customer = {
-      customerID: 1,
-      customerName: '石瑞琪',
-      account: 'shiruiqi'
-    };
+    var customer = getLoginCustomer();
 
-    if(customer === 'unknown'){
+    if(customer === undefined){
       layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';
       var htmlContent =
           '<div style="padding: 25px; margin-top: 18px">' +
-          '<a href="/login" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
+          '<a href="/login?targetUrl=/mycollect" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
           '<a href="/register" class="btn btn-success btn-block">还没有账号，去注册>></a>' +
           '</div>';
       layer.open({

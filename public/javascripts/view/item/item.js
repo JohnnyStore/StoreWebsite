@@ -388,21 +388,15 @@ $(document).ready(function () {
   $('.btn-add-shoppingCart').click(function(){
     var lan = localStorage.getItem('siteLanguage');
     var layer_dialog_title = '';
-    //TODO 开发登陆、注册页面，客户信息保存到cookie中，这里从cookie中取得当前登陆用户的信息
-    // var customer = getLoginCustomer();
-    var customer = {
-      customerID: 1,
-      customerName: '石瑞琪',
-      account: 'shiruiqi'
-    }; //test code
+    var customer = getLoginCustomer();
     var itemID = $('#hidden-itemID').val();
     var shoppingCount = $('#buy-count').val();
 
-    if(customer === 'unknown'){
+    if(customer === null){
       layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';
       var htmlContent =
           '<div style="padding: 25px; margin-top: 18px">' +
-          '<a href="/login" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
+          '<a href="/login?targetUrl=/item?itemID=' + itemID + '" class="btn btn-success btn-block">我有爱宠族账号，去登陆>></a><br>' +
           '<a href="/register" class="btn btn-success btn-block">还没有账号，去注册>></a>' +
           '</div>';
       layer.open({

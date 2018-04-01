@@ -1,137 +1,72 @@
-var RowComponent = {
-  template: '<tr>\n' +
-  '          <td></td>\n' +
-  '          <td></td>\n' +
-  '          <td></td>\n' +
-  '          <td></td>\n' +
-  '          <td>\n' +
-  '            <button type="button" class="btn btn-info btn-sm">View</button>\n' +
-  '            <button type="button" class="btn btn-primary btn-sm">Update</button>\n' +
-  '            <button type="button" class="btn btn-danger btn-sm">Delete</button>\n' +
-  '          </td>\n' +
-  '        </tr>'
-};
-var app = new Vue({
-  el: '#app',
-  data:{
-    alertMessage: '请输入用户名',
-    hiddenUserNameAlert: true,
-    isShowLoginSection: true,
-    userName4Login:'',
-    password4Login:'',
-    isRemember: false,
-    userName4Register: '',
-    validCode: '',
-    password4Register: '',
-    confirmPassword: '',
-    colleges:[
-      {
-        'code': '01',
-        'name': '渭南师范学院'
-      },
-      {
-        'code': '02',
-        'name': '西安工业大学'
-      },
-      {
-        'code': '03',
-        'name': '西安理工大学'
-      },
-      {
-        'code': '04',
-        'name': '西安邮电学院'
-      }
-    ],
-    selectedCollege: '',
-    hobbies:[
-      {
-        'code': '01',
-        'text': '跑步'
-      },
-      {
-        'code': '02',
-        'text': '电影'
-      },
-      {
-        'code': '03',
-        'text': '看书'
-      },
-      {
-        'code': '04',
-        'text': '音乐'
-      }
-    ],
-    checkedHobbies:[]
-  },
-  components:{
-    'tr-component': RowComponent
-  },
-  methods:{
-    onLogin: function () {
-      if(!this.checkLoginData()){
-        return false;
-      }
-      this.login();
-    },
-    onRegister: function () {
-      if(!this.checkRegisterData()){
-        return false;
-      }
-      this.register();
-    },
-    onShowLoginSection: function () {
-      this.isShowLoginSection = true;
-    },
-    onShowRegisterSection: function () {
-      this.isShowLoginSection = false;
-    },
-    checkLoginData: function () {
-      if(this.userName4Login.length === 0){
-        alert('Please input your user name.');
-        return false;
-      }
-      if(this.password4Login.length === 0){
-        alert('Please input your password.');
-        return false;
-      }
-      return true;
-    },
-    checkRegisterData: function () {
-      if(this.userName4Register.length === 0){
-        alert('Please input user name');
-        return false;
-      }
-      if(this.validCode.length === 0){
-        alert('Please input the valid code.');
-        return false;
-      }
-      if(this.password4Register.length === 0){
-        alert('Please input password.');
-        return false;
-      }
-      if(this.confirmPassword.length === 0){
-        alert('Please input confirm password.');
-        return false;
-      }
-      if(this.validCode !== '123456'){
-        alert('The valid code is invalid.');
-        return false;
-      }
-      if(this.password4Register !== this.confirmPassword){
-        alert('The confirm password not equal password.');
-        return false;
-      }
-      return true;
-    },
-    login: function () {
-      if(this.userName4Login === 'zhangqiang' && this.password4Login === '123456'){
-        alert('login success.');
-      }else{
-        alert('login failed.');
-      }
-    },
-    register: function () {
-      alert('register success.');
-    }
+$(document).ready(function () {
+  function alertMessage(msg) {
+    $('div.login form').find('div.alert').remove();
+    $('div.login form').prepend('<div class="alert alert-danger" role="alert">' + msg + '</div>');
   }
+
+  function loginProcess() {
+    if(!checkData()){
+      return false;
+    }
+    login();
+  }
+
+  function checkData() {
+    var userName = $.trim($('#user-name').val());
+    var password = $.trim($('#password').val());
+    if(userName.length === 0){
+      alertMessage('请输入登陆账号。');
+      $('#user-name').focus();
+      return false;
+    }
+    if(password.length === 0){
+      alertMessage('请输入密码。');
+      $('#password').focus();
+      return false;
+    }
+    return true;
+  }
+
+  function login() {
+    var userName = $.trim($('#user-name').val());
+    var password = $.trim($('#password').val());
+    var remember = $('.login-remember input').is(":checked");
+    var target = $('#hidden-target').val();
+    $.ajax({
+      url: '/login/userInfo?userName=' + userName + '&password=' + password,
+      type: 'get',
+      success: function (res) {
+        if(res.error){
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          return false;
+        }
+        if(res.data === null || res.data.length === 0){
+          alertMessage('用户名或者密码不存在。');
+          $('#user-name').focus();
+          return false;
+        }
+        if(res.data.frozen){
+          alertMessage('您的账户已冻结，请联系客服。');
+          return false;
+        }
+        var loginCustomer = JSON.stringify(res.data);
+        setCookie('loginCustomer', loginCustomer, remember);
+        setCookie('loginCustomerID', res.data.customerID, remember);
+        location.href = target;
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+      }
+    });
+  }
+
+  $(document).keydown(function (e) {
+    if(e.keyCode === 13){
+      loginProcess()
+    }
+  });
+
+  $('.btn-login').click(function () {
+    loginProcess();
+  });
 });

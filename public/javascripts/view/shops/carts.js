@@ -5,7 +5,7 @@ $(function () {
       $cartBox = $('.cartBox'),                       //每个商铺盒子
       $shopCheckbox = $('.shopChoice'),               //每个商铺的checkbox
       $sonCheckBox = $('.son_check');                 //每个商铺下的商品的checkbox
-  $customerID = 1;  //TODO 当前登陆的客户信息需要从cookie中取得
+      $customerID = getLoginCustomer().customerID;
 
   $allCheckbox.click(function () {
     if ($(this).is(':checked')) {
@@ -274,7 +274,7 @@ $(function () {
   function initProcess() {
     setShoppingCartTotalCount();
     setCollectionTotalCount();
-    setPurchasedTotalCount();
+    // setPurchasedTotalCount();
   }
 
   /**

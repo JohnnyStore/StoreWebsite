@@ -1,18 +1,14 @@
-
-body,
-ul,ol,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div {margin: 0;padding: 0;border: 0}
+body,ul,ol,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div {
+  margin: 0;
+  padding: 0;
+  border: 0
+}
 body {font-size: 12px;font-family: "Microsoft YaHei"; color: #666;}
-ul,
-ol {list-style-type: none;}
-select,
-input,
-img,
-select {vertical-align: middle}
-
+ul, ol {list-style-type: none;}
+select, input, img, select {vertical-align: middle}
 a {text-decoration: none;color: #313030}
 a {blr: expression(this.onFocus=this.blur())}
-input,
-textarea {outline: 0;resize: none}
+input, textarea {outline: 0;resize: none}
 a {outline: 0}
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .clearfix{*+height:1%;}
@@ -27,6 +23,13 @@ a {outline: 0}
 .header .division{
   border-right: 1px solid #b8b8b8;
 }
+li.spacer{
+  overflow: hidden;
+  margin-top: 6px;
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+}
 
 .header .nav>li>a{
   padding-top: 0;
@@ -36,7 +39,17 @@ a {outline: 0}
 .header .nav>li>a:hover{
   color: #fa6509;
 }
-
+.has-login a{
+  text-decoration: none;
+  color: #999999;
+}
+.has-login a:hover{
+  text-decoration: none;
+  color: #fa6509;
+}
+.has-login i{
+  font-size: 14px;
+}
 .quick-bar{
   margin-top: 15px;
 }
