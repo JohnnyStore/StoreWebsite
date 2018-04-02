@@ -1,3 +1,62 @@
-.login,.register{
-  margin: 35px;
+.logo img{
+  width: 180px;
+}
+.logo-info{
+  margin-top: 50px;
+  margin-left: -35px;
+  color: #FA6507;
+}
+.section-head .register{
+  padding-top: 50px;
+  padding-right: 15px;
+}
+.section-login{
+  background-image: url("/images/login-new.jpg");
+  padding: 15px;
+  height: 353px;
+  clear: both;
+}
+.login{
+  float: right;
+  background-color: #ffffff;
+  width: 350px;
+  margin-top: 35px;
+  margin-right: 120px;
+  padding: 35px 25px 23px;
+}
+.btn-login{
+  color: #fff;
+  background-color: #FA6507;
+  border-color: #FA6507;
+}
+.btn-login:hover{
+  color: #fff;
+}
+.login-icon{
+  width: 14px;
+}
+.login-remember{
+  margin-top: 0 !important;
+  color: #666;
+}
+.login-link{
+  float: right;
+  margin-bottom: 10px;
+}
+a{
+  text-decoration: none;
+  color: #666;
+}
+a:hover{
+  text-decoration: none;
+  color: #666;
+}
+.login-register{
+  float: right;
+  margin-top: 15px;
+}
+.section-footer{
+  text-align: center;
+  padding: 15px;
+  color: #999999;
 }

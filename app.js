@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var common = require('./routes/common');
+var login = require('./routes/account/login');
+var register = require('./routes/account/register');
+var itemList = require('./routes/item/itemList');
+var item = require('./routes/item/item');
 var shops = require('./routes/shops/shops');
 var mycollect = require('./routes/shops/mycollect');
 var mybought = require('./routes/shops/mybought');
@@ -21,11 +25,8 @@ var error = require('./routes/error');
 // var news = require('./routes/news/news');
 // var newsDetail = require('./routes/news/newsDetail');
 // var introduction = require('./routes/firm/introduction');
-var itemList = require('./routes/item/itemList');
-var item = require('./routes/item/item');
 // var other = require('./routes/firm/other');
 // var contact = require('./routes/firm/contact');
-var login = require('./routes/account/login');
 
 var app = express();
 
@@ -44,6 +45,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/index', index);
 app.use('/common', common);
+app.use('/itemList', itemList);
+app.use('/item', item);
+app.use('/login', login);
+app.use('/register', register);
 app.use('/shops',shops);
 app.use('/mycollect',mycollect);
 app.use('/mybought',mybought);
@@ -58,11 +63,9 @@ app.use('/error', error);
 // app.use('/news', news);
 // app.use('/newsDetail', newsDetail);
 // app.use('/introduction', introduction);
-app.use('/itemList', itemList);
-app.use('/item', item);
 // app.use('/other', other);
 // app.use('/contact', contact);
-app.use('/login', login);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
