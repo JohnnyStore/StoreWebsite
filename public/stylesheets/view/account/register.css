@@ -43,7 +43,15 @@
   height: 45px;
 }
 .form-group {
-  margin-bottom: 28px;
+  margin-bottom: 0;
+}
+.input-tip{
+  color: #c5c5c5;
+  height: 35px;
+  padding-top: 5px;
+}
+.error{
+  color: #e22;
 }
 .btn-register:hover{
   color: #fff;

@@ -4,9 +4,10 @@
     "port": 8080,
     "path": {
       "register": "/api/administrator",
-      "checkUserName": "/api/administrator/exist/account",
-      "checkCellphone": "/api/administrator/exist/cellphone",
-      "checkEmail": "/api/administrator/exist/email",
+      "checkAccount": "/api/customer/account",
+      "checkCellphone": "/api/customer/cellphone",
+      "checkEmail": "/api/customer/email",
+      "verificationCode": "/api/verificationCode",
       "colorList4Item":"/api/color/item",
       "sizeList4Item":"/api/size/item",
       "material":"/api/material",

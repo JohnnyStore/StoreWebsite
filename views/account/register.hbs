@@ -54,21 +54,33 @@
           <input type="text" class="form-control" id="user-name" maxlength="15" placeholder="用户名">
         </div>
       </div>
+      <div class="input-tip error">
+        <i class="fa fa-info-circle hidden"></i>
+        <span></span>
+      </div>
       <div class="form-group">
         <div class="input-group">
             <span class="input-group-addon">
               <i class="fa fa-key"></i>
             </span>
-          <input type="text" class="form-control" id="password" maxlength="15" placeholder="密码">
+          <input type="password" class="form-control" id="password" maxlength="15" placeholder="密码">
         </div>
+      </div>
+      <div class="input-tip error">
+        <i class="fa fa-info-circle hidden"></i>
+        <span></span>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
             <i class="fa fa-key"></i>
           </span>
-          <input type="text" class="form-control" id="confirm-password" maxlength="15" placeholder="确认密码">
+          <input type="password" class="form-control" id="confirm-password" maxlength="15" placeholder="确认密码">
         </div>
+      </div>
+      <div class="input-tip error">
+        <i class="fa fa-info-circle hidden"></i>
+        <span></span>
       </div>
       <div class="form-group">
         <div class="input-group">
@@ -81,6 +93,10 @@
           </select>
         </div>
       </div>
+      <div class="input-tip error">
+        <i class="fa fa-info-circle hidden"></i>
+        <span></span>
+      </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
@@ -89,6 +105,10 @@
           <input type="tel" class="form-control" id="cellphone" maxlength="11" placeholder="手机号码">
         </div>
       </div>
+      <div class="input-tip error">
+        <i class="fa fa-info-circle hidden"></i>
+        <span></span>
+      </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
@@ -96,12 +116,16 @@
           </span>
           <input type="text" class="form-control" id="valid-code" maxlength="6" placeholder="短信验证码">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">获取验证码</button>
+            <button class="btn btn-default btn-validCode" type="button">获取验证码</button>
           </span>
         </div>
+        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      </div>
+      <div class="input-tip error">
+        <i class="fa fa-info-circle hidden"></i>
+        <span></span>
       </div>
       <button type="button" class="btn btn-register btn-block">登 陆</button>
-
     </form>
   </div>
 </div>

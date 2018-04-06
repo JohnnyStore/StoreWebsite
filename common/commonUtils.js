@@ -141,3 +141,11 @@ exports.buildBreadcrumb = function (data, brandID, categoryID, subCategoryID) {
 
   return breadcrumb;
 };
+
+exports.sendVerificationCodeToCellphone = function (cellphone, code) {
+  //TODO 将验证码以短信的方式发给客户
+};
+
+exports.sendVerificationCodeToEmail = function (email, code) {
+  //TODO 将验证码以邮件的方式发给客户
+};

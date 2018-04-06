@@ -27,3 +27,4 @@ exports.commonInvoke = function(apiName) {
     serviceInvoke.delete(this.host, this.port, this.path + '/' + id, callback);
   }
 };
+
