@@ -73,8 +73,12 @@
       <div class="item-info-other-right"></div>
     </div>
     <div class="clear-float space-normal"></div>
-    <div class="item-add-shoppingCar margin-top-30">
-      <input type="number" class="item-count text-right" min="1" minlength="100" value="1" id="buy-count">
+    <div class="item-add-shoppingCar margin-top-30 shop_price">
+      <div class="choose-amount">
+        <input type="text" class="buy-num" value="1" data-max="99">
+        <a href="#none" class="btn-add">+</a>
+        <a href="#none" class="btn-reduce disabled">-</a>
+      </div>
       <button type="button" class="btn-add-shoppingCart">
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <span class="lan-cn">加入购物车</span>

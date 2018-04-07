@@ -6,16 +6,32 @@ $(document).ready(function () {
   var selectedSeriesId = '';
   var selectedColorId = '';
   var selectedSizeId = '';
+  var wholesalerMinCount = 30;
+  var loginCustomer = getLoginCustomer();
 
   function initPage() {
     setCurrentItemParameter();
     setPriceStyle();
+    setDefaultBuyCount();
     loadItemImages();
     loadItemSeriseList();
     loadItemColorList();
     loadItemSizeList();
     loadItemReviewList();
     $(".jqzoom").imagezoom();
+  }
+
+  function setDefaultBuyCount() {
+    if(loginCustomer === null){
+      $('.buy-num').val(1);
+      return false;
+    }
+    if(loginCustomer.customerType === 'N'){
+      $('.buy-num').val(1);
+    }else{
+      $('.buy-num').val(wholesalerMinCount);
+      $('.btn-reduce').addClass('disabled');
+    }
   }
 
   function setCurrentItemParameter() {
@@ -385,12 +401,88 @@ $(document).ready(function () {
         '&sizeID=' + selectedSizeId;
   }
 
+  $('.buy-num').blur(function(){
+    var value = $(this).val();
+    var minCount = 1;
+    if(loginCustomer !== null && loginCustomer.customerType === 'W'){
+      minCount = wholesalerMinCount;
+    }
+    if(isNaN(value)){
+      value = minCount;
+      $(this).val(value);
+    }
+    value = parseInt(value);
+    if(value < minCount){
+      value = minCount;
+    }
+    if(value > 99){
+      value = 99;
+    }
+    $(this).val(value);
+
+    if(value === minCount){
+      $('.btn-add').removeClass('disabled');
+      $('.btn-reduce').addClass('disabled');
+    }else if(value === 99){
+      $('.btn-add').addClass('disabled');
+      $('.btn-reduce').removeClass('disabled');
+    }else{
+      $('.btn-add').removeClass('disabled');
+      $('.btn-reduce').removeClass('disabled');
+    }
+  });
+
+  $('.btn-add').click(function(){
+    if($(this).hasClass('disabled')){
+      return false
+    }
+    var value = $('.buy-num').val();
+    var result = 0;
+    if(isNaN(value)){
+      value = 1;
+    }
+    result = parseInt(value) + 1;
+    if(result > 99){
+      $(this).addClass('disabled');
+      return false;
+    }
+    $('.btn-reduce').removeClass('disabled');
+    $('.buy-num').val(result);
+  });
+
+  $('.btn-reduce').click(function(){
+    if($(this).hasClass('disabled')){
+      return false
+    }
+    var value = $('.buy-num').val();
+    var result = 0;
+    if(isNaN(value)){
+      value = 1;
+    }
+    result = parseInt(value) - 1;
+    $('.buy-num').val(result);
+
+    if(loginCustomer === null){
+      if(result === 1){
+        $(this).addClass('disabled');
+        return false;
+      }
+    }else{
+      if(loginCustomer !== null && loginCustomer.customerType === 'W' && result === wholesalerMinCount){
+        $(this).addClass('disabled');
+        return false;
+      }
+    }
+
+    $('.btn-add').removeClass('disabled');
+  });
+
   $('.btn-add-shoppingCart').click(function(){
     var lan = localStorage.getItem('siteLanguage');
     var layer_dialog_title = '';
     var customer = getLoginCustomer();
     var itemID = $('#hidden-itemID').val();
-    var shoppingCount = $('#buy-count').val();
+    var shoppingCount = $('.buy-num').val();
 
     if(customer === null){
       layer_dialog_title = lan === 'cn'? '您尚未登陆' : 'Please login first';

@@ -5,7 +5,7 @@ $(function () {
       $cartBox = $('.cartBox'),                       //每个商铺盒子
       $shopCheckbox = $('.shopChoice'),               //每个商铺的checkbox
       $sonCheckBox = $('.son_check');                 //每个商铺下的商品的checkbox
-      $customerID = getLoginCustomer().customerID;
+  $customerID = getLoginCustomer().customerID;
 
   $allCheckbox.click(function () {
     if ($(this).is(':checked')) {
@@ -121,10 +121,15 @@ $(function () {
   var $plus = $('.plus'),
       $reduce = $('.reduce'),
       $all_sum = $('.sum');
+
   $plus.click(function () {
+    if($(this).hasClass('reSty')){
+      return false;
+    }
     var $inputVal = $(this).prev('input'),
-        $count = parseInt($inputVal.val())+1,
-        $obj = $(this).parents('.item-amount').find('.reduce'),
+        $count = parseInt($inputVal.val())+1;
+
+    var $obj = $(this).parents('.item-amount').find('.reduce'),
 
         $priceTotal4RMBObj = $(this).parents('.shop_item').find('.sum_price').find('span.lan-cn'),
         $priceTotal4USDObj = $(this).parents('.shop_item').find('.sum_price').find('span.lan-en'),
@@ -132,11 +137,10 @@ $(function () {
         $price4RMB = $(this).parents('.shop_item').find('.price.lan-cn').html(),  //人民币单价
         $price4USD = $(this).parents('.shop_item').find('.price.lan-en').html(),  //美金单价
 
-        $priceTotal4RMB = $count.mul($price4RMB.substring(1)), //人民币总价
-        $priceTotal4USD = $count.mul($price4USD.substring(1)); //美金总价
+    $priceTotal4RMB = $count.mul($price4RMB.substring(1)), //人民币总价
+    $priceTotal4USD = $count.mul($price4USD.substring(1)); //美金总价
 
     $inputVal.val($count);
-
     $priceTotal4RMBObj.text('￥' + $priceTotal4RMB.toFixed(2));
     $priceTotal4USDObj.text('$' + $priceTotal4USD.toFixed(2));
 
@@ -144,6 +148,10 @@ $(function () {
       $obj.removeClass('reSty');
     }
     totalMoney();
+    if($count >= 99){
+      $(this).addClass('reSty');
+      return false;
+    }
   });
 
   $reduce.click(function () {
@@ -181,11 +189,15 @@ $(function () {
     }
     $(this).val($(this).val().replace(/\D|^0/g,''));
     $count = $(this).val();
+    if($count >= 99){
+      $count = 99;
+    }
     $priceTotal = $count*parseInt($price.substring(1));
-    $(this).attr('value',$count);
+    // $(this).attr('value',$count);
+    $(this).val($count);
     $priceTotalObj.html('￥'+$priceTotal);
     totalMoney();
-  })
+  });
 
   //======================================移除商品========================================
   var $shop_item = null;
