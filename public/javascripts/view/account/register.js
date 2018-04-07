@@ -1,21 +1,80 @@
 $(document).ready(function () {
   var userNameIsValid = false;
   var cellphoneIsValid = false;
+  var emailIsValid = false;
   var passwordIsValid = false;
   var smsCodeIsValid = false;
   var lan = localStorage.getItem('siteLanguage');
   var countdown=60;
   var errMsg = '';
 
+  function initPage() {
+    showCellphoneOrEmail();
+    setPlaceholder();
+    setOptions();
+  }
+
+  function showCellphoneOrEmail() {
+    if(lan === 'cn'){
+      $('#email').parent().parent().addClass('hidden');
+      $('#email').parent().parent().next().addClass('hidden');
+    }else{
+      $('#cellphone').parent().parent().addClass('hidden');
+      $('#cellphone').parent().parent().next().addClass('hidden');
+    }
+  }
+
+  function setPlaceholder() {
+    var userName_cn = '用户名';
+    var userName_en = 'User Name';
+    var password_cn = '密码';
+    var password_en = 'Password';
+    var confirmPassword_cn = '确认密码';
+    var confirmPassword_en = 'Confirm Password';
+    var cellphone_cn = '手机号码';
+    var cellphone_en = 'Cellphone Number';
+    var email_cn = '邮箱';
+    var email_en = 'Email';
+    var validCode_cn = '验证码';
+    var validCode_en = 'Verification Code';
+
+    if(lan === 'cn'){
+      $('#user-name').attr('placeholder', userName_cn);
+      $('#password').attr('placeholder', password_cn);
+      $('#confirm-password').attr('placeholder', confirmPassword_cn);
+      $('#cellphone').attr('placeholder', cellphone_cn);
+      $('#email').attr('placeholder', email_cn);
+      $('#valid-code').attr('placeholder', validCode_cn);
+    }else{
+      $('#user-name').attr('placeholder', userName_en);
+      $('#password').attr('placeholder', password_en);
+      $('#confirm-password').attr('placeholder', confirmPassword_en);
+      $('#cellphone').attr('placeholder', cellphone_en);
+      $('#email').attr('placeholder', email_en);
+      $('#valid-code').attr('placeholder', validCode_en);
+    }
+  }
+
+  function setOptions() {
+    if(lan === 'cn') {
+      $('#customer-role').append('<option class="lan-cn" value="N">我是普通用户</option>');
+      $('#customer-role').append('<option class="lan-cn" value="W">我是批发商</option>');
+    }else{
+      $('#customer-role').append('<option class="lan-cn" value="N">I am customer</option>');
+      $('#customer-role').append('<option class="lan-cn" value="W">I am wholesaler</option>');
+    }
+  }
+
   /**
    * 校验待注册数据的正确性
    * @returns {boolean}
    */
-  function checkDate(){
+  function checkDateBeforeRegister(){
     var userName = $.trim($('#user-name').val());
     var password = $.trim($('#password').val());
     var confirmPassword = $.trim($('#confirm-password').val());
     var cellphone = $.trim($('#cellphone').val());
+    var email = $.trim($('#email').val());
     var validCode = $.trim($('#valid-code').val());
 
     if(!checkNotEmpty(userName)){
@@ -44,13 +103,23 @@ $(document).ready(function () {
       return false;
     }
 
-    if(!checkNotEmpty(cellphone)){
+    if(lan === 'cn' && !checkNotEmpty(cellphone)){
       lan === 'cn' ? errMsg = '请输入手机号码。' : errMsg = 'Please enter cellphone number.';
       showErrorMsg($('#cellphone'), errMsg);
       return false;
     }
 
-    if(!cellphoneIsValid){
+    if(lan === 'cn' && !cellphoneIsValid){
+      return false;
+    }
+
+    if(lan === 'en' && !checkNotEmpty(email)){
+      lan === 'en' ? errMsg = '请输入邮箱地址。' : errMsg = 'Please enter email address.';
+      showErrorMsg($('#email'), errMsg);
+      return false;
+    }
+
+    if(lan === 'en' && !emailIsValid){
       return false;
     }
 
@@ -62,6 +131,35 @@ $(document).ready(function () {
 
     if(!smsCodeIsValid){
       return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * 发送验证码之前，进行数据校验
+   */
+  function checkDateBeforeSendValidCode() {
+    var cellphone = $.trim($('#cellphone').val());
+    var email = $.trim($('#email').val());
+    if(lan === 'cn'){
+      if(!checkNotEmpty(cellphone)){
+        lan === 'cn' ? errMsg = '您输入手机号码。' : errMsg = 'Please enter cellphone number.';
+        showErrorMsg($('#cellphone'), errMsg);
+        return false;
+      }
+      if(!cellphoneIsValid){
+        return false;
+      }
+    }else{
+      if(!checkNotEmpty(email)){
+        lan === 'cn' ? errMsg = '您输入邮箱地址。' : errMsg = 'Please enter email address.';
+        showErrorMsg($('#email'), errMsg);
+        return false;
+      }
+      if(!emailIsValid){
+        return false;
+      }
     }
 
     return true;
@@ -97,6 +195,15 @@ $(document).ready(function () {
   }
 
   /**
+   * 校验数据是否是一个正确的邮箱
+   * @param data 待校验数据
+   * @returns {boolean}
+   */
+  function checkIsEmail(data) {
+    var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");;
+    return reg.test(data);
+  }
+  /**
    * 显示错误提示信息
    * @param errorObj 校验有误的页面元素
    * @param errorMsg 错误信息
@@ -130,6 +237,7 @@ $(document).ready(function () {
         password: $.trim($('#password').val()),
         customerType: $.trim($('#customer-role').val()),
         cellphone: $.trim($('#cellphone').val()),
+        email: $.trim($('#email').val()),
         loginUser: $.trim($('#user-name').val())
       },
       success: function (res) {
@@ -154,27 +262,25 @@ $(document).ready(function () {
    * 发送手机验证码
    */
   function sendValidCode(){
-    var cellphone = $.trim($('#cellphone').val());
-    if(!checkNotEmpty(cellphone)){
-      lan === 'cn' ? errMsg = '您输入手机号码。' : errMsg = 'Please enter cellphone number.';
-      showErrorMsg($('#cellphone'), errMsg);
-      return false;
-    }
-    if(!cellphoneIsValid){
-      return false;
-    }
     $.ajax({
       url: '/register/sendValidCode',
       type: 'post',
       dataType: 'json',
       data:{
-        cellphone: $.trim($('#cellphone').val())
+        cellphone: $.trim($('#cellphone').val()),
+        email: $.trim($('#email').val())
       },
       success: function (res) {
         if(res.err){
           layer.msg(res.msg);
           return false;
         }
+        if(lan === 'cn'){
+          layer.msg('验证码已发送到您的手机。');
+        }else{
+          layer.msg('The verification code send your email address.');
+        }
+
         setTime();
       },
       error: function (XMLHttpRequest, textStatus) {
@@ -301,18 +407,65 @@ $(document).ready(function () {
   });
 
   /**
-   * 手机验证码元素焦点离开事件
+   * 邮箱地址元素焦点离开事件
    */
-  $('#valid-code').blur(function () {
-    var cellphone = $.trim($('#cellphone').val());
-    var validCode = $.trim($(this).val());
+  $('#email').blur(function () {
+    var email = $.trim($(this).val());
+    if(!checkNotEmpty(email)){
+      return false;
+    }
 
-    if(!checkNotEmpty(cellphone) || !checkNotEmpty(validCode)){
+    if(!checkIsEmail(email)){
+      lan === 'cn' ? errMsg = '您输入的不是一个邮箱地址。' : errMsg = 'Your input is not a email address.';
+      emailIsValid = false;
+      showErrorMsg($('#email'), errMsg);
       return false;
     }
 
     $.ajax({
-      url: '/register/validCode?cellphone=' + cellphone + '&validCode=' + validCode,
+      url: '/register/email?data=' + email,
+      type: 'get',
+      success: function (res) {
+        if(res.err){
+          layer.msg(res.msg);
+          emailIsValid = false;
+          return false;
+        }
+        if(res.exist){
+          lan === 'cn' ? errMsg = '该邮箱地址已存在。' : errMsg = 'The email address has existed.';
+          showErrorMsg($('#email'), errMsg);
+          emailIsValid = false;
+          return false;
+        }
+        clearErrorMsg($('#email'));
+        emailIsValid = true;
+
+      },
+      error: function (XMLHttpRequest, textStatus) {
+        emailIsValid = false;
+        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+      }
+    });
+  });
+
+  /**
+   * 手机验证码元素焦点离开事件
+   */
+  $('#valid-code').blur(function () {
+    var cellphone = $.trim($('#cellphone').val());
+    var email = $.trim($('#email').val());
+    var validCode = $.trim($(this).val());
+
+    if(lan === 'cn' && (!checkNotEmpty(cellphone) || !checkNotEmpty(validCode))){
+      return false;
+    }
+
+    if(lan === 'en' && (!checkNotEmpty(email) || !checkNotEmpty(validCode))){
+      return false;
+    }
+
+    $.ajax({
+      url: '/register/validCode?cellphone=' + cellphone + '&email=' + email + '&validCode=' + validCode,
       type: 'get',
       success: function (res) {
         if(res.err){
@@ -321,13 +474,13 @@ $(document).ready(function () {
           return false;
         }
         if(!res.exist){
-          lan === 'cn' ? errMsg = '短信验证码不正确。' : errMsg = 'The SMS valid code is invalid.';
+          lan === 'cn' ? errMsg = '验证码不正确。' : errMsg = 'The verification code is invalid.';
           showErrorMsg($('#valid-code'), errMsg);
           smsCodeIsValid = false;
           return false;
         }
         if(res.expired){
-          lan === 'cn' ? errMsg = '验证码已过期。' : errMsg = 'The SMS valid code has expired.';
+          lan === 'cn' ? errMsg = '验证码已过期。' : errMsg = 'The verification code has expired.';
           showErrorMsg($('#valid-code'), errMsg);
           smsCodeIsValid = false;
           return false;
@@ -347,7 +500,7 @@ $(document).ready(function () {
    * 注册按钮事件
    */
   $('.btn-register').click(function () {
-    if(!checkDate()){
+    if(!checkDateBeforeRegister()){
       return false;
     }
     register();
@@ -357,6 +510,11 @@ $(document).ready(function () {
    * 发送验证码按钮事件
    */
   $('.btn-validCode').click(function () {
+    if(!checkDateBeforeSendValidCode()){
+      return false;
+    }
     sendValidCode();
   });
+
+  initPage();
 });

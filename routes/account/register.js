@@ -48,7 +48,7 @@ router.get('/cellphone', function(req, res, next) {
 });
 
 router.get('/email', function(req, res, next) {
-  var email = req.query.data;
+  var email = req.query.data + '.';
   var service = new commonService.commonInvoke('checkEmail');
   service.get(email, function (result) {
     if(result.err){
@@ -69,8 +69,15 @@ router.get('/email', function(req, res, next) {
 
 router.get('/validCode', function(req, res, next) {
   var cellphone = req.query.cellphone;
+  var email = req.query.email;
   var validCode = req.query.validCode;
-  var parameter = '/' + cellphone + '/' + validCode;
+  if(cellphone === undefined || cellphone.length === 0){
+    cellphone = null;
+  }
+  if(email === undefined || email.length === 0){
+    email = null;
+  }
+  var parameter = '/' + cellphone + '/' + email + '/' + validCode;
   var service = new commonService.commonInvoke('verificationCode');
   service.get(parameter, function (result) {
     if(result.err){
@@ -106,6 +113,7 @@ router.post('/', function(req, res, next) {
     password: req.body.password,
     customerType: req.body.customerType,
     cellphone:  req.body.cellphone,
+    email:  req.body.email,
     loginUser: req.body.loginUser
   };
 
@@ -136,10 +144,10 @@ router.post('/sendValidCode', function(req, res, next) {
   }
 
   //发送验证码
-  if(cellphone !== undefined){
+  if(cellphone !== undefined && cellphone.length > 0){
     commonUtils.sendVerificationCodeToCellphone(cellphone, randomNum);
   }
-  if(email !== undefined){
+  if(email !== undefined && email.length > 0){
     commonUtils.sendVerificationCodeToEmail(email, randomNum);
   }
 

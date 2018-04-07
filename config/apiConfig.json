@@ -42,6 +42,7 @@
       "collection":"/api/collection",
       "brandHot":"/api/brandHot",
       "customer": "/api/customer",
+      "forgetPassword": "/api/customer/forgetPassword",
       "login": "/api/customer/login",
       "changeCustomerStatus": "/api/customer/changeStatus",
       "itemHot":"/api/itemHot",

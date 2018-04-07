@@ -1,7 +1,14 @@
 $(document).ready(function () {
-  function alertMessage(msg) {
-    $('div.login form').find('div.alert').remove();
-    $('div.login form').prepend('<div class="alert alert-danger" role="alert">' + msg + '</div>');
+  var lan = localStorage.getItem('siteLanguage');
+  var msg = '';
+  function initPage() {
+    if(lan === 'cn'){
+      $('#user-name').attr('placeholder', '手机号码/账号');
+      $('#password').attr('placeholder', '密码');
+    }else{
+      $('#user-name').attr('placeholder', 'Email/Account');
+      $('#password').attr('placeholder', 'Password');
+    }
   }
 
   function loginProcess() {
@@ -15,12 +22,14 @@ $(document).ready(function () {
     var userName = $.trim($('#user-name').val());
     var password = $.trim($('#password').val());
     if(userName.length === 0){
-      alertMessage('请输入登陆账号。');
+      msg = lan === 'cn' ? '请输入登陆账号。' : 'Please enter account.';
+      layer.msg(msg);
       $('#user-name').focus();
       return false;
     }
     if(password.length === 0){
-      alertMessage('请输入密码。');
+      msg = lan === 'cn' ? '请输入密码。' : 'Please enter password.';
+      layer.msg(msg);
       $('#password').focus();
       return false;
     }
@@ -37,16 +46,19 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          msg = lan === 'cn' ? '服务器异常，暂时无法登陆，请稍后再试。' : 'Service error, please try again later.';
+          layer.msg(msg);
           return false;
         }
         if(res.data === null || res.data.length === 0){
-          alertMessage('用户名或者密码不存在。');
+          msg = lan === 'cn' ? '用户名或者密码不存在。' : 'Account or password invalid.';
+          layer.msg(msg);
           $('#user-name').focus();
           return false;
         }
         if(res.data.frozen){
-          alertMessage('您的账户已冻结，请联系客服。');
+          msg = lan === 'cn' ? '您的账户已冻结，请联系客服。' : 'Your account has been frozen.';
+          layer.msg(msg);
           return false;
         }
         var loginCustomer = JSON.stringify(res.data);
@@ -55,7 +67,7 @@ $(document).ready(function () {
         location.href = target;
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        layer.msg('无法连接网络，请检查网络设置。');
       }
     });
   }
@@ -69,4 +81,6 @@ $(document).ready(function () {
   $('.btn-login').click(function () {
     loginProcess();
   });
+
+  initPage();
 });
