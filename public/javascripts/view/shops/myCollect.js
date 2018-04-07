@@ -4,6 +4,8 @@ $(document).ready(function () {
     setShoppingCartTotalCount();
     setCollectionTotalCount();
     setPurchasedTotalCount();
+    $('li.switch-language').prev().remove();
+    $('li.switch-language').remove();
   }
 
   function setShoppingCartTotalCount() {

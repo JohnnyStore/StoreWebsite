@@ -7,6 +7,8 @@ $(function () {
       $sonCheckBox = $('.son_check');                 //每个商铺下的商品的checkbox
   $customerID = getLoginCustomer().customerID;
 
+  $('li.switch-language').prev().remove();
+  $('li.switch-language').remove();
   $allCheckbox.click(function () {
     if ($(this).is(':checked')) {
       $(this).next('label').addClass('mark');
@@ -181,10 +183,14 @@ $(function () {
 
   $all_sum.keyup(function () {
     var $count = 0,
-        $priceTotalObj = $(this).parents('.shop_item').find('.sum_price'),
-        $price = $(this).parents('.shop_item').find('.price').html(),  //单价
-        $priceTotal = 0;
-    if($(this).val()==''){
+        $priceTotalObj4RMB = $(this).parents('.shop_item').find('.sum_price').find('span.lan-cn'),
+        $priceTotalObj4USD = $(this).parents('.shop_item').find('.sum_price').find('span.lan-en'),
+        $price4RMB = $(this).parents('.shop_item').find('.price.lan-cn').text(),  //人民币单价
+        $price4USD = $(this).parents('.shop_item').find('.price.lan-en').text(),  //美元单价
+        $priceTotal4RMB = 0,
+        $priceTotal4USD = 0;
+
+    if($(this).val() === '' || $(this).val() === '0' || isNaN($(this).val())){
       $(this).val('1');
     }
     $(this).val($(this).val().replace(/\D|^0/g,''));
@@ -192,10 +198,12 @@ $(function () {
     if($count >= 99){
       $count = 99;
     }
-    $priceTotal = $count*parseInt($price.substring(1));
-    // $(this).attr('value',$count);
+    $priceTotal4RMB = $count * parseFloat($price4RMB.substring(1));
+    $priceTotal4USD = $count * parseFloat($price4USD.substring(1));
+
     $(this).val($count);
-    $priceTotalObj.html('￥'+$priceTotal);
+    $priceTotalObj4RMB.html('￥'+$priceTotal4RMB.toFixed(2));
+    $priceTotalObj4USD.html('$'+$priceTotal4USD.toFixed(2));
     totalMoney();
   });
 
