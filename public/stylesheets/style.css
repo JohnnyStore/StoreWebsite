@@ -66,7 +66,7 @@ li.spacer{
   left: 0;
   width: 490px;
   height: 33px;
-  border: 1px solid #FA6507;
+  border: 1px solid #fb640b;
   line-height: 25px;
   font-size: 14px;
   text-indent: 9px;
@@ -80,8 +80,8 @@ li.spacer{
   height: 33px;
   text-align: center;
   font-size: 16px;
-  border: #FA6507;
-  background-color: #FA6507;
+  border: #fb640b;
+  background-color: #fb640b;
   color: #ffffff;
   border-radius: 0;
 }
@@ -93,7 +93,7 @@ li.spacer{
   width: 490px;
   padding: 5px 0;
   background-color: #ffffff;
-  border: 1px solid #FCA832;
+  border: 1px solid #fb640b;
   border-top: none;
   list-style: none;
   visibility: hidden;
@@ -104,19 +104,30 @@ li.spacer{
   overflow: hidden;
   background-color: #e5e5e5;
 }
-.search-form .search-list .search-item{
+.search-form .search-list .search-item:not(:last-child){
   width: 100%;
   height: 30px;
   line-height: 30px;
   text-indent: 5px;
   cursor: pointer;
+  text-align: left;
+  padding-left: 6px;
 }
 .search-form .search-list .search-item:not(:last-child):hover{
-  background-color: #FCA832;
+  background-color: #fb640b;
+  color: #0C0C0C;
 }
-
+.search-item-selected{
+  background-color: #fb640b;
+  color: #0C0C0C;
+}
+.search-item a{
+  width: 100%;
+  text-decoration: none;
+}
 .search-form .search-list .search-item:last-child a{
   text-decoration: none;
+  font-size: 12px;
   margin-right: 9px;
 }
 .shopping-cart{

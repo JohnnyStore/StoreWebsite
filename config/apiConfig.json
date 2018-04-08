@@ -27,6 +27,7 @@
       "administratorApprove":"/api/administrator/approve",
       "checkAdministrator":"/api/administrator/exist/name",
       "item":"/api/item",
+      "fuzzySearch": "/api/item/fuzzy",
       "salesItem":"/api/item/sales",
       "itemByCode":"/api/item/byCode",
       "itemGroup":"/api/itemGroup",

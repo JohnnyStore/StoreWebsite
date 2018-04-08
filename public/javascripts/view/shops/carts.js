@@ -285,7 +285,7 @@ $(function () {
 
 
   $('.calBtn').click(function () {
-    alert(1);
+    location.href = '/order';
   });
 
   /**

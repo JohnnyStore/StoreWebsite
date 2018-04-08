@@ -1,6 +1,7 @@
 var express = require('express');
 var commonService = require('../service/commonService');
 var commonData = require('../service/commonData');
+var sysConfig = require('../config/sysConfig');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -15,6 +16,35 @@ router.get('/', function(req, res, next) {
       res.render('index', {
         title: '主页',
         navigate: result.navigate
+      });
+    }
+  });
+});
+
+router.get('/fuzzySearch', function(req, res, next) {
+  var service = new commonService.commonInvoke('fuzzySearch');
+  var itemDes = req.query.itemDes;
+  var pageNumber = req.query.pageNumber;
+  var pageSize = sysConfig.pageSize;
+  if(pageNumber === undefined){
+    pageNumber = 1;
+  }
+
+  var parameter = pageNumber + '/' + pageSize + '/' + itemDes;
+
+  service.get(parameter, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        code: result.code,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: !result.content.result,
+        code: result.content.responseCode,
+        msg: result.content.responseMessage,
+        data: result.content.responseData
       });
     }
   });

@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
   var brandID = req.query.brandID;
   var categoryID = req.query.categoryID;
   var subCategoryID = req.query.subCategoryID;
+  var itemDes = req.query.itemDes;
   var breadcrumb = [];
-  var service = new commonService.commonInvoke('salesItem');
+  var service = null;
+  var parameter = '';
 
   if(pageNumber === undefined){
     pageNumber = 1;
@@ -26,7 +28,13 @@ router.get('/', function(req, res, next) {
     subCategoryID = 0;
   }
 
-  var parameter = pageNumber + '/' + sysConfig.pageSize + '/' + brandID + '/' + categoryID + '/' + subCategoryID;
+  if(itemDes !== undefined){
+    service = new commonService.commonInvoke('fuzzySearch');
+    parameter = pageNumber + '/' + sysConfig.pageSize + '/' + itemDes;
+  }else{
+    service = new commonService.commonInvoke('salesItem');
+    parameter = pageNumber + '/' + sysConfig.pageSize + '/' + brandID + '/' + categoryID + '/' + subCategoryID;
+  }
 
   commonData.getCommonData(req, res, function(commonResult){
     if(commonResult.err){
