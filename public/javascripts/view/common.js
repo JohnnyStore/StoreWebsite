@@ -99,6 +99,11 @@ $(document).ready(function () {
 
         $('.search-list li').remove();
         if(res.data === null || res.data.length === 0){
+          if(lan === 'cn'){
+            $('.search-list').append('<li class="search-item no-item">没有相关数据</li>');
+          }else{
+            $('.search-list').append('<li class="search-item no-item">No item.</li>');
+          }
           return false;
         }
         $.each(res.data, function(index, v){

@@ -136,7 +136,7 @@ router.post('/sendValidCode', function(req, res, next) {
   var cellphone = req.body.cellphone;
   var email = req.body.email;
   var randomNum = '';
-  var service = new commonService.commonInvoke('verificationCode');
+  var service = new commonService.commonInvoke('thirdPartyAPI');
 
   //随机验证码
   for(var i=0;i<6;i++) {
@@ -145,33 +145,64 @@ router.post('/sendValidCode', function(req, res, next) {
 
   //发送验证码
   if(cellphone !== undefined && cellphone.length > 0){
-    commonUtils.sendVerificationCodeToCellphone(cellphone, randomNum);
-  }
-  if(email !== undefined && email.length > 0){
-    commonUtils.sendVerificationCodeToEmail(email, randomNum);
-  }
-
-  //保存验证码
-  var data = {
-    cellphone: cellphone === undefined ? '' : cellphone,
-    email: email === undefined ? '' : email,
-    verificationCode: randomNum
-  };
-
-  service.add(data, function (result) {
-    if(result.err){
-      res.json({
-        err: true,
-        msg: result.msg
+    commonUtils.sendVerificationCodeToCellphone(cellphone, randomNum, function (isSend, reqContent, resContent, reqText) {
+      var data = {
+        thirdParty: 'aliSms',
+        requestContent: reqContent,
+        responseContent: resContent,
+        requestResult: isSend ? 'T' : 'F',
+        responseText: reqText,
+        cellphone: cellphone,
+        email: email,
+        verificationCode: randomNum,
+        loginUser: cellphone
+      };
+      service.add(data, function (result) {
+        if(result.err){
+          res.json({
+            err: true,
+            msg: result.msg
+          });
+        }else{
+          res.json({
+            err: !isSend,
+            msg: result.content.responseMessage,
+            data: result.content
+          });
+        }
       });
-    }else{
-      res.json({
-        err: !result.content.result,
-        msg: result.content.responseMessage,
-        data: result.content
+    });
+  } else if(email !== undefined && email.length > 0){
+    commonUtils.sendVerificationCodeToEmail(email, randomNum, function () {
+      var data = {
+        thirdParty: '',
+        requestContent: '',
+        responseContent: '',
+        requestResult: false,
+        responseText: '',
+        loginUser: email
+      };
+      service.add(data, function (result) {
+        if(result.err){
+          res.json({
+            err: true,
+            msg: result.msg
+          });
+        }else{
+          res.json({
+            err: isSend,
+            msg: result.content.responseMessage,
+            data: result.content
+          });
+        }
       });
-    }
-  });
+    });
+  } else{
+    res.json({
+      err: true,
+      msg: '非法的请求。'
+    });
+  }
 });
 
 module.exports = router;

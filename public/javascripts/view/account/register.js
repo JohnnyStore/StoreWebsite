@@ -272,7 +272,11 @@ $(document).ready(function () {
       },
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          if(lan === 'cn'){
+            layer.msg('短信验证码发送失败，请稍后再试。');
+          }else{
+            layer.msg('The verification code send failed.');
+          }
           return false;
         }
         if(lan === 'cn'){
