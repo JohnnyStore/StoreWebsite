@@ -7,7 +7,12 @@
     </div>
     <div class="shop_order_process">
       <p><img src="/images/order/order1.gif" alt="" /></p>
-      <span>购物车</span><span>提交订单</span><span style="padding-right:0;">支付</span>
+      <span class="lan-cn">购物车</span>
+      <span class="lan-en hidden">Shopping Cart</span>
+      <span class="lan-cn">提交订单</span>
+      <span class="lan-en hidden">Submit Order</span>
+      <span class="lan-cn" style="padding-right:0;">支付</span>
+      <span class="lan-en hidden" style="padding-right:0;">Payment</span>
     </div>
   </div>
   <div class="shop_slideBox">
@@ -28,13 +33,6 @@
             <span id="myCollection-count"></span>
           </a>
         </li>
-        <!--<li>-->
-          <!--<a href="mybought">-->
-            <!--<span class="lan-cn">我购买过</span>-->
-            <!--<span class="lan-en hidden">Purchased</span>-->
-            <!--<span id="purchased-count"></span>-->
-          <!--</a>-->
-        <!--</li>-->
       </ul>
     </div>
     <div class="bd">
@@ -70,8 +68,10 @@
       <div class="cartBox">
         <div class="order_lists">
           {{#each shoppingCartList}}
-          <div class="shop_item">
-            <div class="shop_th"><input type="checkbox"  class="son_check"/></div>
+          <div class="shop_item" data-shoppingCart-id="{{this.shoppingCartID}}" data-item-id="{{this.itemID}}">
+            <div class="shop_th">
+              <input type="checkbox"  class="son_check"/>
+            </div>
             <div class="shop_inner">
               <div class="shop_goods_img">
                 <a href="/item?itemID={{this.itemID}}"><img src="{{this.itemVO.itemImageUrl}}" alt="" /></a>

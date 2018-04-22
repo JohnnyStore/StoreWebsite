@@ -284,7 +284,50 @@ $(function () {
   });
 
 
+  /*
+  * private int shoppingCartID;
+    private int itemID;
+    private int customerID;
+    private int shoppingCount;
+    private String status;
+    private String loginUser;
+  * */
   $('.calBtn').click(function () {
+    var customer = getLoginCustomer();
+    var index = layer.load();
+    var errorCount = 0;
+    $('.shop_item').each(function (index, item) {
+      var shoppingCartID = $(item).attr('data-shoppingCart-id');
+      var itemID = $(item).attr('data-item-id');
+      var shoppingCount = $(item).find('.sum').val();
+      $.ajax({
+        url: '/shops',
+        type: 'put',
+        dataType: 'json',
+        async:false,
+        data:{
+          shoppingCartID: shoppingCartID,
+          itemID: itemID,
+          customerID: customer.customerID,
+          shoppingCount: shoppingCount,
+          status: 'I',
+          loginUser: customer.account
+        },
+        success: function (res) {
+          if(res.err){
+            errorCount++;
+          }
+        },
+        error: function (XMLHttpRequest, textStatus) {
+          errorCount++;
+        }
+      });
+    });
+    layer.close(index);
+    if(errorCount > 0){
+      layer.msg('远程请求失败，请检查网络链接');
+      return false;
+    }
     location.href = '/order';
   });
 

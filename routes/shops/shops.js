@@ -104,6 +104,32 @@ router.get('/purchased/count', function (req, res, next) {
   });
 });
 
+router.put('/', function (req, res, next) {
+  var service = new commonService.commonInvoke('shoppingCart');
+  var data = {
+    shoppingCartID: req.body.shoppingCartID,
+    itemID: req.body.itemID,
+    customerID: req.body.customerID,
+    shoppingCount: req.body.shoppingCount,
+    status: req.body.status,
+    loginUser: req.body.loginUser
+  };
+
+  service.change(data, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: false,
+        data: result.content
+      });
+    }
+  });
+});
+
 router.delete('/', function (req, res, next) {
   var service = new commonService.commonInvoke('shoppingCart');
   var shoppingCarID = req.query.shoppingCarID;

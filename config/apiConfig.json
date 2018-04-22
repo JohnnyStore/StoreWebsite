@@ -22,6 +22,7 @@
       "expressCompany":"/api/expressCompany",
       "checkCompanyName": "/api/expressCompany/exist",
       "city":"/api/city",
+      "city4Province": "/api/city4Province",
       "checkCityName": "/api/city/exist",
       "systemLog":"/api/systemLog",
       "administrator":"/api/administrator",
@@ -50,6 +51,8 @@
       "itemHot":"/api/itemHot",
       "itemPromotion":"/api/itemPromotion",
       "order":"/api/order",
+      "shippingAddress4Customer":"/api/shippingAddress/customer",
+      "shippingAddress":"/api/shippingAddress",
       "changeExpressInfo":"/api/order/changeExpressInfo",
       "changeOrderStatus":"/api/order/changeStatus",
       "navigate":"/api/navigate"

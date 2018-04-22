@@ -192,8 +192,8 @@ a:focus, a:hover{ color: #000}
 .sub_order_user{ padding-bottom: 10px;position: relative; border-bottom: 1px #ccc solid; margin-bottom: 20px;}
 .sub_order_user h2,.sub_order_goods h2{font-weight: normal; font-size: 16px; color: #000;}
 .sub_order_user p{ text-indent: 2em; font-size: 14px; padding-top: 10px;}
-.sub_order_user p span{ color: #64C813; padding-left: 50px;}
-.sub_order_user a{position: absolute; right: 0; top: 10px; width: 103px; height: 25px; line-height: 25px; text-align: center; border: 1px #ccc solid; background: #ededed; display: block;}
+.sub_order_user p span.default-address{ color: #64C813; padding-left: 50px;}
+.sub_order_user a{position: absolute; right: 0; top: 10px; width: 133px; padding: 3px; line-height: 25px; text-align: center; border: 1px #ccc solid; background: #ededed; display: block;}
 .sub_order_user a i{ color: #FA6509;}
 .sub_order_goods .shop_inner{ width: 529px;}
 .sub_order_ft{margin-top: 25px; }
@@ -201,9 +201,14 @@ a:focus, a:hover{ color: #000}
 .order_buy_massage textarea{ padding: 10px; vertical-align: top; border: 1px #ccc solid; margin-left: 5px; width: 350px; height: 70px; border-radius: 5px; box-shadow: 1px 0px 2px #ccc inset;}
 .sub_order_btn{ width: 334px;float: right; padding-top: 20px; text-align: right;}
 .sub_order_btn p span{ font-size: 18px; color: #FA6509;}
-.sub_order_btn a{ display: block; float: right; width: 117px; background: #FA6509; margin-top: 8px; color: #fff; text-align: center; line-height: 30px; border-radius: 5px;}
+.sub_order_btn button{ display: block; float: right; width: 155px; height: 45px; background: #FA6509; margin-top: 8px; color: #fff; text-align: center; line-height: 30px; border-radius: 5px;}
 /*添加收货地址*/
-.add_adress{display: none}
+.add_address {
+  width: 700px;
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-right: 30px;
+}
 .add_adr_title{ border-bottom: 1px #eee solid; padding: 15px;}
 .add_adr_title h2{font-weight: normal; font-size: 16px; display: inline-block;}
 .add_adr_title a{ float: right;}
@@ -243,7 +248,8 @@ a:focus, a:hover{ color: #000}
 .apply_qr{ color: #999; padding: 5px 0;}
 /*----------订单成功页面----------*/
 .shop_order_process{float: right; width: 280px; text-align: right;}
-.shop_order_process span{display: inline-block; margin-top: 8px; padding-right: 77px; float: left;}
+.shop_order_process span.lan-cn{display: inline-block; margin-top: 8px; padding-right: 77px; float: left;}
+.shop_order_process span.lan-en{display: inline-block; margin-top: 8px; padding-right: 35px; float: left;}
 .order_succes_warn{padding: 37px 0;font-size: 22px; color: #333; text-align: center; background: #f5f5f5; margin-top: 58px;margin-bottom: 20px;}
 .order_succes_warn i{ font-size: 50px; color: #64C813; padding-right: 15px;}
 .order_succes_info{}
@@ -316,4 +322,7 @@ border: 1px #ccc solid;display: none;}
 }
 .btn-checking:hover {
     color: #fff;
+}
+#shipping-address-detail tbody tr:hover{
+  cursor: pointer;
 }
