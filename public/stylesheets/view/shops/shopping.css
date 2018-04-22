@@ -48,10 +48,10 @@ a:focus, a:hover{ color: #000}
 .shop_slideBox .hd ul li.active{ border-bottom: 1px #fa6509 solid;}
 .shop_slideBox .hd ul li.active a{ color: #FA6509;}
 .shop_slideBox .hd ul li.active:after{width:0; content: "";position: absolute;
-        height:0; left: 45%; bottom: 0;
-        border-width:5px;
-        border-style:solid;
-        border-color:transparent transparent red transparent;}
+  height:0; left: 45%; bottom: 0;
+  border-width:5px;
+  border-style:solid;
+  border-color:transparent transparent red transparent;}
 .shop_title dt,.shop_title dd{float: left;font-size: 14px; padding-top: 20px; padding-bottom: 20px;}
 .shop_slideBox input[type="checkbox"],
 .shop_settlement input[type="checkbox"]{ margin-top: 0px !important; margin-right: 5px}
@@ -67,11 +67,11 @@ a:focus, a:hover{ color: #000}
 .shop_item .shop_inner{ text-align: left; width: 485px;}
 .original_price, .promotion_price, .sum_price{ font-weight: 500; color: #000;font-size: 16px;padding-top: 10px;}
 .delete-price{
-    text-decoration: line-through;
-    font-weight: normal;
-    font-size: 14px;
-    margin-left: 6px;
-    color: #CCCCCC;
+  text-decoration: line-through;
+  font-weight: normal;
+  font-size: 14px;
+  margin-left: 6px;
+  color: #CCCCCC;
 }
 .shop_cz .delBtn{padding-top: 10px; display: inline-block;}
 .shop_cz a.delBtn:hover,
@@ -101,78 +101,78 @@ a:focus, a:hover{ color: #000}
 .shop_add_bought a i{ color: #FA6509;}
 /*自己定义的模态框*/
 .model_bg{
-    position: fixed;
-    top:0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0,0,0,.6);
-    z-index: 999;
-    display: none;
-     width: 100%;
-     height: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 999;
+  display: none;
+  width: 100%;
+  height: 100%;
 }
 .my_model{
-    position: fixed;
-    display: none;
-    top:50%;
-    left: 50%;
-    margin-top: -68px;
-    margin-left: -200px;
-    z-index: 9999;
-    width: 360px;
-    height: 139px;
-    border: 1px solid #aeaeae;
-    border-radius: 3px;
-    padding: 20px;
-    background: #fff;
+  position: fixed;
+  display: none;
+  top:50%;
+  left: 50%;
+  margin-top: -68px;
+  margin-left: -200px;
+  z-index: 9999;
+  width: 360px;
+  height: 139px;
+  border: 1px solid #aeaeae;
+  border-radius: 3px;
+  padding: 20px;
+  background: #fff;
 }
 .my_model .title{
-    font-size: 14px;
-    color: #3c3c3c;
-    font-weight: 700;
-    margin-bottom: 20px;
+  font-size: 14px;
+  color: #3c3c3c;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 .my_model .title .closeModel{
-    float: right;
-    cursor: pointer;
+  float: right;
+  cursor: pointer;
 }
 .my_model p{
-    line-height:16px;
+  line-height:16px;
 }
 .my_model .opBtn{
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .my_model .opBtn a{
-    width: 58px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-    -ms-border-radius: 1px;
-    border-radius: 1px;
-    display: inline-block;
-    margin-right: 10px;
-    font-weight: 700;
+  width: 58px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  border-radius: 1px;
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 700;
 }
 .my_model .dialog-sure{
-    background: #52a0e5;
-    color: #fff;
-    border: 1px solid #52a0e5;
+  background: #52a0e5;
+  color: #fff;
+  border: 1px solid #52a0e5;
 }
 
 .my_model .dialog-close{
-    background: #fff;
-    border: 1px solid #d9d9d9;
-    color: #3c3c3c;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  color: #3c3c3c;
 }
 /*购物车结算*/
 .shop_settlement{ height: 50px;position: relative;border-radius: 3px;line-height: 50px; background: #ededed;}
 .shop_set_left{float: left;}
 .shop_set_left div{float: left; padding-right: 20px;}
 .shop_set_selcet{ padding-left: 10px;}
-.shop_set_right{ float: right;/*width: 353px;*/} 
+.shop_set_right{ float: right;/*width: 353px;*/}
 .shop_set_right p{display: inline-block; padding-left: 15px;}
 .shop_set_right p span.piece_num{ color: #fa6509; font-size: 18px;}
 .shop_set_right p strong{ font-size: 24px; color: #fa6509;}
@@ -201,7 +201,8 @@ a:focus, a:hover{ color: #000}
 .order_buy_massage textarea{ padding: 10px; vertical-align: top; border: 1px #ccc solid; margin-left: 5px; width: 350px; height: 70px; border-radius: 5px; box-shadow: 1px 0px 2px #ccc inset;}
 .sub_order_btn{ width: 334px;float: right; padding-top: 20px; text-align: right;}
 .sub_order_btn p span{ font-size: 18px; color: #FA6509;}
-.sub_order_btn button{ display: block; float: right; width: 155px; height: 45px; background: #FA6509; margin-top: 8px; color: #fff; text-align: center; line-height: 30px; border-radius: 5px;}
+.sub_order_btn button{ display: block; float: right; width: 155px; height: 45px; background: #FA6509; margin-top: 8px; color: #fff;
+  font-size: 16px; text-align: center; line-height: 30px; border-radius: 5px;}
 /*添加收货地址*/
 .add_address {
   width: 700px;
@@ -243,19 +244,19 @@ a:focus, a:hover{ color: #000}
 .apply_platform{ border: 1px #ccc solid;padding: 20px 45px 40px; margin-top: 5px;}
 .apply_platform h3{ font-size: 16px; margin-bottom: 30px;}
 .apply_platform label{display: inline-block; margin-right: 20px;}
-.apply_platform label img{ height: 26px;}
-.apply_platform span{ border: 1px #ccc solid; display: inline-block; border-radius: 3px; width: 147px; padding: 8px 0;padding-left:10px;}
+.apply_platform label img{ height: 46px;}
+.apply_platform span.pay-item{ border: 1px #ccc solid; display: inline-block; margin-left: 10px; border-radius: 3px; width: 147px; padding-left:10px;}
 .apply_qr{ color: #999; padding: 5px 0;}
 /*----------订单成功页面----------*/
 .shop_order_process{float: right; width: 280px; text-align: right;}
 .shop_order_process span.lan-cn{display: inline-block; margin-top: 8px; padding-right: 77px; float: left;}
 .shop_order_process span.lan-en{display: inline-block; margin-top: 8px; padding-right: 35px; float: left;}
-.order_succes_warn{padding: 37px 0;font-size: 22px; color: #333; text-align: center; background: #f5f5f5; margin-top: 58px;margin-bottom: 20px;}
+.order_succes_warn{padding: 37px 0;font-size: 22px; color: #333; text-align: center; background: #f5f5f5; margin-top: 20px;margin-bottom: 20px;}
 .order_succes_warn i{ font-size: 50px; color: #64C813; padding-right: 15px;}
 .order_succes_info{}
-.order_succes_info p{ line-height: 36px; font-size: 14px; width: 227px; margin: 0 auto;}
+.order_succes_info p{ line-height: 36px; font-size: 14px; margin: 0 auto;}
 .order_succes_info span{ color: #999;display: inline-block; width: 80px; text-align: right;}
-.order_succes_info em{display:inline-block; width: 145px; line-height: 22px; vertical-align: text-top; font-style: normal;}
+.order_succes_info em{display:inline-block; width: 500px; line-height: 22px; vertical-align: text-top; font-style: normal;}
 .order_return{ text-align: center;margin-top: 30px;}
 .order_return a{display: inline-block; border: 1px #ccc solid; width: 109px; height: 30px; line-height: 30px; margin: auto 20px;}
 /*我的订单*/
@@ -288,7 +289,7 @@ a:focus, a:hover{ color: #000}
 .order_meau ul li i{display: inline-block;}
 .order_meau ul li:last-child{ margin-right: 0; text-align:right; width: 65px; padding-left: 0}
 .order_month{ background: #fff;padding:0 24px; z-index: 9999; width: 144px; position: absolute; top: 0px; left: 0;
-border: 1px #ccc solid;display: none;}
+  border: 1px #ccc solid;display: none;}
 .order_month a{display: block; border-bottom: 1px #eee solid;}
 .order_month a:hover{ color:#FA6509;}
 .order_month a i{ transform:rotate(-180deg);display: inline-block;}
@@ -313,16 +314,24 @@ border: 1px #ccc solid;display: none;}
 
 
 .add-shoppingCart-success{
-    padding: 15px;color: #71b247
+  padding: 15px;color: #71b247
 }
 .btn-checking {
-    color: #fff;
-    background-color: #FA6509;
-    border-color: #FA6507;
+  color: #fff;
+  background-color: #FA6509;
+  border-color: #FA6507;
 }
 .btn-checking:hover {
-    color: #fff;
+  color: #fff;
 }
 #shipping-address-detail tbody tr:hover{
   cursor: pointer;
+}
+.btn-pay{
+  color: #fff;
+  background-color: #FA6509;
+  border-color: #FA6507;
+}
+.success-text{
+
 }

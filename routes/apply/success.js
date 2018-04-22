@@ -3,6 +3,7 @@ var commonService = require('../../service/commonService');
 var commonData = require('../../service/commonData');
 var router = express.Router();
 
+/* GET home page. */
 router.get('/', function(req, res, next) {
   var orderID = req.query.orderNumber;
   var service = new commonService.commonInvoke('order');
@@ -31,8 +32,8 @@ router.get('/', function(req, res, next) {
               result.content.responseData.orderAmount = '$' + result.content.responseData.orderAmount;
             }
           }
-          res.render('apply/apply', {
-            title: '订单支付',
+          res.render('apply/success', {
+            title: '订单支付完成',
             navigate: commonResult.navigate,
             order: result.content.responseData
           });

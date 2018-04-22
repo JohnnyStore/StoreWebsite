@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/stylesheets/view/shops/shopping.css">
+<!--header end-->
+<div class="container">
+  <!--购物车搜索栏-->
+  <div class="searchwrap clearfix">
+    <div class="shop_logo">
+      <i class="fa fa-credit-card"></i>
+      <span class="lan-cn">订单支付</span>
+      <span class="lan-en hidden">Payment</span>
+    </div>
+    <div class="shop_order_process">
+      <p><img src="/images/order/order.gif" alt="" /></p>
+      <span>购物车</span><span>提交订单</span><span style="padding-right:0;">支付</span>
+    </div>
+  </div>
+  <!--订单提交成功-->
+  <div class="order_succes_warn">
+    <span class="success-icon"><i class=""></i></span>
+    <span class="success-text"></span>
+  </div>
+  <div class="order_succes_info">
+    <div style="margin: 0 auto; width: 480px">
+      <input type="hidden" value="{{order.orderStatus}}" id="order-status">
+      <p><span>订单编号：</span>{{order.orderID}}</p>
+      <p><span>购买金额：</span>{{order.orderAmount}}</p>
+      <p><span>收货人：</span>{{order.shippingAddressVO.consignee}}</p>
+      <p>
+        <span>收货地址：</span>
+        {{order.shippingAddressVO.countryVO.countryNameCN}}
+        {{order.shippingAddressVO.provinceVO.provinceNameCN}}
+        {{order.shippingAddressVO.cityVO.cityNameCN}}
+        {{order.shippingAddressVO.shippingStreet}}
+        {{order.shippingAddressVO.cellphone}}
+      </p>
+    </div>
+  </div>
+  <div class="order_return">
+    <a href="allorder">查看订单</a>
+    <a href="index">继续购物</a>
+  </div>
+</div>
+<div style="height: 40px"></div>
+<script type="text/javascript" src="javascripts/view/order/success.js"></script>
