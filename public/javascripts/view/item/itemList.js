@@ -18,6 +18,7 @@ $(document).ready(function () {
     $('div.pagination ul li.page-num').each(function (index, obj) {
       if($(obj).text() === currentPageNumber){
         $(obj).addClass('current-page-number');
+        $(obj).find('a').addClass('current-page-number-content');
         $(obj).find('span').addClass('current-page-number-content');
       }
     });

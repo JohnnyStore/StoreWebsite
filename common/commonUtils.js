@@ -61,7 +61,7 @@ exports.bulidPagination = function (pageNumber, paginationArray, prePageNumber, 
     urlParameter = '&subCategoryID=' + subCategoryID;
   }
   if(prePageNumber !== 0){
-    paginationHtml.push('<li class="prev"><a href="/itemList?pageNumber=' + pageNumber + urlParameter + '"><i class="fa fa-angle-double-left"></i></a></li>');
+    paginationHtml.push('<li class="prev"><a href="/itemList?pageNumber=' + prePageNumber + urlParameter + '"><i class="fa fa-angle-double-left"></i></a></li>');
   }else{
     paginationHtml.push('<li class="prev"><span><i class="fa fa-angle-double-left"></i></span></li>');
   }
@@ -73,7 +73,35 @@ exports.bulidPagination = function (pageNumber, paginationArray, prePageNumber, 
     }
   });
   if(nextPageNumber !== -1){
-    paginationHtml.push('<li class="next"><a href="/itemList?pageNumber=' + pageNumber + urlParameter + '"><i class="fa fa-angle-double-right"></i></a></li>');
+    paginationHtml.push('<li class="next"><a href="/itemList?pageNumber=' + nextPageNumber + urlParameter + '"><i class="fa fa-angle-double-right"></i></a></li>');
+  }else{
+    paginationHtml.push('<li class="next"><span><i class="fa fa-angle-double-right"></i></span></li>');
+  }
+
+  return paginationHtml;
+};
+
+exports.bulidPagination4OrderHistory = function (pageNumber, paginationArray, prePageNumber, nextPageNumber, recentMonth) {
+  var paginationHtml = [];
+  var urlParameter = '&recentMonth=' + recentMonth;
+  if(paginationArray.length === 0){
+    return paginationHtml;
+  }
+
+  if(prePageNumber !== 0){
+    paginationHtml.push('<li class="prev"><a href="/myOrder?pageNumber=' + prePageNumber + urlParameter + '"><i class="fa fa-angle-double-left"></i></a></li>');
+  }else{
+    paginationHtml.push('<li class="prev"><span><i class="fa fa-angle-double-left"></i></span></li>');
+  }
+  paginationArray.forEach(function (value) {
+    if(value !== pageNumber){
+      paginationHtml.push('<li class="page-num"><a href="/myOrder?pageNumber=' + value + urlParameter + '">' + value + '</a></li>');
+    }else{
+      paginationHtml.push('<li class="page-num"><span>' + value + '</span></li>');
+    }
+  });
+  if(nextPageNumber !== -1){
+    paginationHtml.push('<li class="next"><a href="/myOrder?pageNumber=' + nextPageNumber + urlParameter + '"><i class="fa fa-angle-double-right"></i></a></li>');
   }else{
     paginationHtml.push('<li class="next"><span><i class="fa fa-angle-double-right"></i></span></li>');
   }

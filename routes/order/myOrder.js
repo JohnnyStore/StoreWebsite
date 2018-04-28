@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   var pageNumber = req.query.pageNumber;
   var pageSize = sysConfig.pageSize;
   var recentMonth = req.query.recentMonth;
-  var orderStatus = 'F';
+  var orderStatus = 'N';
 
   if(pageNumber === undefined) {
     pageNumber = 1;
@@ -100,8 +100,8 @@ router.get('/', function(req, res, next) {
             }
 
           });
-          res.render('order/waiteval', {
-            title: '待评价',
+          res.render('order/myOrder', {
+            title: '我的订单',
             errorCode: commonResult.code,
             message: commonResult.msg,
             recentMonth: recentMonth,
@@ -116,6 +116,56 @@ router.get('/', function(req, res, next) {
             orderList: result.content.responseData
           });
         }
+      });
+    }
+  });
+});
+
+router.post('/addItemReview', function (req, res, next) {
+  var service = new commonService.commonInvoke('addItemReview');
+  var data = {
+    customerID: req.body.customerID,
+    itemID: req.body.itemID,
+    starNum: req.body.starNum,
+    reviewLevel: req.body.reviewLevel,
+    reviewText: req.body.reviewText,
+    reviewStatus: req.body.reviewStatus,
+    loginUser: req.body.loginUser
+  };
+
+  service.add(data, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: !result.content.result,
+        data: result.content
+      });
+    }
+  });
+});
+
+router.put('/changeOrderStatus', function (req, res, next) {
+  var service = new commonService.commonInvoke('changeOrderStatus');
+  var data = {
+    orderID: req.body.orderID,
+    orderStatus: req.body.orderStatus,
+    loginUser: req.body.loginUser
+  };
+
+  service.change(data, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: !result.content.result,
+        data: result.content
       });
     }
   });

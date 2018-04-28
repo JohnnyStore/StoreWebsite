@@ -83,9 +83,9 @@ router.get('/collect/count', function (req, res, next) {
 });
 
 router.get('/purchased/count', function (req, res, next) {
-  var service = new commonService.commonInvoke('order');
+  var service = new commonService.commonInvoke('order4Customer');
   var customerId = req.query.customerID;
-  var parameter = '1/9999/' + customerId + '/F';
+  var parameter = '1/9999/' + customerId + '/0/F';
   service.get(parameter, function (result) {
     if(result.err){
       res.json({

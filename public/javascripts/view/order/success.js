@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  $('li.switch-language').prev().remove();
+  $('li.switch-language').remove();
   var orderStatus = $('#order-status').val();
   if(orderStatus === 'O'){
     $('.order_succes_warn i').addClass('fa fa-check-circle');

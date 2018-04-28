@@ -15,14 +15,14 @@
     <div class="contright">
       <div class="order_all_tab clearfix">
         <ul>
-          <li>
+          <li class="active">
             <a href="/myOrder">
               <span class="lan-cn">所有订单</span>
               <span class="lan-en hidden">All</span>
               <span>{{totalCount}}</span>
             </a>
           </li>
-          <li class="active">
+          <li>
             <a href="/waitpay">
               <span class="lan-cn">待付款</span>
               <span class="lan-en hidden">To Pay</span>
@@ -40,7 +40,7 @@
             <a href="/waiteval">
               <span class="lan-cn">待评价</span>
               <span class="lan-en hidden">To Review</span>
-              <span>{{toReviewOrderCount}}</span>
+            <span>{{toReviewOrderCount}}</span>
             </a>
           </li>
         </ul>
@@ -53,15 +53,15 @@
             <span class="lan-en hidden"></span>
             <i class="fa fa-angle-down"></i>
             <div class="order_month" id="recently-months">
-              <a href="/waitpay?recentMonth=3">
+              <a href="/myOrder?recentMonth=3">
                 <span class="lan-cn">近三个月订单</span>
                 <span class="lan-en hidden">The last 3 months</span>
               </a>
-              <a href="/waitpay?recentMonth=6">
+              <a href="/myOrder?recentMonth=6">
                 <span class="lan-cn">近半年订单</span>
                 <span class="lan-en hidden">The last 6 months</span>
               </a>
-              <a href="/waitpay?recentMonth=12">
+              <a href="/myOrder?recentMonth=12">
                 <span class="lan-cn">近一年订单</span>
                 <span class="lan-en hidden">The last 12 months</span>
               </a>
@@ -244,3 +244,5 @@
 <input type="hidden" value="{{recentMonth}}" id="hidden-recentMonth">
 <input type="hidden" value="{{pageNumber}}" id="current-pageNumber">
 <script type="text/javascript" src="javascripts/view/order/myOrder.js"></script>
+
+

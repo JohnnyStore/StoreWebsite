@@ -288,11 +288,22 @@ $(document).ready(function () {
               starHtml += '<i class="fa fa-star review-star"></i>\n';
             }
 
+            var reviewer = '';
+            if(review.customerName !== null){
+              reviewer = review.customerName;
+            }else{
+              if(review.account.length > 3){
+                reviewer = review.account.substr(0, 2) + '***' + review.account.substr(review.account.length-1, 1);
+              }else{
+                reviewer = review.account.substr(0, 1) + '***';
+              }
+            }
+
             $('#review-all').append(
                 '<div class="review-text">\n' +
                 '   <div class="row">\n' +
                 '     <div class="col-md-2">\n' +
-                '      <span>' + review.customerName  + '</span>\n' +
+                '      <span>' + reviewer + '</span>\n' +
                 '      <div>\n' +
                         starHtml +
                 '      </div>\n' +
@@ -310,7 +321,7 @@ $(document).ready(function () {
                   '<div class="review-text">\n' +
                   '   <div class="row">\n' +
                   '     <div class="col-md-2">\n' +
-                  '      <span>' + review.customerName  + '</span>\n' +
+                  '      <span>' + reviewer + '</span>\n' +
                   '      <div>\n' +
                   starHtml +
                   '      </div>\n' +
@@ -329,7 +340,7 @@ $(document).ready(function () {
                   '<div class="review-text">\n' +
                   '   <div class="row">\n' +
                   '     <div class="col-md-2">\n' +
-                  '      <span>' + review.customerName  + '</span>\n' +
+                  '      <span>' + reviewer + '</span>\n' +
                   '      <div>\n' +
                   starHtml +
                   '      </div>\n' +
@@ -348,7 +359,7 @@ $(document).ready(function () {
                   '<div class="review-text">\n' +
                   '   <div class="row">\n' +
                   '     <div class="col-md-2">\n' +
-                  '      <span>' + review.customerName  + '</span>\n' +
+                  '      <span>' + reviewer + '</span>\n' +
                   '      <div>\n' +
                   starHtml +
                   '      </div>\n' +

@@ -50,34 +50,3 @@
 /*.pagination{*/
   /*margin-bottom: 15px;*/
 /*}*/
-
-.pagination ul{
-  margin: 0 auto;
-}
-
-.pagination ul li{
-  float: left;
-  padding-top: 5px;
-  width: 31px;
-  height: 31px;
-  border-top: 1px solid #FA6507;
-  border-bottom: 1px solid #FA6507;
-  border-right: 1px solid #FA6507;
-}
-
-.pagination ul li:first-child{
-  border-left: 1px solid #FA6507;
-}
-
-.pagination ul li a{
-  color: #FA6507;
-}
-.pagination ul li span{
-  color: #FA6507;
-}
-.current-page-number{
-  background-color: #fa5507;
-}
-.current-page-number-content{
-  color: #ffffff !important;
-}
