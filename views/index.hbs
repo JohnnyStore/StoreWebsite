@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/index.css">
+<script src="javascripts/view/scroll.js"></script>
 <div class="container-fluid no-padding advertisement">
   <img src="images/banner/welcome-banner.png" class="img-responsive">
 </div>
@@ -30,9 +31,9 @@
     </ul>
   <div class="tabcontent" rel='tab-1'>
     <div class="als-container">
-      <span class="als-prev"></span>
+      <span class="als-prev" id="als-prev"></span>
       <div class="picbox">
-        <ul class="piclist">
+        <ul class="piclist" id="picboxcont1">
           <li>
             <a href="">
               <div class="surprise-img"><img src="http://101.132.97.177:3002/images/item/BHG17148_2_350x350.jpg" /></div>
@@ -98,14 +99,28 @@
           </li>
         </ul>
       </div>
-      <span class="als-next"></span>
+      <span class="als-next" id="als-next"></span>
     </div>
+      <script type="text/javascript">
+      var scrollPic_01 = new ScrollPic();
+      scrollPic_01.scrollContId   = "picboxcont1";
+      scrollPic_01.arrLeftId      = "als-prev";
+      scrollPic_01.arrRightId     = "als-next";
+      scrollPic_01.frameWidth     = 889;
+      scrollPic_01.pageWidth      = 256;
+      scrollPic_01.speed          = 15;
+      scrollPic_01.space          = 20;
+      scrollPic_01.autoPlay       = true;
+      scrollPic_01.autoPlayTime   = 2;
+      scrollPic_01.initialize();
+
+    </script>
   </div>
   <div class="tabcontent" rel='tab-2'>
     <div class="als-container">
-      <span class="als-prev"></span>
+      <span class="als-prev"  id="als-prev2"></span>
       <div class="picbox">
-        <ul class="piclist">
+        <ul class="piclist" id="picboxcont2">
           <li>
             <a href="">
               <div class="surprise-img"><img src="http://101.132.97.177:3002/images/item/BHG17148_2_350x350.jpg" /></div>
@@ -171,14 +186,28 @@
           </li>
         </ul>
       </div>
-      <span class="als-next"></span>
+      <span class="als-next" id="als-next2"></span>
     </div>
+    <script type="text/javascript">
+      var scrollPic_01 = new ScrollPic();
+      scrollPic_01.scrollContId   = "picboxcont2";
+      scrollPic_01.arrLeftId      = "als-prev2";
+      scrollPic_01.arrRightId     = "als-next2";
+      scrollPic_01.frameWidth     = 889;
+      scrollPic_01.pageWidth      = 256;
+      scrollPic_01.speed          = 15;
+      scrollPic_01.space          = 20;
+      scrollPic_01.autoPlay       = true;
+      scrollPic_01.autoPlayTime   = 2;
+      scrollPic_01.initialize();
+
+    </script>
   </div>
    <div class="tabcontent" rel='tab-3'>
      <div class="als-container">
-       <span class="als-prev"></span>
+       <span class="als-prev" id="als-prev3"></span>
        <div class="picbox">
-         <ul class="piclist">
+         <ul class="piclist" id="picboxcont3">
            <li>
              <a href="">
                <div class="surprise-img"><img src="http://101.132.97.177:3002/images/item/BHG17148_2_350x350.jpg" /></div>
@@ -244,14 +273,28 @@
            </li>
          </ul>
        </div>
-       <span class="als-next"></span>
+       <span class="als-next" id="als-next3"></span>
      </div>
+     <script type="text/javascript">
+       var scrollPic_01 = new ScrollPic();
+       scrollPic_01.scrollContId   = "picboxcont3";
+       scrollPic_01.arrLeftId      = "als-prev3";
+       scrollPic_01.arrRightId     = "als-next3";
+       scrollPic_01.frameWidth     = 889;
+       scrollPic_01.pageWidth      = 256;
+       scrollPic_01.speed          = 15;
+       scrollPic_01.space          = 20;
+       scrollPic_01.autoPlay       = true;
+       scrollPic_01.autoPlayTime   = 2;
+       scrollPic_01.initialize();
+
+     </script>
    </div>
     <div class="tabcontent" rel='tab-4'>
       <div class="als-container">
-        <span class="als-prev"></span>
+        <span class="als-prev" id="als-prev4"></span>
         <div class="picbox">
-          <ul class="piclist">
+          <ul class="piclist" id="picboxcont4">
             <li>
               <a href="">
                 <div class="surprise-img"><img src="http://101.132.97.177:3002/images/item/BHG17148_2_350x350.jpg" /></div>
@@ -317,11 +360,25 @@
             </li>
           </ul>
         </div>
-        <span class="als-next"></span>
+        <span class="als-next" id="als-next4"></span>
       </div>
     </div>
+    <script type="text/javascript">
+      var scrollPic_01 = new ScrollPic();
+      scrollPic_01.scrollContId   = "picboxcont4";
+      scrollPic_01.arrLeftId      = "als-prev4";
+      scrollPic_01.arrRightId     = "als-next4";
+      scrollPic_01.frameWidth     = 889;
+      scrollPic_01.pageWidth      = 256;
+      scrollPic_01.speed          = 15;
+      scrollPic_01.space          = 20;
+      scrollPic_01.autoPlay       = true;
+      scrollPic_01.autoPlayTime   = 2;
+      scrollPic_01.initialize();
 
+    </script>
   </div>
+
 </div>
 </div>
 <div class="space-normal"></div>
@@ -395,23 +452,3 @@
   tabs_takes.init("tabs");
 </script>
 
-<script type="text/javascript">
-  var _index5=0;
-  $(".als-container .als-next").click(function(){
-    _index5++;
-    var len=$(".picbox ul.piclist li").length;
-    if(_index5+5>len){
-      $(".als-container .picbox ul.piclist").stop().append($("ul.piclist").html());
-    }
-    $(".als-container .picbox ul.piclist").stop().animate({left:-_index5*235},1000);
-  });
-  $(".als-container .als-prev").click(function(){
-    if(_index5==0){
-      $("ul.piclist").prepend($("ul.piclist").html());
-       $("ul.piclist").css("left","-1380px");
-      _index5=6
-    }
-    _index5--;
-    $(".als-container .picbox ul.piclist").stop().animate({left:-_index5*235},1000);
-  });
-</script>
