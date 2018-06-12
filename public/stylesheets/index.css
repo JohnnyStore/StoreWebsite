@@ -200,3 +200,217 @@
   margin: 0 auto;
   width: 106px;
 }
+/*每日疯抢*/
+.panictime{
+  background: url("../../../images/panic.jpg") no-repeat;
+  height: 389px;
+  position: relative;
+  width: 235px;
+  float: left;
+}
+.alt-1 {
+  position: absolute;
+  left: 15px;
+  bottom: 53px;
+}
+
+.countdown-alt-1 .dd,
+.countdown-alt-1 .hh-1,
+.countdown-alt-1 .hh-2,
+.countdown-alt-1 .mm-1,
+.countdown-alt-1 .mm-2,
+.countdown-alt-1 .ss-1,
+.countdown-alt-1 .ss-2 {
+  font-family: 'Righteous', cursive;
+  background: #F6F6F6;
+  /*border-radius: 10px;*/
+  display: inline-block;
+  font-size: 26px;
+  margin: 1px 2px;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.countdown-alt-1 .hh-1,
+.countdown-alt-1 .hh-2,
+.countdown-alt-1 .mm-1,
+.countdown-alt-1 .mm-2,
+.countdown-alt-1 .ss-1,
+.countdown-alt-1 .ss-2 {
+  height: 32px;
+  text-align: center;
+  line-height:12px;
+}
+
+.countdown-alt-1 .label {
+  font-style: italic;
+  text-transform: capitalize;
+  background: #F6F6F6;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 1px 2px;
+  padding: 2px 5px;
+  position: absolute;
+  left: 0;
+  bottom: -44px;
+  visibility: hidden;
+}
+
+.countdown-alt-1 .separator-dd,
+.countdown-alt-1 .separator {
+  color: #333;
+  font-size: 26px;
+  position: relative;
+}
+.panicshops{
+  width: 933px;
+  float: left;
+  border:1px #ccc solid;
+  height: 389px;
+}
+.panicshops .tabs{
+  width: 95%;
+  margin: 0 auto;
+
+}
+.tabs div.tabcontent{
+  display: none;
+  clear: both;
+}
+.tabs .horizontal{
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px #ccc solid;
+  height: 60px;
+}
+.tabs .horizontal li{
+  float: left;
+  list-style: none;
+  height: 40px;;
+  width:62px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  padding-top: 10px;
+  margin: 0 123px;
+
+}
+.tabs .horizontal li span{
+  display: block;
+}
+.tabs .horizontal li:not(:first-child){
+  margin-left: 5px;
+}
+
+.tabs .horizontal li.selectActive{
+  border-bottom: solid 2px #fc0030;
+  height: 60px;
+}
+/*图片滚动*/
+.als-container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  _height: 100%;
+}
+
+.picbox {
+  width: 95%;
+  margin: 0 auto;
+  height:290px;
+  overflow: hidden;
+  position: relative;
+}
+
+.piclist {
+  height: 115px;
+  position: absolute;
+  left: 0px;
+  top: 0px
+}
+.piclist li {
+  float: left;
+  width: 158px;
+  overflow: hidden;
+  height: 256px;
+  margin-left: 50px;
+}
+.piclist li a{text-decoration: none}
+.piclist li .surprise-img{
+  width: 150px;
+  height: 120px;
+}
+.piclist li .surprise-img img{
+  width: 100%;
+  height: 100%;
+}
+.piclist li .goodsDes{
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.piclist li .panicpric{
+ font-size: 14px;
+  color: #dd2727;
+}
+.piclist li .panicpric span{
+  font-size: 20px;
+}
+.piclist li .paniZp{
+  color: #999;
+
+}
+/*.swaplist {*/
+  /*position: absolute;*/
+  /*left: 930px;*/
+  /*top: 0px*/
+/*}*/
+.piclist li .panicshopsbtn{
+  color: #fff;
+  background: #cdcdcd;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 29px;
+
+}
+.als-prev,
+.als-next {
+  width: 30px;
+  height: 50px;
+  background: url(../../../images/icon.png) no-repeat;
+  background: url(../../../images/icon_ie6.png) no-repeat\9;
+  position: absolute;
+  top: 115px;
+  z-index: 99;
+  cursor: pointer;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+  display: block;
+}
+
+.als-prev {
+  background-position: 0 -60px;
+  left: 4px;
+}
+
+.als-next {
+  background-position: 0 0;
+  right: 4px;
+}
+
+
+
+
+

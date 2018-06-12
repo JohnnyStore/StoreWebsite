@@ -134,7 +134,7 @@ router.get('/itemPromotion', function(req, res, next) {
       break;
   }
   var categoryID = req.query.category;
-  var parameter = '/' + categoryID + '/' + startDate + '/' + endDate;
+  var parameter = categoryID + '/' + startDate + '/' + endDate;
 
   service.get(parameter, function (result) {
     if(result.err){

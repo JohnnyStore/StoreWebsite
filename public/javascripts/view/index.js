@@ -2,8 +2,8 @@ $(document).ready(function () {
   function initPageDate() {
     loadPanicBuyingItem();
     loadHotItem();
-    loadDogPromotionItem();
-    loadCatPromotionItem();
+    //loadDogPromotionItem();
+    //loadCatPromotionItem();
   }
 
   function loadPanicBuyingItem(){
@@ -16,7 +16,8 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          alert("hotItem")
+          // location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             $('.hot-sales-items ul').append(
@@ -50,7 +51,8 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          alert("itemPromotion?category=1")
+          //location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -111,7 +113,8 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          // location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          alert("itemPromotion?category=2")
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -162,6 +165,7 @@ $(document).ready(function () {
       },
       error: function(XMLHttpRequest, textStatus){
         location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + '远程服务无响应';
+
       }
     });
   }

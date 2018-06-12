@@ -1,6 +1,6 @@
 var sysConfig = require('../config/sysConfig');
 var apiConfig = require('../config/apiConfig');
-var SMSClient = require('@alicloud/sms-sdk');
+// var SMSClient = require('@alicloud/sms-sdk');
 
 exports.getPaginationArray = function(pageNumber, totalCount){
   var paginationArray = []; //返回的页码内容
@@ -173,23 +173,24 @@ exports.buildBreadcrumb = function (data, brandID, categoryID, subCategoryID) {
 };
 
 exports.sendVerificationCodeToCellphone = function (cellphone, code, callback) {
-  var smsClient = new SMSClient({
-    accessKeyId: apiConfig.aliSms.accessKeyId,
-    secretAccessKey: apiConfig.aliSms.secretAccessKey
-  });
-  var smsParameter = '{"code":"' + code + '"}';
-  var req = {
-    PhoneNumbers: cellphone,
-    SignName: apiConfig.aliSms.signName,
-    TemplateCode: apiConfig.aliSms.templateCode,
-    TemplateParam: smsParameter
-  };
-  smsClient.sendSMS(req).then(function (res) {
-    var resText = getAliSmdResponseText(res.Code);
-    return callback(res.Code === 'OK', JSON.stringify(req), JSON.stringify(res), resText);
-  }, function (err) {
-    return callback(false, JSON.stringify(req), JSON.stringify(err), err.data.Message);
-  })
+  return callback();
+  // var smsClient = new SMSClient({
+  //   accessKeyId: apiConfig.aliSms.accessKeyId,
+  //   secretAccessKey: apiConfig.aliSms.secretAccessKey
+  // });
+  // var smsParameter = '{"code":"' + code + '"}';
+  // var req = {
+  //   PhoneNumbers: cellphone,
+  //   SignName: apiConfig.aliSms.signName,
+  //   TemplateCode: apiConfig.aliSms.templateCode,
+  //   TemplateParam: smsParameter
+  // };
+  // smsClient.sendSMS(req).then(function (res) {
+  //   var resText = getAliSmdResponseText(res.Code);
+  //   return callback(res.Code === 'OK', JSON.stringify(req), JSON.stringify(res), resText);
+  // }, function (err) {
+  //   return callback(false, JSON.stringify(req), JSON.stringify(err), err.data.Message);
+  // })
 };
 
 exports.sendVerificationCodeToEmail = function (email, code, callback) {
