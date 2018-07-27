@@ -290,3 +290,13 @@ a.disabled{
   height: 44px;
   width: 34px;
 }
+.item-expired{
+  padding: 15px;
+  text-align: center;
+  color: #FA6509;
+}
+.item-expired-back{
+  text-align: center;
+  padding: 15px;
+  font-size: 18px;
+}

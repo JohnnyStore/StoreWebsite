@@ -99,18 +99,14 @@
             </div>
             <div class="shop_price">
               <p>
-                {{#if this.itemVO.promotion4RMB}}
-                <span class="lan-cn price promotion_price">¥{{this.itemVO.promotionPrice4RMB}}</span>
-                <span class="lan-cn original_price delete-price">¥{{this.itemVO.unitPrice4RMB}}</span>
+                {{#if this.itemVO.hasDiscount}}
+                  <span class="lan-cn price promotion_price">¥{{this.itemVO.salesPrice4RMB}}</span>
+                  <span class="lan-cn original_price delete-price">¥{{this.itemVO.unitPrice4RMB}}</span>
+                  <span class="lan-en price promotion_price hidden">${{this.itemVO.salesPrice4USD}}</span>
+                  <span class="lan-en original_price delete-price hidden">${{this.itemVO.unitPrice4USD}}</span>
                 {{else}}
-                <span class="lan-cn price">¥{{this.itemVO.unitPrice4RMB}}</span>
-                {{/if}}
-
-                {{#if this.itemVO.promotion4USD}}
-                <span class="lan-en price promotion_price hidden">${{this.itemVO.promotionPrice4USD}}</span>
-                <span class="lan-en original_price delete-price hidden">${{this.itemVO.unitPrice4USD}}</span>
-                {{else}}
-                <span class="lan-en price">${{this.itemVO.unitPrice4USD}}</span>
+                  <span class="lan-cn price promotion_price">¥{{this.itemVO.salesPrice4RMB}}</span>
+                  <span class="lan-en price promotion_price hidden">${{this.itemVO.salesPrice4USD}}</span>
                 {{/if}}
               </p>
             </div>

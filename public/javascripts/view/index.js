@@ -1,13 +1,8 @@
 $(document).ready(function () {
   function initPageDate() {
-    loadPanicBuyingItem();
     loadHotItem();
-    //loadDogPromotionItem();
-    //loadCatPromotionItem();
-  }
-
-  function loadPanicBuyingItem(){
-
+    loadDogPromotionItem();
+    loadCatPromotionItem();
   }
 
   function loadHotItem() {
@@ -16,8 +11,8 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          alert("hotItem")
-          // location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          // alert("hotItem")
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             $('.hot-sales-items ul').append(
@@ -51,8 +46,8 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          alert("itemPromotion?category=1")
-          //location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          // alert("itemPromotion?category=1")
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -113,8 +108,8 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          // location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
-          alert("itemPromotion?category=2")
+          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          // alert("itemPromotion?category=2")
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){

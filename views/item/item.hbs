@@ -28,10 +28,16 @@
       <p>
         <span class="info lan-cn">价格</span>
         <span class="info lan-en hidden">Price</span>
-        <span class="price-promotion lan-cn">¥{{itemDetail.promotionPrice4RMB}}</span>
-        <span class="price-promotion lan-en hidden">${{itemDetail.promotionPrice4USD}}</span>
-        <span class="price lan-cn">¥{{itemDetail.unitPrice4RMB}}</span>
-        <span class="price lan-en hidden">${{itemDetail.unitPrice4USD}}</span>
+
+        {{#if itemDetail.hasDiscount}}
+          <span class="price-promotion lan-cn">¥{{itemDetail.salesPrice4RMB}}</span>
+          <span class="price lan-cn">¥{{itemDetail.unitPrice4RMB}}</span>
+          <span class="price-promotion lan-en hidden">${{itemDetail.salesPrice4USD}}</span>
+          <span class="price lan-en hidden">${{itemDetail.unitPrice4USD}}</span>
+        {{else}}
+          <span class="price-promotion lan-cn">¥{{itemDetail.salesPrice4RMB}}</span>
+          <span class="price lan-en hidden">${{itemDetail.unitPrice4USD}}</span>
+        {{/if}}
       </p>
       <div class="space-normal"></div>
       <p>

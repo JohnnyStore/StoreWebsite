@@ -30,8 +30,16 @@
           <div class="text-center">
             <p class="lan-cn des">{{this.brandCN}}{{this.itemShortDescriptionCN}}{{this.colorCN}}{{this.sizeCN}}</p>
             <p class="lan-en des hidden">{{this.brandEN}} {{this.itemShortDescriptionEN}} {{this.colorEN}} {{this.sizeEN}} Size</p>
-            <p class="price">¥{{this.unitPrice4RMB}}</p>
-            <p class="price hidden">${{this.unitPrice4USD}}</p>
+            {{#if this.hasDiscount}}
+              <span class="price">¥{{this.salesPrice4RMB}}</span>
+              <span class="normal-price">¥{{this.unitPrice4RMB}}</span>
+              <span class="price hidden">${{this.salesPrice4USD}}</span>
+              <span class="normal-price hidden">${{this.unitPrice4USD}}</span>
+            {{else}}
+              <span class="price">¥{{this.salesPrice4RMB}}</span>
+              <span class="price hidden">${{this.salesPrice4USD}}</span>
+            {{/if}}
+
           </div>
           <div class="item-buy">
             <a href="/item?itemID={{this.itemID}}" class="btn btn-success btn-block">

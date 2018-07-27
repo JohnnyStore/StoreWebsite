@@ -202,7 +202,7 @@
 }
 /*每日疯抢*/
 .panictime{
-  background: url("../../../images/panic.jpg") no-repeat;
+  background: url("../images/panic.jpg") no-repeat;
   height: 389px;
   position: relative;
   width: 235px;
@@ -364,9 +364,13 @@
 .piclist li .panicpric span{
   font-size: 20px;
 }
+.piclist li .panicpric span.normal-price{
+  font-size: 16px;
+  color: #cfcfcf;
+  text-decoration: line-through;
+}
 .piclist li .paniZp{
   color: #999;
-
 }
 .piclist li .panicshopsbtn{
   color: #fff;
@@ -379,6 +383,29 @@
   text-align: center;
   margin-top: 29px;
 
+}
+.piclist li .buynow{
+  color: #fff;
+  background: #fa5507;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 29px;
+}
+.piclist li .wait{
+  color: #fff;
+  background: #5cb85c;
+  border-color: #4cae4c;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 29px;
 }
 .als-prev,
 .als-next {

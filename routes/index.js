@@ -5,17 +5,39 @@ var sysConfig = require('../config/sysConfig');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  commonData.getCommonData(req, res, function(result){
-    if(result.err){
+  var service = new commonService.commonInvoke('dailySnapUp');
+  commonData.getCommonData(req, res, function(commonResult){
+    if(commonResult.err){
       res.render('error', {
         title: '网站出错啦',
-        errorCode: result.code,
-        message: result.msg
+        errorCode: commonResult.code,
+        message: commonResult.msg
       });
     }else{
-      res.render('index', {
-        title: '主页',
-        navigate: result.navigate
+      service.get('', function (result) {
+        if(result.err){
+          res.render('error', {
+            title: '网站出错啦',
+            errorCode: result.code,
+            message: '加载每日抢购商品出错啦。'
+          });
+        }else{
+          if(result.content.responseData === null){
+            res.render('index', {
+              title: '主页',
+              navigate: commonResult.navigate
+            });
+          }else{
+            res.render('index', {
+              title: '主页',
+              navigate: commonResult.navigate,
+              dailySnapUpOfYesterday: result.content.responseData.dailySnapUpOfYesterday,
+              dailySnapUpOfToday: result.content.responseData.dailySnapUpOfToday,
+              dailySnapUpOfTomorrow: result.content.responseData.dailySnapUpOfTomorrow,
+              dailySnapUpOfAfterTomorrow: result.content.responseData.dailySnapUpOfAfterTomorrow
+            });
+          }
+        }
       });
     }
   });

@@ -14,20 +14,22 @@ router.get('/', function(req, res, next) {
   var colorID = req.query.colorID;
   var sizeID = req.query.sizeID;
   var parameter = '';
+  var service = null;
 
   if(itemId !== undefined){
-    parameter = itemId;
+    parameter = '/' + itemId;
+    service = new commonService.commonInvoke('itemDetail');
   }else{
     parameter = '/' + brandId + '/' + categoryId + '/' + subCategoryId + '/' + itemGroupId + '/' + seriesID + '/' + colorID + '/' + sizeID;
+    service = new commonService.commonInvoke('item');
   }
-  var service = new commonService.commonInvoke('item');
 
   commonData.getCommonData(req, res, function(commonResult){
     if(commonResult.err){
       res.render('error', {
         title: '网站出错啦',
         errorCode: commonResult.code,
-        message: commonResult.msg,
+        errorMsg: commonResult.msg,
         navigate: commonResult.navigate
       });
     }else{
@@ -36,15 +38,22 @@ router.get('/', function(req, res, next) {
           res.render('error', {
             title: '网站出错啦',
             errorCode: result.code,
-            message: result.msg,
+            errorMsg: result.msg,
             navigate: commonResult.navigate
           });
         }else{
-          res.render('item/item', {
-            title: '产品详细信息',
-            navigate: commonResult.navigate,
-            itemDetail: result.content.responseData
-          });
+          if(result.content.responseData === null){
+            res.render('item/itemNotFound', {
+              title: '商品未找到',
+              navigate: commonResult.navigate
+            });
+          }else{
+            res.render('item/item', {
+              title: '产品详细信息',
+              navigate: commonResult.navigate,
+              itemDetail: result.content.responseData
+            });
+          }
         }
       });
     }
@@ -73,8 +82,10 @@ router.get('/seriseList', function(req, res, next) {
 
 router.get('/colorList', function(req, res, next) {
   var itemId = req.query.itemID;
+  var seriesID = req.query.seriesID;
+  var parameter = itemId + '/' + seriesID;
   var service = new commonService.commonInvoke('colorList4Item');
-  service.get(itemId, function (result) {
+  service.get(parameter, function (result) {
     if(result.err){
       res.json({
         err: true,
@@ -93,8 +104,11 @@ router.get('/colorList', function(req, res, next) {
 
 router.get('/sizeList', function(req, res, next) {
   var itemId = req.query.itemID;
+  var seriesID = req.query.seriesID;
+  var colorID = req.query.colorID;
+  var parameter = itemId + '/' + seriesID + '/' + colorID;
   var service = new commonService.commonInvoke('sizeList4Item');
-  service.get(itemId, function (result) {
+  service.get(parameter, function (result) {
     if(result.err){
       res.json({
         err: true,

@@ -176,6 +176,11 @@ $(document).ready(function () {
             $('.item-info-series-list .item-info-other-right .item-info-select').removeClass('selected');
             $(this).addClass('selected');
             selectedSeriesId = $(this).attr('data-id');
+            //根据当前选中系列，加载对应的颜色列表
+            loadItemColorList();
+            selectedColorId = $('.item-info-color-list .item-info-other-right .item-info-select').eq(0).attr('data-id');
+            loadItemSizeList();
+            selectedSizeId = $('.item-info-size-list .item-info-other-right .item-info-select').eq(0).attr('data-id');
             reloadItemInfo();
           });
           //在所有的系列中，选中当前商品的系列
@@ -194,13 +199,15 @@ $(document).ready(function () {
   
   function loadItemColorList() {
     $.ajax({
-      url: '/item/colorList?itemID='+ $('#hidden-itemID').val(),
+      url: '/item/colorList?itemID='+ $('#hidden-itemID').val() + '&seriesID=' + selectedSeriesId,
       type: 'GET',
+      async:false,
       success: function(res){
         if(res.err){
           location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           //加载当前商品所有的颜色
+          $('.item-info-color-list .item-info-other-right').empty();
           $.each(res.data, function(index, current){
             $('.item-info-color-list .item-info-other-right').append(
                 '<div class="item-info-select" data-id="' + current.colorID + '">\n' +
@@ -213,6 +220,8 @@ $(document).ready(function () {
             $('.item-info-color-list .item-info-other-right .item-info-select').removeClass('selected');
             $(this).addClass('selected');
             selectedColorId = $(this).attr('data-id');
+            loadItemSizeList();
+            selectedSizeId = $('.item-info-size-list .item-info-other-right .item-info-select').eq(0).attr('data-id');
             reloadItemInfo();
           });
           //在所有的颜色中，选中当前商品的颜色
@@ -231,13 +240,15 @@ $(document).ready(function () {
   
   function loadItemSizeList() {
     $.ajax({
-      url: '/item/sizeList?itemID='+ $('#hidden-itemID').val(),
+      url: '/item/sizeList?itemID='+ $('#hidden-itemID').val() + '&seriesID=' + selectedSeriesId + '&colorID=' + selectedColorId,
       type: 'GET',
+      async:false,
       success: function(res){
         if(res.err){
           location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
         }else{
           //加载当前商品所有的尺码
+          $('.item-info-size-list .item-info-other-right').empty();
           $.each(res.data, function(index, current){
             $('.item-info-size-list .item-info-other-right').append(
                 '<div class="item-info-select" data-id="' + current.sizeID + '">\n' +
