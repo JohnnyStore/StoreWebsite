@@ -1,8 +1,44 @@
 $(document).ready(function () {
   function initPageDate() {
+    loadHotBrands();
     loadHotItem();
     loadDogPromotionItem();
     loadCatPromotionItem();
+  }
+
+  function loadHotBrands() {
+    $.ajax({
+      url: '/index/hotBrands',
+      type: 'GET',
+      success: function(res){
+        if(res.err){
+          layer.msg(res.msg);
+        }else{
+          if(res.brandList !== null){
+            $('.petmore').append('<img src="images/brands/brandTitle.jpg"/>');
+          }
+          $.each(res.brandList, function(index, brand){
+            if(brand.brandID === 1){
+              $('.petlogo').append('<a href="/itemList?brandID=' + brand.brandID + '"><img src="' + brand.imageSrc + '"/> </a>');
+            }
+          });
+          $.each(res.brandList, function(index, brand){
+            if(brand.brandID === 3){
+              $('.petlogo').append('<a href="/itemList?brandID=' + brand.brandID + '"><img src="' + brand.imageSrc + '"/> </a>');
+            }
+          });
+          $.each(res.brandList, function(index, brand){
+            if(brand.brandID === 2){
+              $('.petlogo').append('<a href="/itemList?brandID=' + brand.brandID + '"><img src="' + brand.imageSrc + '"/> </a>');
+            }
+          });
+
+        }
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+      }
+    });
   }
 
   function loadHotItem() {
@@ -11,8 +47,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          // alert("hotItem")
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          layer.msg(res.msg);
         }else{
           $.each(res.data, function(index, item){
             $('.hot-sales-items ul').append(

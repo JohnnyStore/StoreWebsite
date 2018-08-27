@@ -109,13 +109,13 @@
   width: 180px;
 }
 .floor-items-feature .floor-item-info{
-  float: left;
+  /*float: left;*/
   margin-top: 20px;
   padding-top: 35px;
   padding-right: 10px;
 }
 .floor-items-feature .floor-item-info p.title{
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 15px;
 }
 .floor-1 .floor-items-feature .floor-item-info span.normal-price{
@@ -134,6 +134,7 @@
 .floor-item-normal .floor-item-image img{
   margin: 0 auto;
   width: 106px;
+  padding-top: 8px;
 }
 
 .floor-item-normal .floor-item-info{
@@ -439,7 +440,41 @@ als-container {
   /*position: absolute;
   bottom: 40px;*/
 }
+.petlogowrap img{
+  border:none;
+  width: 235px;
 
+}
+.petlogo img{
+  width: 311px;
+  height: 247px;
+}
+.petlogo a{
+  outline:0;
+}
+/*添加以下代码到页面中*/
+.petlogowrap {
+  width:1200px;
+  margin:0 auto;
+  /*height:249px;*/
+  position:relative;
+  /*border:1px #f00 solid*/
+}
+.petlogo{
+  width:960px;
+  margin-left:235px
+}
+.petlogo a{
+  display:block;
+  float:left;
+  /*width:320px;*/
+  /*height:249px;*/
+}
+.petmore{
+  position:absolute;
+  left:0;
+  /*width:242px;*/
+}
 
 
 

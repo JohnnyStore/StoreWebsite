@@ -1,69 +1,31 @@
 <link rel="stylesheet" href="/stylesheets/view/news/news.css">
 <div class="container news" id="app">
-  <div class="row">
-    <div class="col-xs-12 text-center">
-      <input type="search" class="search-control" placeholder="Search item by name...">
-      <button type="button" class="btn btn-search">
-        Search
-      </button>
-    </div>
-  </div>
-  <div class="space"></div>
-  <div class="row">
-    <div class="col-md-12">
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-example-generic" v-for="indicator in slideIndicators" :data-slide-to="indicator.number" :class="{active: indicator.isActive}"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-          <div class="item" :class="{active: slideNews.isActive}" v-for="slideNews in slideNewsArray">
-            <a :href="slideNews.newsUrl">
-              <img :src="slideNews.imgUrl">
-            </a>
-            <div class="carousel-caption">
-              \{{slideNews.newsTitle}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="space"></div>
   <div class="row">
     <div class="col-xs-12">
       <div class="news-list">
-        <div class="media" v-for="news in newsArray">
+        <div class="media" v-for="news in newsArray" style="border-bottom: 1px solid #cccccc; padding-bottom: 10px;">
           <div class="media-left">
             <a :href="news.newsUrl">
-              <img class="media-object" :src="news.imgUrl">
+              <img class="media-object" :src="news.thumbnailUrl" style="width: 80px">
             </a>
           </div>
           <div class="media-body">
             <a :href="news.newsUrl">
-              <h3 class="media-heading news-title">\{{news.newsTitle}}</h3>
+              <h3 class="media-heading news-title" style="padding-top: 10px">\{{news.newsTitle}}</h3>
             </a>
-            <p class="news-abstract">
-              \{{news.newsAbstract}}
-            </p>
             <p class="news-time">
-              \{{news.newsTime}}
+              \{{news.newsDate}}
             </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row text-center">
-    <div class="col-xs-12">
-      <nav aria-label="...">
-        <ul class="pagination">
-          <li v-for="page in pageArray" :class="page.className">
-            <a :href="page.url" aria-label="Previous">
-              <span aria-hidden="true">\{{page.pageText}}</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+
+  <div class="row text-center" style="margin-top: 15px">
+    <div>
+      <a href="javascript:;" class="load-more" @click="onLoadMore()">加载更多</a>
     </div>
   </div>
 </div>

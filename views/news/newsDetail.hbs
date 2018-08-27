@@ -1,11 +1,17 @@
 <link rel="stylesheet" href="/stylesheets/view/news/newsDetail.css">
-<div class="container newsDetail" id="app">
-  <div class="row">
-    <div class="col-md-12">
-      <input type="hidden" value="{{newsId}}" id="hidden-newsId">
-      <div class="article-box" v-html="newsHtml">
-      </div>
+<div class="newshead"></div>
+<div class="container" id="app">
+  <div class="newscont">
+    <h2>\{{newsTitle}}</h2>
+    <h4 class="news-date">\{{newsDate}}</h4>
+    <div v-for="news in newsContentList" class="news-content">
+      <p v-if="news.newsContentType === 'T'">\{{news.newsContent}}</p>
+      <img v-if="news.newsContentType === 'I'" :src="news.newsContent" alt="">
+      <video v-if="news.newsContentType === 'V'" :src="news.newsContent" controls="controls">
+        您使用的浏览器不支持视频播放，请使用Chrome浏览器。
+      </video>
     </div>
   </div>
 </div>
+<input type="hidden" value="{{newsId}}" id="hidden-newsID">
 <script src="javascripts/view/news/newsDetail.js"></script>

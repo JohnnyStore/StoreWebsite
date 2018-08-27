@@ -38,7 +38,7 @@
           </li>
           <li>
             <a href="/waiteval">
-              <span class="lan-cn">待评价</span>
+              <span class="lan-cn">已完成</span>
               <span class="lan-en hidden">To Review</span>
               <span>{{toReviewOrderCount}}</span>
             </a>
@@ -99,6 +99,9 @@
             <span class="lan-cn">订单号:</span>
             <span class="lan-en hidden">Order Number：</span>
             <span>{{this.orderID}}</span>
+            <span class="lan-cn">订单金额:</span>
+            <span class="lan-en hidden">Order Amount：</span>
+            <span>{{this.currencySymbol}}{{this.orderAmount}}</span>
           </div>
           <div class="shop_item">
             <div class="shop_goods my_order_goods">
@@ -133,7 +136,7 @@
             </div>
             <div class="my_order_price shop_goods_price orange">
               <span>{{this.currencySymbol}}</span>
-              <span>{{this.orderAmount}}</span>
+              <span>{{this.itemTotalAmount}}</span>
             </div>
             <div class="my_order_price shop_goods_price">
               <span class="lan-cn">{{this.orderStatusTextCN}}</span>

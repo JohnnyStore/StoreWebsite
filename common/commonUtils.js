@@ -2,6 +2,7 @@ var sysConfig = require('../config/sysConfig');
 var apiConfig = require('../config/apiConfig');
 var SMSClient = require('@alicloud/sms-sdk');
 
+
 exports.getPaginationArray = function(pageNumber, totalCount){
   var paginationArray = []; //返回的页码内容
   var pageSize = sysConfig.pageSize; //一页显示多少条数据
@@ -15,8 +16,10 @@ exports.getPaginationArray = function(pageNumber, totalCount){
       startPageNumber = pageNumber - 5;
     }
     for(var i = 1; i <= paginationSize; i++){
-      paginationArray.push(startPageNumber);
-      startPageNumber++;
+      if(startPageNumber <= maxPageNum){
+        paginationArray.push(startPageNumber);
+        startPageNumber++;
+      }
     }
   }else{
     for(var i = 1; i <= maxPageNum; i++){

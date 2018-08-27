@@ -23,9 +23,9 @@ var waitpay = require('./routes/order/waitpay');
 var waitgoods = require('./routes/order/waitgoods');
 var waiteval = require('./routes/order/waiteval');
 var error = require('./routes/error');
-// var news = require('./routes/news/news');
-// var newsDetail = require('./routes/news/newsDetail');
-// var introduction = require('./routes/firm/introduction');
+var news = require('./routes/news/news');
+var newsDetail = require('./routes/news/newsDetail');
+var introduction = require('./routes/firm/introduction');
 // var other = require('./routes/firm/other');
 // var contact = require('./routes/firm/contact');
 
@@ -62,9 +62,9 @@ app.use('/waitpay',waitpay);
 app.use('/waitgoods',waitgoods);
 app.use('/waiteval',waiteval);
 app.use('/error', error);
-// app.use('/news', news);
-// app.use('/newsDetail', newsDetail);
-// app.use('/introduction', introduction);
+app.use('/news', news);
+app.use('/newsDetail', newsDetail);
+app.use('/introduction', introduction);
 // app.use('/other', other);
 // app.use('/contact', contact);
 

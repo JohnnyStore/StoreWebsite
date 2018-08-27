@@ -1,9 +1,45 @@
 var express = require('express');
 var router = express.Router();
+var commonService = require('../../service/commonService');
+var commonData = require('../../service/commonData');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('news/newsDetail', { title: '最新动态', newsId: req.query.newsId });
+  commonData.getCommonData(req, res, function(commonResult){
+    if(commonResult.err){
+      res.render('error', {
+        title: '网站出错啦',
+        errorCode: commonResult.code,
+        message: commonResult.msg,
+        navigate: commonResult.navigate
+      });
+    }else{
+      res.render('news/newsDetail', {
+        title: '最新动态',
+        navigate: commonResult.navigate,
+        newsId: req.query.newsID
+      });
+    }
+  });
+});
+
+router.get('/detail', function(req, res, next) {
+  var service = new commonService.commonInvoke('news');
+  var newsID = req.query.newsID;
+
+  service.get(newsID, function (result) {
+    if (result.err) {
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    } else {
+      res.json({
+        err: !result.content.result,
+        msg: result.content.responseMessage,
+        data: result.content.responseData
+      });
+    }
+  })
 });
 
 module.exports = router;

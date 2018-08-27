@@ -1,24 +1,28 @@
-.article-box{
-  width: 660px;
-  margin: 35px auto;
+.newscont{
+  text-align: center;
+  margin-top: 25px;
 }
-.article-box h1{
-  margin: 15px auto;
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 44px;
-  color: #222;
-  font-family: Microsoft YaHei;
+.newscont h2{
+  padding: 15px;
 }
-.article-box p{
+.newscont h4{
+  padding: 10px;
   font-size: 14px;
-  margin: 16px 0;
-  font-size: 16px;
-  line-height: 28px;
-  color: #222;
-  word-wrap: break-word;
-  font-family: 新宋体;
 }
-.article-box img{
+.news-content{
+  text-align: center;
+}
+.news-content p{
+  width: 800px;
   margin: 0 auto;
+  padding: 15px;
+  line-height: 22px;
+}
+.news-content img{
+  width: 500px;
+  margin: 15px;
+}
+.news-content video{
+  width: 500px;
+  margin: 15px;
 }

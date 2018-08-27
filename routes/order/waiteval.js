@@ -103,7 +103,7 @@ router.get('/', function(req, res, next) {
           }
 
           res.render('order/waiteval', {
-            title: '待评价',
+            title: '已完成',
             errorCode: commonResult.code,
             message: commonResult.msg,
             recentMonth: recentMonth,

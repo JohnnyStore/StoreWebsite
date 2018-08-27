@@ -24,3 +24,11 @@
   color: #FFFFFF;
   cursor: default;
 }
+.company-content p{
+  padding: 1px;
+  line-height: 25px;
+}
+.contact-content p{
+  padding: 1px;
+  line-height: 25px;
+}
