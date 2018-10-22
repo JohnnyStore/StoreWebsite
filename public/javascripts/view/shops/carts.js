@@ -357,13 +357,13 @@ $(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
           return false;
         }
         $('#myCollection-count').text(res.collectionCount);
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -377,13 +377,13 @@ $(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
           return false;
         }
         $('#purchased-count').text(res.purchasedCount);
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }

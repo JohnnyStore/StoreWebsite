@@ -53,7 +53,12 @@ li.spacer{
 .quick-bar{
   margin-top: 15px;
 }
-
+.is-admin{
+  visibility: hidden;
+}
+.is-admin-show{
+  visibility: visible;
+}
 .search-form{
   position: relative;
   width: 550px;

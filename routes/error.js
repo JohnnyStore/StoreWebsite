@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('error', {
     title: '网站出错啦',
     errorCode: errorCode,
-    errorMsg: errorMsg
+    message: errorMsg
   });
 
 });

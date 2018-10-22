@@ -1,6 +1,31 @@
 $(document).ready(function () {
   function initPage() {
+    setAdminNav();
     initPageLanguage();
+  }
+
+  function setAdminNav() {
+    var loginInfo4Json = getCookie('loginCustomer');
+    if(loginInfo4Json === null){
+      return false;
+    }
+    var loginInfo4Object = JSON.parse(loginInfo4Json);
+    $.ajax({
+      url: '/common/isAdmin?cellphone=' + loginInfo4Object.cellphone,
+      type: 'get',
+      success: function (res) {
+        if(res.error){
+          layer.msg(res.msg);
+          return false;
+        }
+        if(res.isAdmin === true){
+          $('.is-admin').addClass('is-admin-show');
+        }
+      },
+      error: function(XMLHttpRequest, textStatus){
+        layer.msg('无法连接网络，请检查网络设置。');
+      }
+    });
   }
 
   function initPageLanguage() {
@@ -50,13 +75,13 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
           return false;
         }
         $('.shopping-collection-count').text('(' + res.collectionCount + ')');
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -67,13 +92,13 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
           return false;
         }
         $('.shopping-cart-count').text('(' + res.shoppingCartCount + ')');
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -208,6 +233,7 @@ function getLoginCustomer() {
   }
   return JSON.parse(loginCookie);
 }
+
 function setCookie(name,value, save) {
   var days = 30;
   if(save !== undefined && save === false){

@@ -59,7 +59,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
         }else{
           var imageGourpArray = [];
           var imageDetailArray = [];
@@ -146,7 +146,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -157,7 +157,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
         }else{
           //加载当前商品所有的系列
           if(res.data.length === 0){
@@ -192,7 +192,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -204,7 +204,7 @@ $(document).ready(function () {
       async:false,
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
         }else{
           //加载当前商品所有的颜色
           $('.item-info-color-list .item-info-other-right').empty();
@@ -233,7 +233,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -245,7 +245,7 @@ $(document).ready(function () {
       async:false,
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&msg=' + res.msg;
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
         }else{
           //加载当前商品所有的尺码
           $('.item-info-size-list .item-info-other-right').empty();
@@ -272,7 +272,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -283,7 +283,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(resAll){
         if(resAll.err){
-          location.href = '/error?errorCode=' + resAll.code + '&msg=' + resAll.msg;
+          location.href = '/error?errorCode=' + resAll.code + '&message=' + resAll.msg;
         }else{
           var reviewCount = resAll.data.length;
           var goodReviewCount = 0;
@@ -408,7 +408,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   }
@@ -536,7 +536,7 @@ $(document).ready(function () {
       },
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + resAll.code + '&msg=' + resAll.msg;
+          location.href = '/error?errorCode=' + resAll.code + '&message=' + resAll.msg;
         }else{
           layer_dialog_title = lan === 'cn'? '添加到购物车' : 'Add To Shipping cart';
           var htmlContent =
@@ -572,7 +572,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&msg=' + XMLHttpRequest.statusText;
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
       }
     });
   });

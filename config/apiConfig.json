@@ -28,6 +28,7 @@
       "systemLog":"/api/systemLog",
       "administrator":"/api/administrator",
       "administratorApprove":"/api/administrator/approve",
+      "administratorCellphone":"/api/administrator/exist/cellphone",
       "checkAdministrator":"/api/administrator/exist/name",
       "item":"/api/item",
       "itemDetail":"/api/item/detail",

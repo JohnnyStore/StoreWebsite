@@ -2,6 +2,25 @@ var express = require('express');
 var commonService = require('../service/commonService');
 var router = express.Router();
 
+router.get('/isAdmin', function(req, res, next) {
+  var service = new commonService.commonInvoke('administratorCellphone');
+  var cellphone = req.query.cellphone;
+  service.get(cellphone, function (result) {
+    if(result.err || !result.content.result){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: false,
+        msg: result.content.responseMessage,
+        isAdmin: result.content.responseData
+      });
+    }
+  });
+});
+
 router.get('/brand', function(req, res, next) {
   var service = new commonService.commonInvoke('brand');
   service.getAll(function (result) {
