@@ -1,5 +1,6 @@
 $(document).ready(function () {
   function laodDefalutInfo(){
+    var targetInfo = $('#hidden-targetInfo').val();
     $.ajax({
       url: '/introduction/detail',
       type: 'get',
@@ -12,6 +13,16 @@ $(document).ready(function () {
           }
           $('.company-content').html(res.data.introduction);
           $('.contact-content').html(res.data.contact);
+          if(targetInfo !== ''){
+            switch (targetInfo) {
+              case '1':
+                $('div.company').trigger("click");
+                break;
+              case '2':
+                $('div.contact').trigger("click");
+                break;
+            }
+          }
         }
       },
       error: function(XMLHttpRequest, textStatus){

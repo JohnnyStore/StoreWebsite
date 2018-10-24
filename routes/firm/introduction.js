@@ -4,7 +4,8 @@ var commonService = require('../../service/commonService');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('firm/introduction', {title: '企业介绍'});
+  var targetInfo = req.query.targetInfo;
+  res.render('firm/introduction', {title: '企业介绍', targetInfo: targetInfo});
 });
 
 router.get('/detail', function(req, res, next) {

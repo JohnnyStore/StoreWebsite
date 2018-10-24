@@ -423,6 +423,23 @@ $(document).ready(function () {
         '&sizeID=' + selectedSizeId;
   }
 
+  function setShoppingCartTotalCount(customerID) {
+    $.ajax({
+      url: '/shops/shoppingCart/count?customerID=' + customerID,
+      type: 'get',
+      success: function (res) {
+        if(res.error){
+          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          return false;
+        }
+        $('.shopping-cart-count').text('(' + res.shoppingCartCount + ')');
+      },
+      error: function(XMLHttpRequest, textStatus){
+        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+      }
+    });
+  }
+
   $('.buy-num').blur(function(){
     var value = $(this).val();
     var minCount = 1;
@@ -483,7 +500,10 @@ $(document).ready(function () {
     }
     result = parseInt(value) - 1;
     $('.buy-num').val(result);
-
+    if(result <= 1){
+      $(this).addClass('disabled');
+      return false;
+    }
     if(loginCustomer === null){
       if(result === 1){
         $(this).addClass('disabled');
@@ -562,6 +582,9 @@ $(document).ready(function () {
           });
 
           $('.layui-layer-title').html(layer_dialog_title);
+
+
+          setShoppingCartTotalCount(customer.customerID);//更新购物车数量
           //添加按钮事件
           $(".add-shoppingCart-success").on("click", ".btn-default", function() {
             layer.close(index);

@@ -95,7 +95,7 @@ $(document).ready(function () {
                   '              <img src="' + item.itemImageUrl + '" class="img-responsive">\n' +
                   '            </a>\n' +
                   '          </div>\n' +
-                  '          <div class="floor-item-info text-right">\n' +
+                  '          <div class="floor-item-info">\n' +
                   '            <p class="lan-cn title">' + item.brandCN + item.itemShortDescriptionCN + '</p>\n' +
                   '            <p class="lan-en title hidden">' + item.brandEN + item.itemShortDescriptionEN + '</p>\n' +
                   '            <p>\n' +
@@ -156,7 +156,7 @@ $(document).ready(function () {
                   '              <img src="' + item.itemImageUrl + '" class="img-responsive">\n' +
                   '            </a>\n' +
                   '          </div>\n' +
-                  '          <div class="floor-item-info text-right">\n' +
+                  '          <div class="floor-item-info">\n' +
                   '            <p class="lan-cn title">' + item.brandCN + item.itemShortDescriptionCN + '</p>\n' +
                   '            <p class="lan-en title hidden">' + item.brandEN + item.itemShortDescriptionEN + '</p>\n' +
                   '            <p>\n' +
