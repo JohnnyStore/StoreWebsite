@@ -6,7 +6,7 @@ $(document).ready(function () {
       type: 'get',
       success: function(res){
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
         }else{
           if(res.data === null){
             return false;

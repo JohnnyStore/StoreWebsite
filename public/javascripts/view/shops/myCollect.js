@@ -14,13 +14,13 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('#shoppingCart-count').text(res.shoppingCartCount);
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/shops/shoppingCart/count');
       }
     });
   }
@@ -36,13 +36,13 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('#purchased-count').text(res.purchasedCount);
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/shops/purchased/count');
       }
     });
   }
@@ -85,7 +85,7 @@ $(document).ready(function () {
       },
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + resAll.code + '&message=' + resAll.msg;
+          alertResponseError(res.code, res.msg);
         }else{
           //2. 更新该数据在收藏表中的状态
           $.ajax({
@@ -99,7 +99,7 @@ $(document).ready(function () {
             },
             success: function(resChange){
               if(resChange.err){
-                location.href = '/error?errorCode=' + resChange.code + '&message=' + resChange.msg;
+                alertResponseError(resChange.code, resChange.msg);
               }
               layer_dialog_title = lan === 'cn'? '添加到购物车' : 'Add To Shipping cart';
               var htmlContent =
@@ -134,13 +134,13 @@ $(document).ready(function () {
               });
             },
             error: function(XMLHttpRequest, textStatus){
-              location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=request url:[/collection] error, detail:' + XMLHttpRequest.statusText;
+              alertReqestError('/mycollect');
             }
           });
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/item/shoppingCart');
       }
     });
   });
@@ -186,7 +186,7 @@ $(document).ready(function () {
         },
         success: function(resChange){
           if(resChange.err){
-            location.href = '/error?errorCode=' + resChange.code + '&message=' + resChange.msg;
+            alertResponseError(resChange.code, resChange.msg);
           }
           //2. 从页面中将该内容删除
           itemObj.remove();
@@ -194,7 +194,7 @@ $(document).ready(function () {
           layer.closeAll();
         },
         error: function(XMLHttpRequest, textStatus){
-          location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=request url:[/collection] error, detail:' + XMLHttpRequest.statusText;
+          alertReqestError('/mycollect');
         }
       });
     });

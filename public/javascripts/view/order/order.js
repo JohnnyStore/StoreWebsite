@@ -27,7 +27,7 @@ $(function() {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(lan === 'cn'? 'Service异常，请稍后再试。' : 'Service error, please try again later.');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         if(res.shippingAddressList.length === 0){
@@ -79,7 +79,7 @@ $(function() {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(lan === 'cn'? 'Service异常，请稍后再试。' : 'Service error, please try again later.');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $.each(res.countryList, function (index , country) {
@@ -104,7 +104,7 @@ $(function() {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(lan === 'cn'? 'Service异常，请稍后再试。' : 'Service error, please try again later.');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         if(res.provinceList === null || res.provinceList.length === 0){
@@ -132,7 +132,7 @@ $(function() {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(lan === 'cn'? 'Service异常，请稍后再试。' : 'Service error, please try again later.');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         if(res.cityList === null || res.cityList.length === 0){
@@ -157,7 +157,7 @@ $(function() {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(lan === 'cn'? 'Service异常，请稍后再试。' : 'Service error, please try again later.');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('#shipping-address-detail tbody').empty();
@@ -252,8 +252,7 @@ $(function() {
               type: 'delete',
               success: function (res) {
                 if(res.err){
-                  resultMsg = lan === 'cn'? '删除失败，请稍后再试。' : 'Delete failed, please try again later.';
-                  layer.msg(resultMsg);
+                  alertResponseError(res.code, res.msg);
                   return false;
                 }
                 resultMsg = lan === 'cn'? '已删除' : 'Delete success!';
@@ -503,8 +502,7 @@ $(function() {
       data: order,
       success: function (res) {
         if(res.err){
-          msg = lan === 'cn'? 'Service处理异常，请稍后再试。' : 'Service exception, please try again.';
-          layer.msg(msg);
+          alertResponseError(res.code, res.msg);
           return false;
         }
         location.href = '/apply?orderNumber=' + res.data;

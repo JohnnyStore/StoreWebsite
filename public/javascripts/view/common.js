@@ -75,13 +75,13 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('.shopping-collection-count').text('(' + res.collectionCount + ')');
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/shops/collect/count');
       }
     });
   }
@@ -92,13 +92,13 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('.shopping-cart-count').text('(' + res.shoppingCartCount + ')');
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/shops/shoppingCart/count');
       }
     });
   }
@@ -118,7 +118,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           return false;
         }
 
@@ -144,7 +144,7 @@ $(document).ready(function () {
         $('.search-list').attr('style', 'visibility: visible');
       },
       error: function(XMLHttpRequest, textStatus){
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/fuzzySearch');
       }
     });
   });
@@ -259,4 +259,17 @@ function delCookie(name) {
   var cval=getCookie(name);
   if(cval!=null)
     document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+
+function alertReqestError(reqUrl) {
+  var lan = localStorage.getItem("siteLanguage");
+  if(lan === 'cn'){
+    layer.msg('发送请求' + reqUrl + '失败，请检查网络设置。');
+  }else{
+    layer.msg('Send request' + reqUrl + 'failed, please check network settings.');
+  }
+}
+
+function alertResponseError(errorCode, errorMsg) {
+  layer.msg(errorCode + ': ' + errorMsg);
 }

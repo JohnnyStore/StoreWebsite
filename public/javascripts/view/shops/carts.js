@@ -357,13 +357,13 @@ $(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('#myCollection-count').text(res.collectionCount);
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/shops/collect/count');
       }
     });
   }
@@ -377,13 +377,13 @@ $(function () {
       type: 'get',
       success: function (res) {
         if(res.error){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
           return false;
         }
         $('#purchased-count').text(res.purchasedCount);
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/shops/purchased/count');
       }
     });
   }

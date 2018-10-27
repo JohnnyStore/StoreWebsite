@@ -14,7 +14,7 @@ var app = new Vue({
         type: 'get',
         success: function(res){
           if(res.err){
-            layer.msg(res.msg);
+            alertResponseError(res.code, res.msg);
             return false;
           }
           app.$data.newsTitle = res.data.newsTitle;

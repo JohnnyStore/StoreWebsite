@@ -3,7 +3,6 @@ var qs = require('querystring');
 var util = require('util');
 
 exports.get = function(host, port, path, callback){
-  //URLEncoder.encode(fname, "utf-8");
   var options = {
     hostname: host,
     port: port,
@@ -27,8 +26,8 @@ exports.get = function(host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': res.statusCode,
-        'msg': '服务器系统异常，无法执行GET操作。',
+        'code': 'NE02',
+        'msg': '请求API失败，无法执行GET操作。',
         'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], param:[%s]', res.statusCode, host, port, path)
       });
     }
@@ -37,9 +36,9 @@ exports.get = function(host, port, path, callback){
   req.on('error', function (e) {
     return callback({
       'err': true,
-      'code': '-2',
-      'msg': '服务器连接失败，无法执行GET操作。',
-      'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], param:[%s], reason:[%s]', host, port, path, e.message)
+      'code': 'NE03',
+      'msg': '无法访问API，请检查API是否正常',
+      'detail': util.format('get service error. host:[%s], port:[%s], path:[%s], param:[%s], reason:[%s]', host, port, path, e.message)
     });
   });
 
@@ -75,8 +74,8 @@ exports.post = function(data, host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': res.statusCode,
-        'msg': '服务器系统异常，无法执行POST操作。',
+        'code': 'NE02',
+        'msg': '请求API失败，无法执行POST操作。',
         'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], data:[%s]', res.statusCode, host, port, path, JSON.stringify(data))
       });
     }
@@ -85,9 +84,9 @@ exports.post = function(data, host, port, path, callback){
   req.on('error', function (e) {
     return callback({
       'err': true,
-      'code': '-2',
-      'msg': '服务器连接失败，无法执行POST操作。',
-      'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], data:[%s], reason:[%s]', host, port, path, JSON.stringify(data), e.message)
+      'code': 'NE03',
+      'msg': '无法访问API，请检查API是否正常',
+      'detail': util.format('post service error. host:[%s], port:[%s], path:[%s], data:[%s], reason:[%s]', host, port, path, JSON.stringify(data), e.message)
     });
   });
 
@@ -124,9 +123,9 @@ exports.put = function(data, host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': res.statusCode,
-        'msg': '服务器系统异常，无法执行PUT操作。',
-        'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], data:[%s]', res.statusCode, host, port, path, JSON.stringify(data))
+        'code': 'NE02',
+        'msg': '请求API失败，无法执行PUT操作。',
+        'detail': util.format('put service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], data:[%s]', res.statusCode, host, port, path, JSON.stringify(data))
       });
     }
   });
@@ -134,8 +133,8 @@ exports.put = function(data, host, port, path, callback){
   req.on('error', function (e) {
     return callback({
       'err': true,
-      'code': '-2',
-      'msg': '服务器连接失败，无法执行PUT操作。',
+      'code': 'NE03',
+      'msg': '无法访问API，请检查API是否正常',
       'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], data:[%s], reason:[%s]', host, port, path, JSON.stringify(data), e.message)
     });
   });
@@ -168,9 +167,9 @@ exports.delete = function(host, port, path, callback){
     }else{
       return callback({
         'err': true,
-        'code': res.statusCode,
-        'msg': '服务器系统异常，无法执行DELETE操作。',
-        'detail': util.format('invoke service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], param:[%s]', res.statusCode, host, port, path, param)
+        'code': 'NE02',
+        'msg': '请求API失败，无法执行DELETE操作。',
+        'detail': util.format('delete service failed. statusCode:[%s], host:[%s], port:[%s], path:[%s], param:[%s]', res.statusCode, host, port, path, param)
       });
     }
   });
@@ -178,8 +177,8 @@ exports.delete = function(host, port, path, callback){
   req.on('error', function (e) {
     return callback({
       'err': true,
-      'code': '-2',
-      'msg': '服务器连接失败，无法执行DELETE操作。',
+      'code': 'NE03',
+      'msg': '无法访问API，请检查API是否正常',
       'detail': util.format('invoke service error. host:[%s], port:[%s], path:[%s], param:[%s], reason:[%s]', host, port, path, param, e.message)
     });
   });

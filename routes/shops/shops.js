@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
       res.render('error', {
         title: '网站出错啦',
         errorCode: commonResult.code,
-        message: commonResult.msg,
+        errorMsg: commonResult.msg,
         navigate: commonResult.navigate
       });
     }else{
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
           res.render('error', {
             title: '网站出错啦',
             errorCode: result.code,
-            message: result.msg,
+            errorMsg: result.msg,
             navigate: commonResult.navigate
           });
         }else{
@@ -54,7 +54,7 @@ router.get('/shoppingCart/count', function (req, res, next) {
         err: !result.content.result,
         code: result.content.responseCode,
         msg: result.content.responseMessage,
-        shoppingCartCount: result.content.responseData.length
+        shoppingCartCount: result.content.responseData === null ? 0 : result.content.responseData.length
       })
     }
   });
@@ -76,7 +76,7 @@ router.get('/collect/count', function (req, res, next) {
         err: !result.content.result,
         code: result.content.responseCode,
         msg: result.content.responseMessage,
-        collectionCount: result.content.responseData.length
+        collectionCount: result.content.responseData === null ? 0 : result.content.responseData.length
       })
     }
   });
@@ -98,7 +98,7 @@ router.get('/purchased/count', function (req, res, next) {
         err: !result.content.result,
         code: result.content.responseCode,
         msg: result.content.responseMessage,
-        purchasedCount: result.content.responseData.length
+        purchasedCount: result.content.responseData === null? 0 : result.content.responseData.length
     })
     }
   });
@@ -123,7 +123,7 @@ router.put('/', function (req, res, next) {
       });
     }else{
       res.json({
-        err: false,
+        err: !result.content.result,
         data: result.content
       });
     }
@@ -142,7 +142,7 @@ router.delete('/', function (req, res, next) {
       });
     }else{
       res.json({
-        err: false,
+        err: !result.content.result,
         data: result.content
       });
     }

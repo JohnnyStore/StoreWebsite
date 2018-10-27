@@ -110,7 +110,7 @@ $(document).ready(function () {
       },
       success: function (res) {
         if(res.err){
-          layer.msg('密码修改失败，请稍后再试。');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         layer.alert('密码修改成功，去登陆。', {
@@ -121,7 +121,7 @@ $(document).ready(function () {
         });
       },
       error: function (XMLHttpRequest, textStatus) {
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/forgetPassword');
       }
     });
   }
@@ -155,7 +155,7 @@ $(document).ready(function () {
       },
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           return false;
         }
         if(lan === 'cn'){
@@ -167,7 +167,7 @@ $(document).ready(function () {
         setTime();
       },
       error: function (XMLHttpRequest, textStatus) {
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/sendValidCode');
       }
     });
   }
@@ -254,7 +254,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           cellphoneIsValid = false;
           return false;
         }
@@ -270,7 +270,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         cellphoneIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/cellphone');
       }
     });
   });
@@ -293,7 +293,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           emailIsValid = false;
           return false;
         }
@@ -309,7 +309,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         emailIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/email');
       }
     });
   });
@@ -332,7 +332,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           smsCodeIsValid = false;
           return false;
         }
@@ -354,7 +354,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         smsCodeIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/validCode');
       }
     });
   });

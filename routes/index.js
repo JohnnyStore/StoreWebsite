@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
       res.render('error', {
         title: '网站出错啦',
         errorCode: commonResult.code,
-        message: commonResult.msg
+        errorMsg: commonResult.msg
       });
     }else{
       service.get('', function (result) {
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
           res.render('error', {
             title: '网站出错啦',
             errorCode: result.code,
-            message: '加载每日抢购商品出错啦。'
+            errorMsg: '加载每日抢购商品出错啦。'
           });
         }else{
           if(result.content.responseData === null){

@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
       res.render('error', {
         title: '网站出错啦',
         errorCode: commonResult.code,
-        message: commonResult.msg,
+        errorMsg: commonResult.msg,
         navigate: commonResult.navigate
       });
     }else{
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
           res.render('error', {
             title: '网站出错啦',
             errorCode: result.code,
-            message: result.msg,
+            errorMsg: result.msg,
             navigate: commonResult.navigate
           });
         }else{

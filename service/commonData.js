@@ -8,7 +8,7 @@ exports.getCommonData = function (req, res, callback) {
       return callback({
         err: true,
         code: result.code,
-        msg: result.msg + result.detail
+        msg: result.msg
       });
     }else{
       if(!result.content.result){ //调用API成功，但API处理异常

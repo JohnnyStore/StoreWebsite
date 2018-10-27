@@ -62,7 +62,7 @@ $(function(){
       },
       success: function(res){
         if(res.err){
-          layer.msg('Service处理异常，请稍后再试。');
+          alertResponseError(res.code, res.msg);
           return false;
         }
         location.reload();
@@ -184,7 +184,7 @@ $(function(){
         },
         success: function(res){
           if(res.err){
-            layer.msg('Service处理异常，请稍后再试。');
+            alertResponseError(res.code, res.msg);
             return false;
           }
           $('.review .tip').addClass('hidden');

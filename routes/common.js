@@ -13,7 +13,7 @@ router.get('/isAdmin', function(req, res, next) {
       });
     }else{
       res.json({
-        err: false,
+        err: !result.content.result,
         msg: result.content.responseMessage,
         isAdmin: result.content.responseData
       });
@@ -31,7 +31,7 @@ router.get('/brand', function(req, res, next) {
       });
     }else{
       res.json({
-        err: false,
+        err: !result.content.result,
         msg: result.content.responseMessage,
         brandList: result.content.responseData
       });
@@ -49,7 +49,7 @@ router.get('/category', function(req, res, next) {
       });
     }else{
       res.json({
-        err: false,
+        err: !result.content.result,
         msg: result.content.responseMessage,
         categoryList: result.content.responseData
       });
@@ -68,7 +68,7 @@ router.get('/subCategory', function(req, res, next) {
       });
     }else{
       res.json({
-        err: false,
+        err: !result.content.result,
         msg: result.content.responseMessage,
         subCategoryList: result.content.responseData
       });

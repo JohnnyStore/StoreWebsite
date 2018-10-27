@@ -12,7 +12,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
         }else{
           if(res.brandList !== null){
             $('.petmore').append('<img src="images/brands/brandTitle.jpg"/>');
@@ -36,7 +36,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/index/hotBrands');
       }
     });
   }
@@ -47,7 +47,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
         }else{
           $.each(res.data, function(index, item){
             $('.hot-sales-items ul').append(
@@ -70,7 +70,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + XMLHttpRequest.statusText;
+        alertReqestError('/index/hotItem');
       }
     });
   }
@@ -81,9 +81,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          // alert("itemPromotion?category=1")
-          console.log('loadDogPromotionItem, errorCode: ' + res.code);
-          //location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -133,7 +131,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + '远程服务无响应';
+        alertReqestError('/index/itemPromotion?category=1');
       }
     });
   }
@@ -144,7 +142,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function(res){
         if(res.err){
-          location.href = '/error?errorCode=' + res.code + '&message=' + res.msg;
+          alertResponseError(res.code, res.msg);
         }else{
           $.each(res.data, function(index, item){
             if(index === 0){
@@ -194,7 +192,7 @@ $(document).ready(function () {
         }
       },
       error: function(XMLHttpRequest, textStatus){
-        location.href = '/error?errorCode=' + XMLHttpRequest.status + '&message=' + '远程服务无响应';
+        alertReqestError('/index/itemPromotion?category=2');
       }
     });
   }

@@ -242,7 +242,7 @@ $(document).ready(function () {
       },
       success: function (res) {
         if(res.err){
-          layer.msg('账户注册失败，' + res.msg);
+          alertResponseError(res.code, res.msg);
           return false;
         }
         layer.alert('注册成功，去登陆。', {
@@ -253,7 +253,7 @@ $(document).ready(function () {
         });
       },
       error: function (XMLHttpRequest, textStatus) {
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register');
       }
     });
   }
@@ -288,7 +288,7 @@ $(document).ready(function () {
         setTime();
       },
       error: function (XMLHttpRequest, textStatus) {
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/sendValidCode');
       }
     });
   }
@@ -325,7 +325,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           userNameIsValid = false;
           return false;
         }
@@ -341,7 +341,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         userNameIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/account');
       }
     });
   });
@@ -389,7 +389,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           cellphoneIsValid = false;
           return false;
         }
@@ -405,7 +405,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         cellphoneIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/cellphone');
       }
     });
   });
@@ -431,7 +431,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           emailIsValid = false;
           return false;
         }
@@ -447,7 +447,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         emailIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/email');
       }
     });
   });
@@ -473,7 +473,7 @@ $(document).ready(function () {
       type: 'get',
       success: function (res) {
         if(res.err){
-          layer.msg(res.msg);
+          alertResponseError(res.code, res.msg);
           smsCodeIsValid = false;
           return false;
         }
@@ -495,7 +495,7 @@ $(document).ready(function () {
       },
       error: function (XMLHttpRequest, textStatus) {
         smsCodeIsValid = false;
-        layer.msg(XMLHttpRequest.status + ':' + XMLHttpRequest.statusText);
+        alertReqestError('/register/validCode');
       }
     });
   });
