@@ -71,7 +71,9 @@
     "accessKeyId": "LTAIvodv4HDuszkt",
     "secretAccessKey": "Heuix85lKBHqTGMWMR2mOV0g80YIkh",
     "signName": "爱宠族",
-    "templateCode": "SMS_131015023",
+    "validCode": "SMS_131015023",
+    "payNoticeCode": "SMS_149422832",
+    "payNoticeTel": "18182505299",
     "resMapping": {
       "OK": "请求成功",
       "isp.RAM_PERMISSION_DENY": "RAM权限DENY",

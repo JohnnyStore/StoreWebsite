@@ -184,7 +184,27 @@ exports.sendVerificationCodeToCellphone = function (cellphone, code, callback) {
   var req = {
     PhoneNumbers: cellphone,
     SignName: apiConfig.aliSms.signName,
-    TemplateCode: apiConfig.aliSms.templateCode,
+    TemplateCode: apiConfig.aliSms.validCode,
+    TemplateParam: smsParameter
+  };
+  smsClient.sendSMS(req).then(function (res) {
+    var resText = getAliSmdResponseText(res.Code);
+    return callback(res.Code === 'OK', JSON.stringify(req), JSON.stringify(res), resText);
+  }, function (err) {
+    return callback(false, JSON.stringify(req), JSON.stringify(err), err.data.Message);
+  })
+};
+
+exports.sendPaymentResultToAdmin = function (customerTel, amount, callback) {
+  var smsClient = new SMSClient({
+    accessKeyId: apiConfig.aliSms.accessKeyId,
+    secretAccessKey: apiConfig.aliSms.secretAccessKey
+  });
+  var smsParameter = '{"consignee":"' + customerTel + '",' + '"number": "' + amount + '" }';
+  var req = {
+    PhoneNumbers: apiConfig.aliSms.payNoticeTel,
+    SignName: apiConfig.aliSms.signName,
+    TemplateCode: apiConfig.aliSms.payNoticeCode,
     TemplateParam: smsParameter
   };
   smsClient.sendSMS(req).then(function (res) {

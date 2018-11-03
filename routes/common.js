@@ -9,11 +9,13 @@ router.get('/isAdmin', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         isAdmin: result.content.responseData
       });
@@ -27,11 +29,13 @@ router.get('/brand', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         brandList: result.content.responseData
       });
@@ -45,11 +49,13 @@ router.get('/category', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         categoryList: result.content.responseData
       });
@@ -64,11 +70,13 @@ router.get('/subCategory', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         subCategoryList: result.content.responseData
       });
@@ -82,11 +90,13 @@ router.get('/country', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         countryList: result.content.responseData
       });
@@ -101,11 +111,13 @@ router.get('/province', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         provinceList: result.content.responseData
       });
@@ -122,11 +134,13 @@ router.get('/city', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         cityList: result.content.responseData
       });
@@ -140,11 +154,13 @@ router.get('/shippingAddress', function(req, res, next) {
     if(result.err || !result.content.result){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         shippingAddressList: result.content.responseData
       });

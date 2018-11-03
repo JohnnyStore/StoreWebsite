@@ -139,11 +139,14 @@ router.post('/addItemReview', function (req, res, next) {
     if(result.err){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
+        msg: result.content.responseMessage,
         data: result.content
       });
     }
@@ -162,11 +165,14 @@ router.put('/changeOrderStatus', function (req, res, next) {
     if(result.err){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
+        msg: result.content.responseMessage,
         data: result.content
       });
     }

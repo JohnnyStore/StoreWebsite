@@ -60,6 +60,7 @@ router.get('/email', function(req, res, next) {
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         exist: result.content.totalCount > 0
       });
@@ -90,6 +91,7 @@ router.get('/validCode', function(req, res, next) {
       if(result.content.totalCount === 0){
         res.json({
           err: !result.content.result,
+          code: result.content.responseCode,
           msg: result.content.responseMessage,
           exist: false
         });
@@ -121,11 +123,13 @@ router.post('/', function(req, res, next) {
     if(result.err){
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     }else{
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage
       });
     }
@@ -161,11 +165,13 @@ router.post('/sendValidCode', function(req, res, next) {
         if(result.err){
           res.json({
             err: true,
+            code: result.code,
             msg: result.msg
           });
         }else{
           res.json({
             err: !isSend,
+            code: result.content.responseCode,
             msg: result.content.responseMessage,
             data: result.content
           });
@@ -186,11 +192,13 @@ router.post('/sendValidCode', function(req, res, next) {
         if(result.err){
           res.json({
             err: true,
+            code: result.code,
             msg: result.msg
           });
         }else{
           res.json({
             err: isSend,
+            code: result.content.responseCode,
             msg: result.content.responseMessage,
             data: result.content
           });

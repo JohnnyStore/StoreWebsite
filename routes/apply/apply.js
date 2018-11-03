@@ -1,5 +1,7 @@
 var express = require('express');
+var apiConfig = require('../../config/apiConfig');
 var commonService = require('../../service/commonService');
+var commonUtils = require('../../common/commonUtils');
 var commonData = require('../../service/commonData');
 var router = express.Router();
 
@@ -42,4 +44,38 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/sendNoticeSms', function (req, res, next) {
+  var customerTel = req.body.customerTel;
+  var orderAmount = req.body.orderAmount;
+  var service = new commonService.commonInvoke('thirdPartyAPI');
+
+  commonUtils.sendPaymentResultToAdmin(customerTel, orderAmount, function (isSend, reqContent, resContent, reqText) {
+    var data = {
+      thirdParty: 'aliSms',
+      requestContent: reqContent,
+      responseContent: resContent,
+      requestResult: isSend ? 'T' : 'F',
+      responseText: reqText,
+      cellphone: apiConfig.aliSms.payNoticeTel,
+      verificationCode: '',
+      loginUser: customerTel
+    };
+    service.add(data, function (result) {
+      if(result.err){
+        res.json({
+          err: true,
+          code: result.code,
+          msg: result.msg
+        });
+      }else{
+        res.json({
+          err: !isSend,
+          code: result.content.responseCode,
+          msg: result.content.responseMessage,
+          data: result.content
+        });
+      }
+    });
+  });
+});
 module.exports = router;

@@ -34,11 +34,13 @@ router.get('/list', function(req, res, next) {
     if (result.err || !result.content.result) {
       res.json({
         err: true,
+        code: result.code,
         msg: result.msg
       });
     } else {
       res.json({
         err: !result.content.result,
+        code: result.content.responseCode,
         msg: result.content.responseMessage,
         data: result.content.responseData
       });

@@ -309,45 +309,50 @@
 }
 /*图片滚动*/
 .als-container {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  _height: 100%;
-}
-
-.picbox {
-  width: 802px;
-  margin: 0 auto;
-  height:290px;
-  overflow: hidden;
-  position: relative;
-}
-
-.piclist {
+  width: 887px;
   height: 256px;
+  position: relative;
+  float: left;
+  margin: 0 auto;
+
+}
+.picbox-wrap{
+  width: 802px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 60px;
+  height: 256px;
+}
+.picbox {
+  width: 6950px;
   position: absolute;
   left: 0px;
-  top: 0px
+  top: 0px;
 }
-.piclist li {
+
+.picbox ul  li {
   float: left;
-  width: 158px;
+
+}
+.picbox ul li a{
+  text-decoration: none;
+  width: 200px;
   overflow: hidden;
   height: 256px;
-  margin-left: 50px;
-}
-.piclist li a{text-decoration: none}
-.piclist li .surprise-img{
+  padding:0 15px;
+  /*margin-left: 50px;*/
+  display: block;}
+.picbox ul li .surprise-img{
   width: 150px;
   height: 120px;
 }
-.piclist li .surprise-img img{
+.picbox ul li .surprise-img img{
   width: 100%;
   height: 100%;
 }
-.piclist li .goodsDes{
+.picbox ul  li .goodsDes{
   height: 30px;
+  width: 139px;
   line-height: 30px;
   font-size: 14px;
   overflow: hidden;
@@ -357,23 +362,22 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
-
-.piclist li .panicpric{
+.picbox ul  li .panicpric{
   font-size: 14px;
   color: #dd2727;
 }
-.piclist li .panicpric span{
+.picbox ul  li .panicpric span{
   font-size: 20px;
 }
-.piclist li .panicpric span.normal-price{
+.picbox ul  li .panicpric span.normal-price{
   font-size: 16px;
   color: #cfcfcf;
   text-decoration: line-through;
 }
-.piclist li .paniZp{
+.picbox ul  li .paniZp{
   color: #999;
 }
-.piclist li .panicshopsbtn{
+.picbox ul  li .panicshopsbtn{
   color: #fff;
   background: #cdcdcd;
   width: 120px;
@@ -383,9 +387,8 @@
   cursor: pointer;
   text-align: center;
   margin-top: 29px;
-
 }
-.piclist li .buynow{
+.picbox ul  li .buynow{
   color: #fff;
   background: #fa5507;
   width: 120px;
@@ -396,7 +399,7 @@
   text-align: center;
   margin-top: 29px;
 }
-.piclist li .wait{
+.picbox ul  li .wait{
   color: #fff;
   background: #5cb85c;
   border-color: #4cae4c;
@@ -408,42 +411,10 @@
   text-align: center;
   margin-top: 29px;
 }
-.als-prev,
-.als-next {
-  width: 30px;
-  height: 50px;
-  background: url(../../../images/icon.png) no-repeat;
-  background: url(../../../images/icon_ie6.png) no-repeat\9;
-  position: absolute;
-  top: 115px;
-  z-index: 99;
-  cursor: pointer;
-  filter: alpha(opacity=70);
-  opacity: 0.7;
-  display: block;
-}
 
-.als-prev {
-  background-position: 0 0;
-  left: 4px;
-}
-
-.als-next {
-  background-position: 0 -60px;
-  right: 4px;
-}
-als-container {
-  position: relative;
-  width: 802px;
-  height: 400px;
-  margin: 0 auto;
-  /*position: absolute;
-  bottom: 40px;*/
-}
 .petlogowrap img{
   border:none;
   width: 235px;
-
 }
 .petlogo img{
   width: 311px;
@@ -474,6 +445,59 @@ als-container {
   position:absolute;
   left:0;
   /*width:242px;*/
+}
+
+.prev {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  margin-top: -40px;
+}
+.next {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -40px;
+}
+.prev a {
+  opacity: 0.6;
+  background: #2f3430;
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  width: 24px;
+  height: 45px;
+}
+.next a {
+  background: #2f3430;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  width: 24px;
+  height: 45px;
+  opacity: 0.6;
+}
+.prev img {
+  width: 80%;
+  display: block;
+  border: none;
+  position: absolute;
+  left: 0;
+  top: 12px;
+}
+.next img {
+  width: 80%;
+  display: block;
+  position: absolute;
+  border: none;
+  top: 13px;
+  right: 0;
+}
+.prev a:hover {
+  opacity: 1;
+}
+.next a:hover {
+  opacity: 1;
 }
 
 
