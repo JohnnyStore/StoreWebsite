@@ -46,7 +46,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/sendNoticeSms', function (req, res, next) {
   var customerTel = req.body.customerTel;
-  var orderAmount = req.body.orderAmount;
+  var orderAmount = req.body.orderAmount.replace('¥', '').replace('$', '');
   var service = new commonService.commonInvoke('thirdPartyAPI');
 
   commonUtils.sendPaymentResultToAdmin(customerTel, orderAmount, function (isSend, reqContent, resContent, reqText) {
