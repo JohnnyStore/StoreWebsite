@@ -24,11 +24,12 @@ $(document).ready(function () {
       closeBtn: 0, //不显示关闭按钮
       anim: 2,
       shadeClose: true, //开启遮罩关闭
-      area: ['383px', '605px'], //宽高
-      content: '<div style="width: 352px; height: 490px; margin: 0 auto; margin-top: 10px">\n' +
+      area: ['383px', '635px'], //宽高
+      content: '<div style="width: 352px; height: 520px; margin: 0 auto; margin-top: 10px">\n' +
       '  <div>\n' +
       '    <img src="' + paymentQrUrl + '" style="width: 352px;" alt="">\n' +
       '  </div>\n' +
+      '  <div style="text-align: center; color: #ff7c00; font-size: 14px; margin-top: 10px">支付成功后，请务必<span style="color: red; font-weight: bolder">点击支付完成</span>按钮，以便及时发货。</div>' +
       '  <div style="margin-top: 15px; text-align: center">\n' +
       '    <button type="button" class="btn btn-success btn-block" id="btnPaymentComplete">支付完成</button>\n' +
       '  </div>\n' +
