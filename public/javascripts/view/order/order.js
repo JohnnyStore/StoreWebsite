@@ -140,7 +140,7 @@ $(function() {
           return false;
         }
         $.each(res.cityList, function (index , city) {
-          var cityID = city.provinceID;
+          var cityID = city.cityID;
           var cityName = lan === 'cn'? city.cityNameCN : city.cityNameEN;
           $('#shipping-city').append('<option value="' + cityID + '">' + cityName + '</option>');
         });

@@ -303,8 +303,11 @@ $(document).ready(function () {
             if(review.customerName !== null){
               reviewer = review.customerName;
             }else{
-              if(review.account.length > 3){
-                reviewer = review.account.substr(0, 2) + '***' + review.account.substr(review.account.length-1, 1);
+              if(review.account === null || review.account === ''){
+                review.account = review.cellphone;
+              }
+              if(review.account.length > 6){
+                reviewer = review.account.substr(0, 3) + '***' + review.account.substr(review.account.length-2, 2);
               }else{
                 reviewer = review.account.substr(0, 1) + '***';
               }

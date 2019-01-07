@@ -1,6 +1,6 @@
 {
   "StoreService": {
-    "host": "23.98.40.101",
+    "host": "localhost",
     "port": 8080,
     "path": {
       "brand": "/api/brand",
