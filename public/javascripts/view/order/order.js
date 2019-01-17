@@ -486,7 +486,7 @@ $(function() {
       orderItems.push({
         itemID: $(item).attr('data-item-id'),
         itemCount: $(item).attr('data-item-count'),
-        itemAmount : $(item).attr('data-item-amount-rmb'),
+        itemAmount : lan === 'cn'? $(item).attr('data-item-amount-rmb'): $(item).attr('data-item-amount-usd'),
         currencyType : lan === 'cn'? 'CNY' : 'USD',
         loginUser: customer.account
       });

@@ -296,39 +296,60 @@ $(function () {
     var customer = getLoginCustomer();
     var index = layer.load();
     var errorCount = 0;
-    $('.shop_item').each(function (index, item) {
-      var shoppingCartID = $(item).attr('data-shoppingCart-id');
-      var itemID = $(item).attr('data-item-id');
-      var shoppingCount = $(item).find('.sum').val();
-      $.ajax({
-        url: '/shops',
-        type: 'put',
-        dataType: 'json',
-        async:false,
-        data:{
-          shoppingCartID: shoppingCartID,
-          itemID: itemID,
-          customerID: customer.customerID,
-          shoppingCount: shoppingCount,
-          status: 'I',
-          loginUser: customer.account
-        },
-        success: function (res) {
-          if(res.err){
-            errorCount++;
-          }
-        },
-        error: function (XMLHttpRequest, textStatus) {
-          errorCount++;
+
+    $.ajax({
+      url: '/shops/resetStatus',
+      type: 'put',
+      dataType: 'json',
+      async:false,
+      data:{
+        customerID: customer.customerID,
+        loginUser: customer.account
+      },
+      success: function (res) {
+        if(res.err){
+          layer.msg(lan === 'cn' ? 'Service异常。' : 'Service failed.');
+          return false;
         }
-      });
+        $('.shop_item .son_check:checked').each(function (index, item) {
+          var shoppingCartID = $(item).parent().parent().attr('data-shoppingCart-id');
+          var itemID = $(item).parent().parent().attr('data-item-id');
+          var shoppingCount = $(item).parent().parent().find('.sum').val();
+          $.ajax({
+            url: '/shops',
+            type: 'put',
+            dataType: 'json',
+            async:false,
+            data:{
+              shoppingCartID: shoppingCartID,
+              itemID: itemID,
+              customerID: customer.customerID,
+              shoppingCount: shoppingCount,
+              status: 'C',
+              loginUser: customer.account
+            },
+            success: function (res) {
+              if(res.err){
+                errorCount++;
+              }
+            },
+            error: function (XMLHttpRequest, textStatus) {
+              errorCount++;
+            }
+          });
+        });
+        layer.close(index);
+        if(errorCount > 0){
+          layer.msg('远程请求失败，请检查网络链接');
+          return false;
+        }
+        location.href = '/order';
+
+      },
+      error: function (XMLHttpRequest, textStatus) {
+        alertReqestError('/shops/resetStatus');
+      }
     });
-    layer.close(index);
-    if(errorCount > 0){
-      layer.msg('远程请求失败，请检查网络链接');
-      return false;
-    }
-    location.href = '/order';
   });
 
   /**

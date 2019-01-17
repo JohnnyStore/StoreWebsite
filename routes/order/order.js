@@ -7,6 +7,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   var customerID = req.cookies['loginCustomerID'];
   var service = new commonService.commonInvoke('shoppingCart4Customer');
+  var parameter = customerID + '/C';
   commonData.getCommonData(req, res, function(commonResult){
     if(commonResult.err){
       res.render('error', {
@@ -20,7 +21,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/login');
         return false;
       }
-      service.get(customerID, function (result) {
+      service.get(parameter, function (result) {
         if(result.err){
           res.render('error', {
             title: '网站出错啦',
