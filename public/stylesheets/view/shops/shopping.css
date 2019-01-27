@@ -412,3 +412,51 @@ a.btn-again {
   background-color: #fa5507;
   color: #ffffff;
 }
+.btn-order:hover{
+  color: #ffffff !important;
+}
+.btn-payment{
+  right: 75px !important;
+  width: 62px;
+  margin-top: -3px;
+  display: block;
+  background: #eb3956;
+  padding: 4px 6px;
+  height: 26px;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}
+.btn-cancel{
+  width: 62px;
+  margin-top: -3px;
+  display: block;
+  background: #bdbdbd;
+  padding: 4px 6px;
+  height: 26px;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}
+.btn-receive{
+  width: 62px;
+  margin-top: -3px;
+  display: block;
+  background: #87b87f;
+  padding: 4px 6px;
+  height: 26px;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}
+.btn-review{
+  width: 62px;
+  /*margin-top: -3px;*/
+  display: block;
+  background: #fb821a;
+  padding: 4px 6px;
+  height: 26px;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}

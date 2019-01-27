@@ -60,43 +60,25 @@ router.get('/', function(req, res, next) {
               data.currencySymbol = data.currencyType === 'CNY'? '¥' : '$';
               switch (data.orderStatus){
                 case 'O':
-                  data.orderStatusTextCN = '待支付';
-                  data.orderStatusTextEN = 'Wait Pay';
                   data.isWaitPay = true;
                   break;
                 case 'E':
-                  data.orderStatusTextCN = '已过期';
-                  data.orderStatusTextEN = 'Expired';
                   data.isExpired = true;
                   break;
                 case 'P':
-                  data.orderStatusTextCN = '待发货';
-                  data.orderStatusTextEN = 'Wait Delivery';
                   data.isWaitDelivery = true;
                   break;
                 case 'C':
-                  data.orderStatusTextCN = '已取消';
-                  data.orderStatusTextEN = 'Canceled';
                   data.isCanceled = true;
                   break;
                 case 'S':
-                  data.orderStatusTextCN = '配送中';
-                  data.orderStatusTextEN = 'Shipping';
                   data.isShipping = true;
                   break;
                 case 'R':
-                  data.orderStatusTextCN = '已退款';
-                  data.orderStatusTextEN = 'Refunded';
                   data.isRefunded = true;
                   break;
                 case 'F':
-                  data.orderStatusTextCN = '已完成';
-                  data.orderStatusTextEN = 'Completed';
                   data.isCompleted = true;
-                  break;
-                default:
-                  data.orderStatusTextCN = '未知状态';
-                  data.orderStatusTextEN = 'Unknow Status';
                   break;
               }
             });
@@ -107,14 +89,15 @@ router.get('/', function(req, res, next) {
             errorCode: commonResult.code,
             message: commonResult.msg,
             recentMonth: recentMonth,
-            orderStatus: orderStatus,
             navigate: commonResult.navigate,
             pagination: pagination,
             pageNumber: pageNumber,
-            totalCount: result.content.totalCount,
-            toPayOrderCount: result.content.toPayOrderCount,
-            toReceiveOrderCount: result.content.toReceiveOrderCount,
-            toReviewOrderCount: result.content.toReviewOrderCount,
+            orderStatus: orderStatus,
+            totalCount: result.content.totalCount > 99 ? '99+' : result.content.totalCount,
+            toPayOrderCount: result.content.toPayOrderCount > 99 ? '99+' : result.content.toPayOrderCount,
+            toReceiveOrderCount: result.content.toReceiveOrderCount > 99 ? '99+' : result.content.toReceiveOrderCount,
+            toReviewOrderCount: result.content.toReviewOrderCount > 99 ? '99+' : result.content.toReviewOrderCount,
+            pageSize: pageSize,
             orderList: result.content.responseData
           });
         }

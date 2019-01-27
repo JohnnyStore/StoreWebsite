@@ -38,18 +38,6 @@ $(function(){
     });
   }
 
-  $("#recently_order").mouseover(function(){
-    $('.order_meau>ul>li:first-child').find('i').removeClass('fa-angle-down');
-    $('.order_meau>ul>li:first-child').find('i').addClass('fa-angle-up');
-    $(".order_month").show();
-  });
-
-  $("#recently_order").mouseout(function(){
-    $('.order_meau>ul>li:first-child').find('i').removeClass('fa-angle-up');
-    $('.order_meau>ul>li:first-child').find('i').addClass('fa-angle-down');
-    $(".order_month").hide();
-  });
-
   function changeOrderStatus(orderID, orderStatus){
     $.ajax({
       url: '/myOrder/changeOrderStatus',
@@ -73,26 +61,29 @@ $(function(){
     });
   }
 
-  /**
-   * 更新订单状态为F
-   */
+  $("#recently_order").mouseover(function(){
+    $('.order_meau>ul>li:first-child').find('i').removeClass('fa-angle-down');
+    $('.order_meau>ul>li:first-child').find('i').addClass('fa-angle-up');
+    $(".order_month").show();
+  });
+
+  $("#recently_order").mouseout(function(){
+    $('.order_meau>ul>li:first-child').find('i').removeClass('fa-angle-up');
+    $('.order_meau>ul>li:first-child').find('i').addClass('fa-angle-down');
+    $(".order_month").hide();
+  });
+
   $('.btn-receive').click(function () {
     var orderID = $(this).attr('data-order-id');
     changeOrderStatus(orderID, 'F');
   });
 
-  /**
-   * 更新订单状态为C
-   */
   $('.btn-cancel').click(function () {
     var orderID = $(this).attr('data-order-id');
     changeOrderStatus(orderID, 'C');
   });
 
-  /**
-   * 跳转到添加评论页面
-   */
-  $('.btn-add-reivew').click(function () {
+  $('.btn-review').click(function () {
     var itemID = $(this).attr('data-item-id');
     var htmlContent =
         '<div class="review">\n' +
@@ -190,6 +181,7 @@ $(function(){
           $('.review .tip').addClass('hidden');
           layer.close(index);
           layer.msg(lan === 'cn'? '添加评论成功。' : 'Add review success.');
+          location.reload();
         },
         error: function(XMLHttpRequest, textStatus){
           layer.msg('无法连接网络，请检查网络设置。');

@@ -38,7 +38,7 @@
           </li>
           <li>
             <a href="/waiteval">
-              <span class="lan-cn">已完成</span>
+              <span class="lan-cn">待评价</span>
               <span class="lan-en hidden">To Review</span>
               <span>{{toReviewOrderCount}}</span>
             </a>
@@ -102,133 +102,72 @@
             <span class="lan-cn">订单金额:</span>
             <span class="lan-en hidden">Order Amount：</span>
             <span>{{this.currencySymbol}}{{this.orderAmount}}</span>
-          </div>
-          <div class="shop_item">
-            <div class="shop_goods my_order_goods">
-              <div class="shop_goods_img">
-                <a href="/item?itemID={{this.itemVO.itemID}}">
-                  <img src="{{this.itemVO.itemImageUrl}}" alt="" />
-                </a>
-              </div>
-              <div class="shop_goods_inner">
-                <a href="/item?itemID={{this.itemVO.itemID}}">
-                  <span class="lan-cn">{{this.itemVO.brandCN}}{{this.itemVO.itemShortDescriptionCN}}</span>
-                  <span class="lan-en hidden">{{this.itemVO.brandEN}}{{this.itemVO.itemShortDescriptionEN}}</span>
-                </a>
-              </div>
-              <div class="shop_goods_color">
-                <p>
-                  <span class="lan-cn">颜色：</span>
-                  <span class="lan-en hidden">Color：</span>
-                  <span class="lan-cn">{{this.itemVO.colorCN}}</span>
-                  <span class="lan-en hidden">{{this.itemVO.colorEN}}</span>
-                </p>
-                <p>
-                  <span class="lan-cn">尺码：</span>
-                  <span class="lan-en hidden">Size：</span>
-                  <span class="lan-cn">{{this.itemVO.sizeCN}}</span>
-                  <span class="lan-en hidden">{{this.itemVO.sizeEN}}</span>
-                </p>
-              </div>
-            </div>
-            <div class="my_order_price shop_goods_price">
-              X{{this.itemCount}}
-            </div>
-            <div class="my_order_price shop_goods_price orange">
-              <span>{{this.currencySymbol}}</span>
-              <span>{{this.itemTotalAmount}}</span>
-            </div>
-            <div class="my_order_price shop_goods_price">
-              <span class="lan-cn">{{this.orderStatusTextCN}}</span>
-              <span class="lan-en hidden">{{this.orderStatusTextEN}}</span>
-            </div>
+            <span class="lan-cn">{{this.orderStatusText}}</span>
+            <span class="lan-en hidden">{{this.orderStatusTextEn}}</span>
             {{# if this.isWaitPay}}
-              <div class="shop_goods_price my_order_zt">
-                <div class="btn-review text-center">
-                  <a href="#" class="btn-cancel" data-order-id="{{this.orderID}}">
-                    <span class="lan-cn">取消订单</span>
-                    <span class="lan-en hidden">Cancel Order</span>
-                  </a>
-                </div>
-                <br>
-                <div>
-                  <a href="apply?orderNumber={{this.orderID}}" class="my_order_fk">
-                    <i class="fa fa-credit-card"></i>
-                    <span class="lan-cn">去支付</span>
-                    <span class="lan-en hidden">Payment</span>
-                  </a>
-                </div>
-              </div>
-            {{/if}}
-            {{# if this.isExpired}}
-              <div class="shop_goods_price my_order_zt">
-                <p></p>
-                <a href="/item?itemID={{this.itemVO.itemID}}" class="btn-again-show btn-again">
-                  <i class="iconfont icon-gouwuche"></i>
-                  <span class="lan-cn">再次购买</span>
-                  <span class="lan-en hidden">Buy Again</span>
-                </a>
-              </div>
-            {{/if}}
-            {{# if this.isWaitDelivery}}
-              <div class="shop_goods_price my_order_zt">
-              </div>
+              <a href="/apply?orderNumber={{this.orderID}}" class="btn-order btn-payment">去支付</a>
+              <a href="javascript:;" class="btn-order btn-cancel" data-order-id="{{this.orderID}}">取消订单</a>
             {{/if}}
             {{# if this.isShipping}}
-              <div class="shop_goods_price my_order_zt">
-                <button class="btn btn-sm btn-success btn-receive" data-order-id="{{this.orderID}}">
-                  <i class="fa fa-check"></i>
-                  <span class="lan-cn">确认收获</span>
-                  <span class="lan-en hidden">Received</span>
-                </button>
-              </div>
-            {{/if}}
-            {{# if this.isCanceled}}
-              <div class="shop_goods_price my_order_zt">
-                <div>
-                  <a href="/item?itemID={{this.itemVO.itemID}}" class="btn-again-show btn-again"><i class="iconfont icon-gouwuche"></i>
-                    <span class="lan-cn">再次购买</span>
-                    <span class="lan-en hidden">Buy Again</span>
-                  </a>
-                </div>
-              </div>
-            {{/if}}
-            {{# if this.isRefunded}}
-              <div class="shop_goods_price my_order_zt">
-                <div class="btn-review text-center">
-                  <a href="#" class="btn-add-reivew" data-item-id="{{this.itemVO.itemID}}">
-                    <span class="lan-cn">评价</span>
-                    <span class="lan-en hidden">Reivew</span>
-                  </a>
-                </div>
-                <br>
-                <div>
-                  <a href="/item?itemID={{this.itemVO.itemID}}" class="btn-again-show btn-again"><i class="iconfont icon-gouwuche"></i>
-                    <span class="lan-cn">再次购买</span>
-                    <span class="lan-en hidden">Buy Again</span>
-                  </a>
-                </div>
-              </div>
-            {{/if}}
-            {{# if this.isCompleted}}
-              <div class="shop_goods_price my_order_zt">
-                <div class="btn-review text-center">
-                  <a href="#" class="btn-add-reivew" data-item-id="{{this.itemVO.itemID}}">
-                    <span class="lan-cn">评价</span>
-                    <span class="lan-en hidden">Reivew</span>
-                  </a>
-                </div>
-                <br>
-                <div>
-                  <a href="/item?itemID={{this.itemVO.itemID}}" class="btn-again-show btn-again"><i class="iconfont icon-gouwuche"></i>
-                    <span class="lan-cn">再次购买</span>
-                    <span class="lan-en hidden">Buy Again</span>
-                  </a>
-                </div>
-              </div>
+              <a href="javascript:;" class="btn-order btn-receive" data-order-id="{{this.orderID}}">确认收货</a>
             {{/if}}
           </div>
-
+          {{# each this.orderTransactionList}}
+            <div class="shop_item">
+              <div class="shop_goods my_order_goods">
+                <div class="shop_goods_img">
+                  <a href="/item?itemID={{this.itemVO.itemID}}">
+                    <img src="{{this.itemVO.itemImageUrl}}" alt="" />
+                  </a>
+                </div>
+                <div class="shop_goods_inner">
+                  <a href="/item?itemID={{this.itemVO.itemID}}">
+                    <span class="lan-cn">{{this.itemVO.brandCN}}{{this.itemVO.itemShortDescriptionCN}}</span>
+                    <span class="lan-en hidden">{{this.itemVO.brandEN}}{{this.itemVO.itemShortDescriptionEN}}</span>
+                  </a>
+                </div>
+                <div class="shop_goods_color">
+                  <p>
+                    <span class="lan-cn">颜色：</span>
+                    <span class="lan-en hidden">Color：</span>
+                    <span class="lan-cn">{{this.itemVO.colorCN}}</span>
+                    <span class="lan-en hidden">{{this.itemVO.colorEN}}</span>
+                  </p>
+                  <p>
+                    <span class="lan-cn">尺码：</span>
+                    <span class="lan-en hidden">Size：</span>
+                    <span class="lan-cn">{{this.itemVO.sizeCN}}</span>
+                    <span class="lan-en hidden">{{this.itemVO.sizeEN}}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="my_order_price shop_goods_price">
+                X{{this.itemCount}}
+              </div>
+              <div class="my_order_price shop_goods_price orange">
+                <span>{{../this.currencySymbol}}</span>
+                <span>{{this.itemAmount}}</span>
+              </div>
+              <div class="my_order_price shop_goods_price">
+                {{# if ../this.isRefunded}}
+                  {{# if this.customerReviewed}}
+                    <span class="lan-cn">已评价</span>
+                    <span class="lan-en hidden">Reviewed</span>
+                  {{else}}
+                    <a href="javascript:;" class="order-review" data-order-id="{{../this.orderID}}" data-item-id="{{this.itemVO.itemID}}">评价</a>
+                  {{/if}}
+                {{/if}}
+                {{# if ../this.isCompleted}}
+                  {{# if this.customerReviewed}}
+                    <span class="lan-cn reviewed">已评价</span>
+                    <span class="lan-en reviewed hidden">Reviewed</span>
+                  {{else}}
+                    <a href="javascript:;" class="btn-order btn-review" data-order-id="{{../this.orderID}}" data-item-id="{{this.itemVO.itemID}}">评价</a>
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
+          {{/each}}
         </div>
       {{/each}}
       <div class="text-center">
