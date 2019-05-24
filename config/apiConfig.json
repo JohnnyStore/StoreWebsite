@@ -1,6 +1,6 @@
 {
   "StoreService": {
-    "host": "localhost",
+    "host": "23.98.40.101",
     "port": 8080,
     "path": {
       "brand": "/api/brand",
@@ -53,7 +53,7 @@
       "forgetPassword": "/api/customer/forgetPassword",
       "login": "/api/customer/login",
       "changeCustomerStatus": "/api/customer/changeStatus",
-      "itemHot":"/api/itemHot/current",
+      "itemHot":"/api/itemHot/current/P",
       "itemPromotion":"/api/itemPromotion/current",
       "dailySnapUp":"/api/dailySnapUp/current",
       "order":"/api/order",
